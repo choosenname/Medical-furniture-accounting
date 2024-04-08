@@ -8,6 +8,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MedicalFurnitureAccounting.Pages;
 
 namespace MedicalFurnitureAccounting;
 
@@ -16,8 +17,15 @@ namespace MedicalFurnitureAccounting;
 /// </summary>
 public partial class MainWindow : Window
 {
+    private readonly ApplicationDBContext _context;
     public MainWindow()
     {
         InitializeComponent();
+        _context = new ApplicationDBContext();
+    }
+
+    private void Button_Click(object sender, RoutedEventArgs e)
+    {
+        MainFrame.Navigate(new CategoryPage(_context));
     }
 }
