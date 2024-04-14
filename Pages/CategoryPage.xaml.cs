@@ -7,20 +7,20 @@ namespace MedicalFurnitureAccounting.Pages;
 
 public partial class CategoryPage : Page
 {
-    private readonly ApplicationDBContext _context;
+    private readonly ApplicationDBContext _dbContext;
 
     public ObservableCollection<Category> Categories { get; set; }
 
-    public CategoryPage(ApplicationDBContext context)
+    public CategoryPage(ApplicationDBContext dbContext)
     {
         InitializeComponent();
-        _context = context;
+        _dbContext = dbContext;
         LoadCategories();
     }
 
     private void LoadCategories()
     {
-        Categories = new ObservableCollection<Category>(_context.Categories.ToList());
+        Categories = new ObservableCollection<Category>(_dbContext.Categories.ToList());
         DataContext = this;
     }
 
@@ -28,8 +28,8 @@ public partial class CategoryPage : Page
     {
         // Создание новой категории
         Category newCategory = new Category() { Name = "New Category" };
-        _context.Categories.Add(newCategory);
-        _context.SaveChanges();
+        _dbContext.Categories.Add(newCategory);
+        _dbContext.SaveChanges();
 
         // Добавление категории к коллекции и обновление DataContext
         Categories.Add(newCategory);
