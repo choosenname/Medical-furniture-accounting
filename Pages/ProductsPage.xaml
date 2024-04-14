@@ -1,0 +1,27 @@
+﻿<Page x:Class="MedicalFurnitureAccounting.Pages.ProductsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:MedicalFurnitureAccounting.Pages"
+      mc:Ignorable="d"
+      Title="CategoryPage" Height="450" Width="800">
+    <Grid>
+        <!-- Разместите здесь содержимое вашей страницы -->
+        <StackPanel>
+            <ListView ItemsSource="{Binding Products}" Margin="10" Height="350">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Product ID" DisplayMemberBinding="{Binding ProductId}"/>
+                        <GridViewColumn Header="Category ID" DisplayMemberBinding="{Binding CategoryId}"/>
+                        <GridViewColumn Header="Supplier ID" DisplayMemberBinding="{Binding SupplierId}"/>
+                        <GridViewColumn Header="Material ID" DisplayMemberBinding="{Binding MaterialId}"/>
+                        <GridViewColumn Header="Supply ID" DisplayMemberBinding="{Binding SupplyId}"/>
+                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
+                        <!-- Добавьте другие столбцы по вашему усмотрению -->
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </StackPanel>
+    </Grid>
+</Page>

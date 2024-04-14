@@ -27,5 +27,22 @@ public partial class MainWindow : Window
     private void Button_Click(object sender, RoutedEventArgs e)
     {
         MainFrame.Navigate(new CategoryPage(_context));
+    } 
+    private void Button_Click_Material_Page(object sender, RoutedEventArgs e)
+    {
+        MainFrame.Navigate(new MaterialPage(_context));
     }
+    private void Button_Click_Product_Page(object sender, RoutedEventArgs e)
+    {
+        MainFrame.Navigate(new ProductsPage(_context));
+    } 
+    private void Button_Click_Supplier_Page(object sender, RoutedEventArgs e)
+    {
+        MainFrame.Navigate(new SupplierPage(_context));
+    }
+    private void Button_Click_Supply_Page(object sender, RoutedEventArgs e)
+    {
+        MainFrame.Navigate(new SupplyPage(_context));
+    }
+
 }
