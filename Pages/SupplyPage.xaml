@@ -1,0 +1,23 @@
+﻿<Page x:Class="MedicalFurnitureAccounting.Pages.SupplyPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:MedicalFurnitureAccounting.Pages"
+      mc:Ignorable="d"
+      Title="CategoryPage" Height="450" Width="800">
+    <Grid>
+        <!-- Разместите здесь содержимое вашей страницы -->
+        <StackPanel>
+            <ListView ItemsSource="{Binding Supplies}" Margin="10" Height="350">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Supply ID" DisplayMemberBinding="{Binding SupplyId}"/>
+                        <GridViewColumn Header="Date" DisplayMemberBinding="{Binding Date}"/>
+                        <GridViewColumn Header="Supplier ID" DisplayMemberBinding="{Binding SupplierId}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </StackPanel>
+    </Grid>
+</Page>
