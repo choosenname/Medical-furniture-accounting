@@ -10,6 +10,7 @@ public class ApplicationDBContext : DbContext
     public DbSet<Category> Categories { get; set; }
     public DbSet<Material> Materials { get; set; }
     public DbSet<Supply> Supplies { get; set; }
+    public DbSet<Storekeeper> Storekeepers { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {

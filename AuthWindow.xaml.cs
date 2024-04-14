@@ -19,15 +19,15 @@ public partial class AuthWindow : Window
         string password = NewPasswordBox.Password;
 
         // Проверяем, существует ли пользователь с таким же именем
-        if (_dbContext.Suppliers.Any(u => u.Name == username))
+        if (_dbContext.Storekeepers.Any(u => u.Name == username))
         {
             MessageBox.Show("User with this username already exists.");
             return;
         }
 
         // Создаем нового пользователя и добавляем его в базу данных
-        var newUser = new Supplier() { Name = username, Password = password };
-        _dbContext.Suppliers.Add(newUser);
+        var newUser = new Storekeeper() { Name = username, Password = password };
+        _dbContext.Storekeepers.Add(newUser);
         _dbContext.SaveChanges();
 
         MessageBox.Show("Registration successful! Username: " + username);
@@ -39,7 +39,7 @@ public partial class AuthWindow : Window
         string password = PasswordBox.Password;
 
         // Проверяем, существует ли пользователь с указанными учетными данными
-        var user = _dbContext.Suppliers
+        var user = _dbContext.Storekeepers
             .FirstOrDefault(u => u.Name == username && u.Password == password);
 
         if (user != null)
