@@ -17,15 +17,15 @@ namespace MedicalFurnitureAccounting;
 /// </summary>
 public partial class MainWindow : Window
 {
-    private readonly ApplicationDBContext _context;
-    public MainWindow()
+    private readonly ApplicationDBContext _dbContext;
+    public MainWindow(ApplicationDBContext dbContext)
     {
         InitializeComponent();
-        _context = new ApplicationDBContext();
+        _dbContext = dbContext;
     }
 
     private void Button_Click(object sender, RoutedEventArgs e)
     {
-        MainFrame.Navigate(new CategoryPage(_context));
+        MainFrame.Navigate(new CategoryPage(_dbContext));
     }
 }

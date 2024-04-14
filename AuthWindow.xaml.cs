@@ -44,10 +44,10 @@ public partial class AuthWindow : Window
 
         if (user != null)
         {
-            this.Close();
-
             MainWindow mainWindow = new MainWindow(_dbContext);
             mainWindow.Show();
+
+            this.Close();
         }
         else
         {
