@@ -5,15 +5,62 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:MedicalFurnitureAccounting.Pages"
       mc:Ignorable="d"
-      Title="CategoryPage" Height="450" Width="800">
+      Title="SupplierPage" Height="450" Width="800">
     <Grid>
         <!-- Разместите здесь содержимое вашей страницы -->
         <StackPanel>
-            <ListView ItemsSource="{Binding Suppliers}" Margin="10" Height="350">
+            <!-- Поле поиска -->
+            <StackPanel Orientation="Horizontal" Margin="10">
+                <TextBox x:Name="searchBox" Text="Search" VerticalAlignment="Center" Margin="0 0 10 0" Width="150"
+         GotFocus="SearchBox_GotFocus" LostFocus="SearchBox_LostFocus"/>
+                <Button Content="Search" Click="SearchButton_Click" Background="#007BFF" Foreground="White" Padding="10" Cursor="Hand" BorderThickness="0" Width="100">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}" CornerRadius="5">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button Content="Show All" Click="ShowAllButton_Click" Margin="10" Background="#007BFF" Foreground="White" Padding="10" Cursor="Hand" BorderThickness="1" BorderBrush="#007BFF" MinWidth="100">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}" CornerRadius="5" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button Content="Sort by Name" Click="SortByNameButton_Click" Margin="10" Background="#007BFF" Foreground="White" Padding="10" Cursor="Hand" BorderThickness="1" BorderBrush="#007BFF" MinWidth="100">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}" CornerRadius="5" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button Content="Sort by ID" Click="SortByIDButton_Click" Margin="10" Background="#007BFF" Foreground="White" Padding="10" Cursor="Hand" BorderThickness="1" BorderBrush="#007BFF" MinWidth="100">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}" CornerRadius="5" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <ComboBox x:Name="supplierFilterComboBox" VerticalAlignment="Center" Margin="0 0 10 0" Padding="5" BorderThickness="1" BorderBrush="#007BFF" MinWidth="120" SelectionChanged="SupplierFilterComboBox_SelectionChanged"/>
+
+            </StackPanel>
+
+            <!-- ListView для отображения списка поставщиков -->
+            <ListView ItemsSource="{Binding Suppliers}" Margin="10" Height="350" Name="supplierListView">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Supplier ID" DisplayMemberBinding="{Binding SupplierId}"/>
                         <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
+                        <!-- Добавьте другие столбцы по вашему усмотрению -->
                     </GridView>
                 </ListView.View>
             </ListView>
