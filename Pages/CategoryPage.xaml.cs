@@ -36,4 +36,5 @@ public partial class CategoryPage : Page
         DataContext = null;
         DataContext = this;
     }
+
 }
