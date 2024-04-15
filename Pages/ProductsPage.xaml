@@ -50,7 +50,7 @@
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="40">
                 <Button Content="Add Product" Click="AddProductButton_Click" Style="{StaticResource ButtonStyle}" />
-                <Button Content="Inventory List" Style="{StaticResource ButtonStyle}" />
+                <Button Content="Inventory List" Click="ShowInventoryList_Click" Style="{StaticResource ButtonStyle}" />
             </StackPanel>
 
             <ListView ItemsSource="{Binding Products}" Margin="10" Height="350" Name="productsListView">

@@ -138,5 +138,11 @@ namespace MedicalFurnitureAccounting.Pages
                 DataContext = this;
             }
         }
+
+        private void ShowInventoryList_Click(object sender, RoutedEventArgs e)
+        {
+            var inventoryWindow = new InventoryWindow(_context);
+            inventoryWindow.ShowDialog();
+        }
     }
 }
