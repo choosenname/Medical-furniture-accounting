@@ -1,0 +1,30 @@
+﻿<Window x:Class="MedicalFurnitureAccounting.InventoryWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:MedicalFurnitureAccounting"
+        mc:Ignorable="d"
+        Title="InventoryWindow" Height="450" Width="800">
+    <StackPanel>
+
+        <!-- Заголовок страницы -->
+        <TextBlock Text="ИНВЕНТАРИЗАЦИОННАЯ ОПИСЬ" FontSize="24" HorizontalAlignment="Center" FontWeight="Bold" Margin="10"/>
+        <TextBlock Text="товарно-матеиальных ценностей" FontSize="12" HorizontalAlignment="Center" FontWeight="Bold" Margin="10"/>
+
+        <TextBlock Text="медецинское оборудование находящиесе в собственности" FontSize="12" HorizontalAlignment="Center" FontWeight="Bold" Margin="10"/>
+
+
+
+        <!-- DataGrid для отображения инвентаризационной описи -->
+        <DataGrid x:Name="inventoryDataGrid" Margin="10" Height="300" AutoGenerateColumns="False">
+            <!-- Заголовки столбцов -->
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Product Name" Binding="{Binding Name}" Width="*" />
+                <DataGridTextColumn Header="Category" Binding="{Binding Category}" Width="150" />
+                <DataGridTextColumn Header="Count" Binding="{Binding Count}" Width="100" />
+                <!-- Другие столбцы, если необходимо -->
+            </DataGrid.Columns>
+        </DataGrid>
+    </StackPanel>
+</Window>
