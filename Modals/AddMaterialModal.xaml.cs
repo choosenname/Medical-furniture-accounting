@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Input;
 using MedicalFurnitureAccounting.Models;
 
 namespace MedicalFurnitureAccounting.Modals;
@@ -17,7 +18,7 @@ public partial class AddMaterialModal : Window
         Material = new Material
         {
             Name = MaterialNameTextBox.Text,
-            Room = MaterialRoomTextBox.Text,
+            Price = Convert.ToInt32(MaterialPriceTextBox.Text),
         };
 
         DialogResult = true;
@@ -27,5 +28,17 @@ public partial class AddMaterialModal : Window
     {
         // Закрываем окно
         DialogResult = false;
+    }
+
+    private void NumberTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+    {
+        foreach (char c in e.Text)
+        {
+            if (!char.IsDigit(c))
+            {
+                e.Handled = true; // Отменяем ввод символа, если он не является цифрой
+                break;
+            }
+        }
     }
 }

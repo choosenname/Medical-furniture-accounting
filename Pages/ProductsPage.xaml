@@ -53,10 +53,11 @@
                     <GridView>
                         <GridViewColumn Header="Product ID" DisplayMemberBinding="{Binding ProductId}"/>
                         <GridViewColumn Header="Category ID" DisplayMemberBinding="{Binding CategoryId}"/>
-                        <GridViewColumn Header="Supplier ID" DisplayMemberBinding="{Binding SuppplyId}"/>
                         <GridViewColumn Header="Material ID" DisplayMemberBinding="{Binding MaterialId}"/>
                         <GridViewColumn Header="Supply ID" DisplayMemberBinding="{Binding SupplyId}"/>
                         <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
+                        <GridViewColumn Header="Count" DisplayMemberBinding="{Binding Count}"/>
+                        <GridViewColumn Header="Room" DisplayMemberBinding="{Binding Room}"/>
                     </GridView>
                 </ListView.View>
             </ListView>

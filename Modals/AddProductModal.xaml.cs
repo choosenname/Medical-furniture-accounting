@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using MedicalFurnitureAccounting.Models;
 
 namespace MedicalFurnitureAccounting.Modals;
@@ -31,8 +32,8 @@ public partial class AddProductModal : Window
 
         var materials = _dbContext.Materials.ToList();
 
-        CategoryComboBox.ItemsSource = materials;
-        CategoryComboBox.DisplayMemberPath = "Name";
+        MaterialComboBox.ItemsSource = materials;
+        MaterialComboBox.DisplayMemberPath = "Name";
     }
 
     private void AddButton_Click(object sender, RoutedEventArgs e)
@@ -49,6 +50,8 @@ public partial class AddProductModal : Window
             Suppply = selectedSupply,
             Category = selectedCategory,
             Material = materialCategory,
+            Count = Convert.ToInt32(ProductCountTextBox.Text),
+            Room = ProductRoomTextBox.Text,
         };
 
         DialogResult = true;
@@ -57,5 +60,17 @@ public partial class AddProductModal : Window
     private void CancelButton_Click(object sender, RoutedEventArgs e)
     {
         DialogResult = false;
+    }
+
+    private void NumberTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+    {
+        foreach (char c in e.Text)
+        {
+            if (!char.IsDigit(c))
+            {
+                e.Handled = true; // Отменяем ввод символа, если он не является цифрой
+                break;
+            }
+        }
     }
 }
