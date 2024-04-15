@@ -69,7 +69,7 @@
                       BorderBrush="#007BFF" MinWidth="120" SelectionChanged="MaterialFilterComboBox_SelectionChanged" />
         </StackPanel>
 
-        <Button Content="Add Category" Click="AddMaterialButton_Click" Background="#007BFF" Foreground="White"
+        <Button Content="Add Material" Click="AddMaterialButton_Click" Background="#007BFF" Foreground="White"
                 Padding="10" Cursor="Hand" BorderThickness="0" MinHeight="40" Margin="8">
             <Button.Template>
                 <ControlTemplate TargetType="Button">
