@@ -47,8 +47,8 @@ public partial class CategoryPage : Page
 
     private void SearchButton_Click(object sender, RoutedEventArgs e)
     {
-        string searchText = searchBox.Text;
-        ICollectionView view = CollectionViewSource.GetDefaultView(categoryListView.ItemsSource);
+        string searchText = SearchBox.Text;
+        ICollectionView view = CollectionViewSource.GetDefaultView(CategoryListView.ItemsSource);
 
         if (!string.IsNullOrEmpty(searchText))
         {
@@ -66,28 +66,28 @@ public partial class CategoryPage : Page
     }
     private void SearchBox_GotFocus(object sender, RoutedEventArgs e)
     {
-        if (searchBox.Text == "Search")
+        if (SearchBox.Text == "Search")
         {
-            searchBox.Text = "";
+            SearchBox.Text = "";
         }
     }
 
     private void SearchBox_LostFocus(object sender, RoutedEventArgs e)
     {
-        if (string.IsNullOrWhiteSpace(searchBox.Text))
+        if (string.IsNullOrWhiteSpace(SearchBox.Text))
         {
-            searchBox.Text = "Search";
+            SearchBox.Text = "Search";
         }
     }
     private void ShowAllButton_Click(object sender, RoutedEventArgs e)
     {
-        ICollectionView view = CollectionViewSource.GetDefaultView(categoryListView.ItemsSource);
+        ICollectionView view = CollectionViewSource.GetDefaultView(CategoryListView.ItemsSource);
         view.Filter = null; // Установите фильтр на null, чтобы отобразить все элементы
     }
 
     private void SortByNameButton_Click(object sender, RoutedEventArgs e)
     {
-        ICollectionView view = CollectionViewSource.GetDefaultView(categoryListView.ItemsSource);
+        ICollectionView view = CollectionViewSource.GetDefaultView(CategoryListView.ItemsSource);
         if (view != null)
         {
             view.SortDescriptions.Clear();
@@ -97,7 +97,7 @@ public partial class CategoryPage : Page
 
     private void SortByIDButton_Click(object sender, RoutedEventArgs e)
     {
-        ICollectionView view = CollectionViewSource.GetDefaultView(categoryListView.ItemsSource);
+        ICollectionView view = CollectionViewSource.GetDefaultView(CategoryListView.ItemsSource);
         if (view != null)
         {
             view.SortDescriptions.Clear();
@@ -110,16 +110,16 @@ public partial class CategoryPage : Page
         using (var context = new ApplicationDBContext()) // Замените YourDbContext на ваш контекст базы данных
         {
             var categoryNames = context.Categories.Select(category => category.Name).ToList();
-            categoryFilterComboBox.ItemsSource = categoryNames;
+            CategoryFilterComboBox.ItemsSource = categoryNames;
         }
     }
 
 
     private void CategoryFilterComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        string selectedCategory = categoryFilterComboBox.SelectedItem as string;
+        string selectedCategory = CategoryFilterComboBox.SelectedItem as string;
 
-        ICollectionView view = CollectionViewSource.GetDefaultView(categoryListView.ItemsSource);
+        ICollectionView view = CollectionViewSource.GetDefaultView(CategoryListView.ItemsSource);
         if (view != null)
         {
             if (!string.IsNullOrEmpty(selectedCategory))
