@@ -19,24 +19,29 @@ public partial class AddProductModal : Window
 
     private void LoadSuppliers()
     {
-        // Получаем список всех поставщиков из базы данных
-        var suppliers = _dbContext.Suppliers.ToList();
+        var supplies = _dbContext.Supplies.ToList();
 
-        // Заполняем ComboBox списком поставщиков
-        SupplierComboBox.ItemsSource = suppliers;
-        SupplierComboBox.DisplayMemberPath = "Name"; // Указываем, какое свойство использовать для отображения
+        SupplyComboBox.ItemsSource = supplies;
+        SupplyComboBox.DisplayMemberPath = "Name";
+
+        var categories = _dbContext.Categories.ToList();
+
+        CategoryComboBox.ItemsSource = categories;
+        CategoryComboBox.DisplayMemberPath = "Name";
     }
 
     private void AddButton_Click(object sender, RoutedEventArgs e)
     {
         if (ProductNameTextBox == null) return;
 
-        var selectedSupplier = (Supplier)SupplierComboBox.SelectedItem;
+        var selectedSupply = (Supplier)SupplyComboBox.SelectedItem;
+        var selectedCategory = (Category)CategoryComboBox.SelectedItem;
 
         Product = new Product
         {
             Name = ProductNameTextBox.Text,
-            Supplier = selectedSupplier
+            Supplier = selectedSupply,
+            Category = selectedCategory,
         };
 
         DialogResult = true;
