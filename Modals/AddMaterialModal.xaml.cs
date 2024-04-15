@@ -17,6 +17,7 @@ public partial class AddMaterialModal : Window
         Material = new Material
         {
             Name = MaterialNameTextBox.Text,
+            Room = MaterialRoomTextBox.Text,
         };
 
         DialogResult = true;
