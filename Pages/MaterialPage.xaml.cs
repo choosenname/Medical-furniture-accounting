@@ -142,8 +142,7 @@ namespace MedicalFurnitureAccounting.Pages
             var addWindow = new AddMaterialModal();
             if (addWindow.ShowDialog() == true)
             {
-                string name = addWindow.Name;
-                var newMaterial = new Material() { Name = name };
+                var newMaterial = addWindow.Material;
                 _context.Materials.Add(newMaterial);
                 _context.SaveChanges();
 

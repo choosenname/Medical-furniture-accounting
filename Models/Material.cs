@@ -4,7 +4,7 @@ public class Material
 {
     public int MaterialId { get; set; }
     public string Name { get; set; }
-    // Другие свойства материала
+    public int Price { get; set; }
 
-    public ICollection<Product> Products { get; set; }
+    public Product Product { get; set; }
 }

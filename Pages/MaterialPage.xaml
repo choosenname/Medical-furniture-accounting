@@ -84,6 +84,7 @@
                 <GridView>
                     <GridViewColumn Header="Material ID" DisplayMemberBinding="{Binding MaterialId}" />
                     <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
+                    <GridViewColumn Header="Price" DisplayMemberBinding="{Binding Price}" />
                     <!-- Добавьте другие столбцы по вашему усмотрению -->
                 </GridView>
             </ListView.View>
