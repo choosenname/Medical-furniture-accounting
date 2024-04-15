@@ -10,7 +10,7 @@
         <!-- Разместите здесь содержимое вашей страницы -->
         <StackPanel>
             <Button Content="Add Supply" Click="AddSupplyButton_Click" Style="{StaticResource ButtonStyle}"
-                    Height="40" />
+                    Height="40" Margin="10px" />
 
             <ListView ItemsSource="{Binding Supplies}" Margin="10" Height="350">
                 <ListView.View>
