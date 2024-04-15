@@ -9,9 +9,17 @@
     <Grid>
         <!-- Разместите здесь содержимое вашей страницы -->
         <StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="10" VerticalAlignment="Center">
-                <TextBox x:Name="searchBox" Text="Search" VerticalAlignment="Center" Margin="0 0 10 0" Padding="5" BorderThickness="1" BorderBrush="#007BFF" MinWidth="120"
-         GotFocus="SearchBox_GotFocus" LostFocus="SearchBox_LostFocus"/>
+            <StackPanel Orientation="Horizontal" Margin="10"  VerticalAlignment="Center">
+                <StackPanel.Resources>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Margin" Value="0,0,10,0"/>
+                    </Style>
+                    <Style TargetType="{x:Type TextBox}">
+                        <Setter Property="Margin" Value="0,0,10,0"/>
+                    </Style>
+                </StackPanel.Resources>
+                <TextBox x:Name="searchBox" Text="Search" VerticalAlignment="Center" Padding="5" BorderThickness="1" BorderBrush="#007BFF" MinWidth="120"
+                         GotFocus="SearchBox_GotFocus" LostFocus="SearchBox_LostFocus"/>
                 <Button Content="Search" Click="SearchButton_Click" Background="#007BFF" Foreground="White" Padding="10" Cursor="Hand" BorderThickness="0" MinWidth="100">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
@@ -21,7 +29,7 @@
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
-                <Button Content="Show All" Click="ShowAllButton_Click" Margin="10" Background="#007BFF" Foreground="White" Padding="10" Cursor="Hand" BorderThickness="1" BorderBrush="#007BFF" MinWidth="100">
+                <Button Content="Show All" Click="ShowAllButton_Click" Background="#007BFF" Foreground="White" Padding="10" Cursor="Hand" BorderThickness="1" BorderBrush="#007BFF" MinWidth="100">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
                             <Border Background="{TemplateBinding Background}" CornerRadius="5" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}">
@@ -30,7 +38,7 @@
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
-                <Button Content="Sort by Name" Click="SortByNameButton_Click" Margin="10" Background="#007BFF" Foreground="White" Padding="10" Cursor="Hand" BorderThickness="1" BorderBrush="#007BFF" MinWidth="100">
+                <Button Content="Sort by Name" Click="SortByNameButton_Click" Background="#007BFF" Foreground="White" Padding="10" Cursor="Hand" BorderThickness="1" BorderBrush="#007BFF" MinWidth="100">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
                             <Border Background="{TemplateBinding Background}" CornerRadius="5" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}">
@@ -40,7 +48,7 @@
                     </Button.Template>
                 </Button>
 
-                <Button Content="Sort by ID" Click="SortByIDButton_Click" Margin="10" Background="#007BFF" Foreground="White" Padding="10" Cursor="Hand" BorderThickness="1" BorderBrush="#007BFF" MinWidth="100">
+                <Button Content="Sort by ID" Click="SortByIDButton_Click" Background="#007BFF" Foreground="White" Padding="10" Cursor="Hand" BorderThickness="1" BorderBrush="#007BFF" MinWidth="100">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
                             <Border Background="{TemplateBinding Background}" CornerRadius="5" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}">
@@ -52,7 +60,7 @@
                 <ComboBox x:Name="categoryFilterComboBox" VerticalAlignment="Center" Margin="0 0 10 0" Padding="5" BorderThickness="1" BorderBrush="#007BFF" MinWidth="120" SelectionChanged="CategoryFilterComboBox_SelectionChanged"/>
 
             </StackPanel>
-            <Button Content="Add Category" Click="AddCategoryButton_Click" Margin="10" Background="#007BFF" Foreground="White" Padding="10" Cursor="Hand" BorderThickness="0" MinWidth="100">
+            <Button Content="Add Category" Click="AddCategoryButton_Click" Background="#007BFF" Foreground="White" Padding="10" Cursor="Hand" BorderThickness="0" Width="*" MinHeight="40" Margin="8">
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
                         <Border Background="{TemplateBinding Background}" CornerRadius="5">
