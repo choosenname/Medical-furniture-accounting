@@ -23,7 +23,7 @@
             </Setter>
         </Style>
 
-        <Style x:Key="SearchBoxStyle" TargetType="{x:Type TextBox}">
+        <Style x:Key="TextBoxStyle" TargetType="{x:Type TextBox}">
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="Padding" Value="5"/>
             <Setter Property="BorderThickness" Value="1"/>

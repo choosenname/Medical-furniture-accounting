@@ -54,6 +54,9 @@
 
             </StackPanel>
 
+            <Button Content="Add Category" Click="AddSupplierButton_Click" Style="{StaticResource ButtonStyle}"
+                    Height="40" />
+
             <!-- ListView для отображения списка поставщиков -->
             <ListView ItemsSource="{Binding Suppliers}" Margin="10" Height="350" Name="supplierListView">
                 <ListView.View>
