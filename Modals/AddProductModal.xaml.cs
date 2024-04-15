@@ -22,11 +22,16 @@ public partial class AddProductModal : Window
         var supplies = _dbContext.Supplies.ToList();
 
         SupplyComboBox.ItemsSource = supplies;
-        SupplyComboBox.DisplayMemberPath = "Name";
+        SupplyComboBox.DisplayMemberPath = "Date";
 
         var categories = _dbContext.Categories.ToList();
 
         CategoryComboBox.ItemsSource = categories;
+        CategoryComboBox.DisplayMemberPath = "Name";
+
+        var materials = _dbContext.Materials.ToList();
+
+        CategoryComboBox.ItemsSource = materials;
         CategoryComboBox.DisplayMemberPath = "Name";
     }
 
@@ -34,14 +39,16 @@ public partial class AddProductModal : Window
     {
         if (ProductNameTextBox == null) return;
 
-        var selectedSupply = (Supplier)SupplyComboBox.SelectedItem;
+        var selectedSupply = (Supply)SupplyComboBox.SelectedItem;
         var selectedCategory = (Category)CategoryComboBox.SelectedItem;
+        var materialCategory = (Material)MaterialComboBox.SelectedItem;
 
         Product = new Product
         {
             Name = ProductNameTextBox.Text,
-            Supplier = selectedSupply,
+            Suppply = selectedSupply,
             Category = selectedCategory,
+            Material = materialCategory,
         };
 
         DialogResult = true;

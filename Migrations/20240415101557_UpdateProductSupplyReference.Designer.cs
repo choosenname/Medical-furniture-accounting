@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MedicalFurnitureAccounting.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    [Migration("20240408225330_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20240415101557_UpdateProductSupplyReference")]
+    partial class UpdateProductSupplyReference
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -45,7 +45,13 @@ namespace MedicalFurnitureAccounting.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("ProductId")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("MaterialId");
+
+                    b.HasIndex("ProductId")
+                        .IsUnique();
 
                     b.ToTable("Materials");
                 });
@@ -59,30 +65,39 @@ namespace MedicalFurnitureAccounting.Migrations
                     b.Property<int>("CategoryId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("MaterialId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("SupplierId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("SupplyId")
+                    b.Property<int>("SuppplyId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("ProductId");
 
                     b.HasIndex("CategoryId");
 
-                    b.HasIndex("MaterialId");
-
-                    b.HasIndex("SupplierId");
-
-                    b.HasIndex("SupplyId");
+                    b.HasIndex("SuppplyId");
 
                     b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("MedicalFurnitureAccounting.Models.Storekeeper", b =>
+                {
+                    b.Property<int>("StorekeeperId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("StorekeeperId");
+
+                    b.ToTable("Storekeepers");
                 });
 
             modelBuilder.Entity("MedicalFurnitureAccounting.Models.Supplier", b =>
@@ -114,9 +129,21 @@ namespace MedicalFurnitureAccounting.Migrations
 
                     b.HasKey("SupplyId");
 
-                    b.HasIndex("SupplierId");
+                    b.HasIndex("SupplierId")
+                        .IsUnique();
 
                     b.ToTable("Supplies");
+                });
+
+            modelBuilder.Entity("MedicalFurnitureAccounting.Models.Material", b =>
+                {
+                    b.HasOne("MedicalFurnitureAccounting.Models.Product", "Product")
+                        .WithOne("Material")
+                        .HasForeignKey("MedicalFurnitureAccounting.Models.Material", "ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("MedicalFurnitureAccounting.Models.Product", b =>
@@ -127,30 +154,22 @@ namespace MedicalFurnitureAccounting.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MedicalFurnitureAccounting.Models.Material", null)
+                    b.HasOne("MedicalFurnitureAccounting.Models.Supply", "Suppply")
                         .WithMany("Products")
-                        .HasForeignKey("MaterialId");
-
-                    b.HasOne("MedicalFurnitureAccounting.Models.Supplier", "Supplier")
-                        .WithMany("Products")
-                        .HasForeignKey("SupplierId")
+                        .HasForeignKey("SuppplyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MedicalFurnitureAccounting.Models.Supply", null)
-                        .WithMany("Products")
-                        .HasForeignKey("SupplyId");
-
                     b.Navigation("Category");
 
-                    b.Navigation("Supplier");
+                    b.Navigation("Suppply");
                 });
 
             modelBuilder.Entity("MedicalFurnitureAccounting.Models.Supply", b =>
                 {
                     b.HasOne("MedicalFurnitureAccounting.Models.Supplier", "Supplier")
-                        .WithMany()
-                        .HasForeignKey("SupplierId")
+                        .WithOne("Supply")
+                        .HasForeignKey("MedicalFurnitureAccounting.Models.Supply", "SupplierId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -162,14 +181,16 @@ namespace MedicalFurnitureAccounting.Migrations
                     b.Navigation("Products");
                 });
 
-            modelBuilder.Entity("MedicalFurnitureAccounting.Models.Material", b =>
+            modelBuilder.Entity("MedicalFurnitureAccounting.Models.Product", b =>
                 {
-                    b.Navigation("Products");
+                    b.Navigation("Material")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("MedicalFurnitureAccounting.Models.Supplier", b =>
                 {
-                    b.Navigation("Products");
+                    b.Navigation("Supply")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("MedicalFurnitureAccounting.Models.Supply", b =>

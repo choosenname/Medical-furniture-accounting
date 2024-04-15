@@ -14,6 +14,8 @@
         <ComboBox x:Name="CategoryComboBox" Style="{StaticResource ComboBoxStyle}" Margin="10"/>
         <Label Content="Supply:"/>
         <ComboBox x:Name="SupplyComboBox" Style="{StaticResource ComboBoxStyle}" Margin="10"/>
+        <Label Content="Material:"/>
+        <ComboBox x:Name="MaterialComboBox" Style="{StaticResource ComboBoxStyle}" Margin="10"/>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="30">
             <Button Content="Add" Style="{StaticResource ButtonStyle}" Click="AddButton_Click" />
             <Button Content="Cancel" Style="{StaticResource ButtonStyle}" Click="CancelButton_Click" />

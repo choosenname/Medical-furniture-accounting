@@ -24,4 +24,10 @@
       </Page>
     </ItemGroup>
 
+    <ItemGroup>
+      <None Update="MedicalFurnitureAccounting.db">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
 </Project>

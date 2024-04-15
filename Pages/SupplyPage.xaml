@@ -17,7 +17,7 @@
                     <GridView>
                         <GridViewColumn Header="Supply ID" DisplayMemberBinding="{Binding SupplyId}"/>
                         <GridViewColumn Header="Date" DisplayMemberBinding="{Binding Date}"/>
-                        <GridViewColumn Header="Supplier ID" DisplayMemberBinding="{Binding SupplierId}"/>
+                        <GridViewColumn Header="Supplier ID" DisplayMemberBinding="{Binding SuppplyId}"/>
                     </GridView>
                 </ListView.View>
             </ListView>

@@ -139,7 +139,7 @@ namespace MedicalFurnitureAccounting.Pages
 
         private void AddMaterialButton_Click(object sender, RoutedEventArgs e)
         {
-            var addWindow = new AddMaterialModal(_context);
+            var addWindow = new AddMaterialModal();
             if (addWindow.ShowDialog() == true)
             {
                 var newMaterial = addWindow.Material;

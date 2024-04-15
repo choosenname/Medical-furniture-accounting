@@ -25,16 +25,17 @@ namespace MedicalFurnitureAccounting.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Materials",
+                name: "Storekeepers",
                 columns: table => new
                 {
-                    MaterialId = table.Column<int>(type: "INTEGER", nullable: false)
+                    StorekeeperId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<string>(type: "TEXT", nullable: false)
+                    Name = table.Column<string>(type: "TEXT", nullable: false),
+                    Password = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Materials", x => x.MaterialId);
+                    table.PrimaryKey("PK_Storekeepers", x => x.StorekeeperId);
                 });
 
             migrationBuilder.CreateTable(
@@ -79,7 +80,6 @@ namespace MedicalFurnitureAccounting.Migrations
                     Name = table.Column<string>(type: "TEXT", nullable: false),
                     CategoryId = table.Column<int>(type: "INTEGER", nullable: false),
                     SupplierId = table.Column<int>(type: "INTEGER", nullable: false),
-                    MaterialId = table.Column<int>(type: "INTEGER", nullable: true),
                     SupplyId = table.Column<int>(type: "INTEGER", nullable: true)
                 },
                 constraints: table =>
@@ -91,11 +91,6 @@ namespace MedicalFurnitureAccounting.Migrations
                         principalTable: "Categories",
                         principalColumn: "CategoryId",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Products_Materials_MaterialId",
-                        column: x => x.MaterialId,
-                        principalTable: "Materials",
-                        principalColumn: "MaterialId");
                     table.ForeignKey(
                         name: "FK_Products_Suppliers_SupplierId",
                         column: x => x.SupplierId,
@@ -109,15 +104,36 @@ namespace MedicalFurnitureAccounting.Migrations
                         principalColumn: "SupplyId");
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Materials",
+                columns: table => new
+                {
+                    MaterialId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(type: "TEXT", nullable: false),
+                    ProductId = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Materials", x => x.MaterialId);
+                    table.ForeignKey(
+                        name: "FK_Materials_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
+                        principalColumn: "ProductId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Materials_ProductId",
+                table: "Materials",
+                column: "ProductId",
+                unique: true);
+
             migrationBuilder.CreateIndex(
                 name: "IX_Products_CategoryId",
                 table: "Products",
                 column: "CategoryId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Products_MaterialId",
-                table: "Products",
-                column: "MaterialId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Products_SupplierId",
@@ -132,20 +148,24 @@ namespace MedicalFurnitureAccounting.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Supplies_SupplierId",
                 table: "Supplies",
-                column: "SupplierId");
+                column: "SupplierId",
+                unique: true);
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "Materials");
+
+            migrationBuilder.DropTable(
+                name: "Storekeepers");
+
+            migrationBuilder.DropTable(
                 name: "Products");
 
             migrationBuilder.DropTable(
                 name: "Categories");
-
-            migrationBuilder.DropTable(
-                name: "Materials");
 
             migrationBuilder.DropTable(
                 name: "Supplies");
