@@ -60,7 +60,7 @@
                 <ComboBox x:Name="categoryFilterComboBox" VerticalAlignment="Center" Margin="0 0 10 0" Padding="5" BorderThickness="1" BorderBrush="#007BFF" MinWidth="120" SelectionChanged="CategoryFilterComboBox_SelectionChanged"/>
 
             </StackPanel>
-            <Button Content="Add Category" Click="AddCategoryButton_Click" Background="#007BFF" Foreground="White" Padding="10" Cursor="Hand" BorderThickness="0" Width="*" MinHeight="40" Margin="8">
+            <Button Content="Add Category" Click="AddCategoryButton_Click" Background="#007BFF" Foreground="White" Padding="10" Cursor="Hand" BorderThickness="0" MinHeight="40" Margin="8">
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
                         <Border Background="{TemplateBinding Background}" CornerRadius="5">

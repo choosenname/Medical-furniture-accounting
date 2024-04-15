@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using MedicalFurnitureAccounting.Modals;
 using MedicalFurnitureAccounting.Models;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
@@ -30,16 +31,20 @@ public partial class CategoryPage : Page
 
     private void AddCategoryButton_Click(object sender, RoutedEventArgs e)
     {
-        // Создание новой категории
-        Category newCategory = new Category() { Name = "New Category" };
-        _context.Categories.Add(newCategory);
-        _context.SaveChanges();
+        var addCategoryWindow = new AddCategoryModal();
+        if (addCategoryWindow.ShowDialog() == true)
+        {
+            string categoryName = addCategoryWindow.CategoryName;
+            Category newCategory = new Category() { Name = categoryName };
+            _context.Categories.Add(newCategory);
+            _context.SaveChanges();
 
-        // Добавление категории к коллекции и обновление DataContext
-        Categories.Add(newCategory);
-        DataContext = null;
-        DataContext = this;
+            Categories.Add(newCategory);
+            DataContext = null;
+            DataContext = this;
+        }
     }
+
     private void SearchButton_Click(object sender, RoutedEventArgs e)
     {
         string searchText = searchBox.Text;
