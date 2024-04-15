@@ -12,19 +12,21 @@
         <TextBlock Text="ИНВЕНТАРИЗАЦИОННАЯ ОПИСЬ" FontSize="24" HorizontalAlignment="Center" FontWeight="Bold" Margin="10"/>
         <TextBlock Text="товарно-матеиальных ценностей" FontSize="12" HorizontalAlignment="Center" FontWeight="Bold" Margin="10"/>
 
-        <TextBlock Text="медецинское оборудование находящиесе в собственности" FontSize="12" HorizontalAlignment="Center" FontWeight="Bold" Margin="10"/>
-
-
+        <TextBlock Text="РАСПИСКА" FontSize="12" HorizontalAlignment="Center" FontWeight="Bold" Margin="10"/>
+        <TextBlock Text="К началу проведения инвентаризации все расходные и приходные документы на товарно-материальные
+         ценности сданы в бухгалтерию и все товарно-материальные ценности, поступившие на мою (нашу) ответственность, оприходованы,
+          а выбывшие списаны в расход." FontSize="12" HorizontalAlignment="Center" TextWrapping="Wrap" FontWeight="Bold" Margin="10"/>
 
         <!-- DataGrid для отображения инвентаризационной описи -->
-        <DataGrid x:Name="inventoryDataGrid" Margin="10" Height="300" AutoGenerateColumns="False">
-            <!-- Заголовки столбцов -->
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Product Name" Binding="{Binding Name}" Width="*" />
-                <DataGridTextColumn Header="Category" Binding="{Binding Category}" Width="150" />
-                <DataGridTextColumn Header="Count" Binding="{Binding Count}" Width="100" />
-                <!-- Другие столбцы, если необходимо -->
-            </DataGrid.Columns>
-        </DataGrid>
+        <ListView ItemsSource="{Binding Products}" Margin="10" Height="350" Name="productsListView">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Product ID" DisplayMemberBinding="{Binding ProductId}" />
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
+                    <GridViewColumn Header="Count" DisplayMemberBinding="{Binding Count}" />
+                    <GridViewColumn Header="Price" DisplayMemberBinding="{Binding Material.Price}"></GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
     </StackPanel>
 </Window>
