@@ -133,5 +133,10 @@ namespace MedicalFurnitureAccounting.Pages
                 }
             }
         }
+
+        private void AddProductButton_Click(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

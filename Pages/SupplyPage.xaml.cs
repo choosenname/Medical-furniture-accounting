@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MedicalFurnitureAccounting.Modals;
 
 namespace MedicalFurnitureAccounting.Pages
 {
@@ -37,6 +38,21 @@ namespace MedicalFurnitureAccounting.Pages
         {
             Supplies = new ObservableCollection<Supply>(_context.Supplies.ToList());
             DataContext = this;
+        }
+
+        private void AddSupplyButton_Click(object sender, RoutedEventArgs e)
+        {
+            var addWindow = new AddSupplyModal(_context);
+            if (addWindow.ShowDialog() == true)
+            {
+                var newModel = addWindow.Supply;
+                _context.Supplies.Add(newModel);
+                _context.SaveChanges();
+
+                Supplies.Add(newModel);
+                DataContext = null;
+                DataContext = this;
+            }
         }
     }
 }
