@@ -9,39 +9,63 @@
     <Grid>
         <!-- Разместите здесь содержимое вашей страницы -->
         <StackPanel>
-            <Button Content="Add Category" Click="AddCategoryButton_Click" Margin="10">
-                <Button.Style>
-                    <Style TargetType="Button">
-                        <Setter Property="Background" Value="#007BFF"/>
-                        <Setter Property="Foreground" Value="White"/>
-                        <Setter Property="Padding" Value="10"/>
-                        <Setter Property="Cursor" Value="Hand"/>
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate TargetType="Button">
-                                    <Border Background="{TemplateBinding Background}"
-                                BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="5">
-                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                    </Border>
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                        <Style.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#0056b3"/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
+            <StackPanel Orientation="Horizontal" Margin="10" VerticalAlignment="Center">
+                <TextBox x:Name="searchBox" Text="Search" VerticalAlignment="Center" Margin="0 0 10 0" Padding="5" BorderThickness="1" BorderBrush="#007BFF" MinWidth="120"
+         GotFocus="SearchBox_GotFocus" LostFocus="SearchBox_LostFocus"/>
+                <Button Content="Search" Click="SearchButton_Click" Background="#007BFF" Foreground="White" Padding="10" Cursor="Hand" BorderThickness="0" MinWidth="100">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}" CornerRadius="5">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button Content="Show All" Click="ShowAllButton_Click" Margin="10" Background="#007BFF" Foreground="White" Padding="10" Cursor="Hand" BorderThickness="1" BorderBrush="#007BFF" MinWidth="100">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}" CornerRadius="5" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button Content="Sort by Name" Click="SortByNameButton_Click" Margin="10" Background="#007BFF" Foreground="White" Padding="10" Cursor="Hand" BorderThickness="1" BorderBrush="#007BFF" MinWidth="100">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}" CornerRadius="5" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button Content="Sort by ID" Click="SortByIDButton_Click" Margin="10" Background="#007BFF" Foreground="White" Padding="10" Cursor="Hand" BorderThickness="1" BorderBrush="#007BFF" MinWidth="100">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}" CornerRadius="5" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <ComboBox x:Name="categoryFilterComboBox" VerticalAlignment="Center" Margin="0 0 10 0" Padding="5" BorderThickness="1" BorderBrush="#007BFF" MinWidth="120" SelectionChanged="CategoryFilterComboBox_SelectionChanged"/>
+
+            </StackPanel>
+            <Button Content="Add Category" Click="AddCategoryButton_Click" Margin="10" Background="#007BFF" Foreground="White" Padding="10" Cursor="Hand" BorderThickness="0" MinWidth="100">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="5">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
             </Button>
-            <ListView ItemsSource="{Binding Categories}" Margin="10" Height="350">
+            <ListView ItemsSource="{Binding Categories}" Margin="10" Height="300" Name="categoryListView">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Category ID" DisplayMemberBinding="{Binding CategoryId}"/>
                         <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
-                        <!-- Добавьте другие столбцы по вашему усмотрению -->
                     </GridView>
                 </ListView.View>
             </ListView>
