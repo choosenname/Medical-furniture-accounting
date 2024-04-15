@@ -34,15 +34,17 @@
             </Style>
         </Grid.Resources>
         <StackPanel Margin="10">
-            <StackPanel Orientation="Horizontal">
-                <TextBox x:Name="searchBox" Text="Search" GotFocus="SearchBox_GotFocus" LostFocus="SearchBox_LostFocus"/>
 
-                <Button Content="Search" Click="SearchButton_Click"/>
-                <Button Content="Show All" Click="ShowAllButton_Click"/>
-                <Button Content="Sort by Name" Click="SortByNameButton_Click"/>
-                <Button Content="Sort by ID" Click="SortByIDButton_Click"/>
-                <ComboBox x:Name="productsFilterComboBox" VerticalAlignment="Center" Margin="0 0 10 0" Padding="5" BorderThickness="1" BorderBrush="#007BFF" MinWidth="120" SelectionChanged="ProductsFilterComboBox_SelectionChanged"/>
+            <StackPanel Orientation="Horizontal" Margin="10" VerticalAlignment="Center">
+                    <TextBox x:Name="searchBox" Text="Search" Style="{StaticResource SearchTextBoxStyle}" />
+            <Button Content="Search" Click="SearchButton_Click" Style="{StaticResource ButtonStyle}" />
+            <Button Content="Show All" Click="ShowAllButton_Click" Style="{StaticResource ButtonStyle}" />
+            <Button Content="Sort by Name" Click="SortByNameButton_Click" Style="{StaticResource ButtonStyle}" />
 
+            <Button Content="Sort by ID" Click="SortByIDButton_Click" Style="{StaticResource ButtonStyle}" />
+
+                    <ComboBox x:Name="productsFilterComboBox" Style="{StaticResource ComboBoxStyle}" />
+                
             </StackPanel>
 
             <Button Content="Add Product" Click="AddProductButton_Click" Style="{StaticResource ButtonStyle}"
