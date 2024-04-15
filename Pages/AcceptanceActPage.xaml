@@ -9,8 +9,8 @@
             <TextBlock Text="{Binding ProductName}" Margin="10"/>
             <TextBlock Text="{Binding Count}" Margin="10"/>
             <TextBlock Text="{Binding Room}" Margin="10"/>
+            <TextBlock Text="{Binding Category}" Margin="10"/>
             <TextBlock Text="{Binding SupplierName}" Margin="10"/>
-            <!-- Добавьте другие элементы для отображения информации о товаре и поставке -->
         </StackPanel>
     </Grid>
 </Page> 

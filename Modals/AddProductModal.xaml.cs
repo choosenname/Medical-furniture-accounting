@@ -56,16 +56,19 @@ public partial class AddProductModal : Window
             Count = Convert.ToInt32(ProductCountTextBox.Text),
             Room = ProductRoomTextBox.Text,
         };
+        GenerateAcceptanceAct(selectedSupply.SupplyId,Product);
 
         DialogResult = true;
     }
+
 
     private void GenerateAcceptanceAct(int supplyId, Product product)
     {
         Supply supply = _dbContext.Supplies.FirstOrDefault(s => s.SupplyId == supplyId);
         if (supply != null)
         {
-            string supplierName = supply.Supplier != null ? supply.Supplier.Name : "Unknown";
+            string supplierName = supply.Supplier.Name;
+            int supplierId = supply.SupplierId; // Получаем идентификатор поставщика
 
             AcceptanceAct acceptanceAct = new AcceptanceAct
             {
@@ -73,7 +76,10 @@ public partial class AddProductModal : Window
                 ProductName = product.Name,
                 Count = product.Count,
                 Room = product.Room,
-                SupplierName = supplierName
+                Category = product.Category.Name,
+                SupplierName = supplierName,
+                SupplierId = supplierId // Устанавливаем идентификатор поставщика
+
             };
 
             // Создание страницы акта приема-передачи
@@ -118,6 +124,15 @@ public partial class AddProductModal : Window
             }
         }
     }
+    public string GetSupplierNameById(int supplierId)
+    {
+        var supplier = _dbContext.Supplies
+                                .Where(s => s.SupplierId == supplierId)
+                                .Select(s => s.Supplier.Name)
+                                .FirstOrDefault();
+        return supplier != null ? supplier : "Unknown";
+    }
+
 
 
 }
