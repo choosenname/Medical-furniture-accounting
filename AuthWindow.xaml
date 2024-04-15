@@ -12,10 +12,10 @@
             <TabItem Header="Login">
                 <StackPanel Margin="20">
                     <Label Content="Name"/>
-                    <TextBox x:Name="UsernameTextBox" Margin="0 0 0 10"/>
+                    <TextBox x:Name="UsernameTextBox" Margin="0 0 0 10" Style="{StaticResource TextBoxStyle}"/>
                     <Label Content="Password"/>
-                    <PasswordBox x:Name="PasswordBox" Margin="0 0 0 10"/>
-                    <Button Content="Login" Click="Login_Click"/>
+                    <PasswordBox x:Name="PasswordBox" Margin="0 0 0 10" Style="{StaticResource PasswordBoxStyle}"/>
+                    <Button Content="Login" Click="Login_Click" Style="{StaticResource ButtonStyle}" Height="40px" />
                 </StackPanel>
             </TabItem>
 
@@ -23,10 +23,10 @@
             <TabItem Header="Register">
                 <StackPanel Margin="20">
                     <Label Content="Name"/>
-                    <TextBox x:Name="NewUsernameTextBox" Margin="0 0 0 10"/>
+                    <TextBox x:Name="NewUsernameTextBox" Margin="0 0 0 10" Style="{StaticResource TextBoxStyle}"/>
                     <Label Content="Password"/>
-                    <PasswordBox x:Name="NewPasswordBox" Margin="0 0 0 10"/>
-                    <Button Content="Register" Click="Register_Click"/>
+                    <PasswordBox x:Name="NewPasswordBox" Margin="0 0 0 10" Style="{StaticResource PasswordBoxStyle}"/>
+                    <Button Content="Register" Click="Register_Click" Style="{StaticResource ButtonStyle}" Height="40px"/>
                 </StackPanel>
             </TabItem>
         </TabControl>

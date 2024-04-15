@@ -10,46 +10,16 @@
         <!-- Разместите здесь содержимое вашей страницы -->
         <StackPanel>
             <!-- Поле поиска -->
-            <StackPanel Orientation="Horizontal" Margin="10">
-                <TextBox x:Name="searchBox" Text="Search" Style="{StaticResource SearchTextBoxStyle}" Margin="10"/>
-                <Button Content="Search" Click="SearchButton_Click" Background="#007BFF" Foreground="White" Padding="10" Cursor="Hand" BorderThickness="0" Width="100">
-                    <Button.Template>
-                        <ControlTemplate TargetType="Button">
-                            <Border Background="{TemplateBinding Background}" CornerRadius="5">
-                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            </Border>
-                        </ControlTemplate>
-                    </Button.Template>
-                </Button>
-                <Button Content="Show All" Click="ShowAllButton_Click" Margin="10" Background="#007BFF" Foreground="White" Padding="10" Cursor="Hand" BorderThickness="1" BorderBrush="#007BFF" MinWidth="100">
-                    <Button.Template>
-                        <ControlTemplate TargetType="Button">
-                            <Border Background="{TemplateBinding Background}" CornerRadius="5" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}">
-                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            </Border>
-                        </ControlTemplate>
-                    </Button.Template>
-                </Button>
-                <Button Content="Sort by Name" Click="SortByNameButton_Click" Margin="10" Background="#007BFF" Foreground="White" Padding="10" Cursor="Hand" BorderThickness="1" BorderBrush="#007BFF" MinWidth="100">
-                    <Button.Template>
-                        <ControlTemplate TargetType="Button">
-                            <Border Background="{TemplateBinding Background}" CornerRadius="5" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}">
-                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            </Border>
-                        </ControlTemplate>
-                    </Button.Template>
-                </Button>
 
-                <Button Content="Sort by ID" Click="SortByIDButton_Click" Margin="10" Background="#007BFF" Foreground="White" Padding="10" Cursor="Hand" BorderThickness="1" BorderBrush="#007BFF" MinWidth="100">
-                    <Button.Template>
-                        <ControlTemplate TargetType="Button">
-                            <Border Background="{TemplateBinding Background}" CornerRadius="5" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}">
-                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            </Border>
-                        </ControlTemplate>
-                    </Button.Template>
-                </Button>
-                <ComboBox x:Name="supplierFilterComboBox" VerticalAlignment="Center" Margin="0 0 10 0" Padding="5" BorderThickness="1" BorderBrush="#007BFF" MinWidth="120" SelectionChanged="SupplierFilterComboBox_SelectionChanged"/>
+            <StackPanel Orientation="Horizontal" Margin="10" VerticalAlignment="Center">
+                <TextBox x:Name="searchBox" Text="Search" Style="{StaticResource SearchTextBoxStyle}" />
+                <Button Content="Search"  Click="SearchButton_Click" Style="{StaticResource ButtonStyle}" />
+                <Button Content="Show All" Click="ShowAllButton_Click" Style="{StaticResource ButtonStyle}" />
+                <Button Content="Sort by Name" Click="SortByNameButton_Click" Style="{StaticResource ButtonStyle}" />
+
+                <Button Content="Sort by ID" Click="SortByIDButton_Click" Style="{StaticResource ButtonStyle}" />
+
+                <ComboBox x:Name="supplierFilterComboBox" Style="{StaticResource ComboBoxStyle}" />
 
             </StackPanel>
 
