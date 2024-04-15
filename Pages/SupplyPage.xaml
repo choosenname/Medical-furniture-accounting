@@ -9,6 +9,9 @@
     <Grid>
         <!-- Разместите здесь содержимое вашей страницы -->
         <StackPanel>
+            <Button Content="Add Supply" Click="AddSupplyButton_Click" Style="{StaticResource ButtonStyle}"
+                    Height="40" />
+
             <ListView ItemsSource="{Binding Supplies}" Margin="10" Height="350">
                 <ListView.View>
                     <GridView>

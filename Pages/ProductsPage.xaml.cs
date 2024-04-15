@@ -1,20 +1,10 @@
 ﻿using MedicalFurnitureAccounting.Models;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using MedicalFurnitureAccounting.Modals;
 
 namespace MedicalFurnitureAccounting.Pages
 {
@@ -131,6 +121,21 @@ namespace MedicalFurnitureAccounting.Pages
                 {
                     view.Filter = null; // Если материал не выбран, отключаем фильтрацию
                 }
+            }
+        }
+
+        private void AddProductButton_Click(object sender, RoutedEventArgs e)
+        {
+            var addWindow = new AddProductModal(_context);
+            if (addWindow.ShowDialog() == true)
+            {
+                var newModel = addWindow.Product;
+                _context.Products.Add(newModel);
+                _context.SaveChanges();
+
+                Products.Add(newModel);
+                DataContext = null;
+                DataContext = this;
             }
         }
     }

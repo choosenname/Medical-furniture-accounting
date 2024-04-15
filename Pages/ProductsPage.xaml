@@ -44,6 +44,10 @@
                 <ComboBox x:Name="productsFilterComboBox" VerticalAlignment="Center" Margin="0 0 10 0" Padding="5" BorderThickness="1" BorderBrush="#007BFF" MinWidth="120" SelectionChanged="ProductsFilterComboBox_SelectionChanged"/>
 
             </StackPanel>
+
+            <Button Content="Add Product" Click="AddProductButton_Click" Style="{StaticResource ButtonStyle}"
+                    Height="40" />
+
             <ListView ItemsSource="{Binding Products}" Margin="10" Height="350" Name="productsListView">
                 <ListView.View>
                     <GridView>

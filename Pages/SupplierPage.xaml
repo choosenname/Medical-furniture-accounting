@@ -11,8 +11,7 @@
         <StackPanel>
             <!-- Поле поиска -->
             <StackPanel Orientation="Horizontal" Margin="10">
-                <TextBox x:Name="searchBox" Text="Search" VerticalAlignment="Center" Margin="0 0 10 0" Width="150"
-         GotFocus="SearchBox_GotFocus" LostFocus="SearchBox_LostFocus"/>
+                <TextBox x:Name="searchBox" Text="Search" Style="{StaticResource SearchTextBoxStyle}" Margin="10"/>
                 <Button Content="Search" Click="SearchButton_Click" Background="#007BFF" Foreground="White" Padding="10" Cursor="Hand" BorderThickness="0" Width="100">
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
@@ -53,6 +52,9 @@
                 <ComboBox x:Name="supplierFilterComboBox" VerticalAlignment="Center" Margin="0 0 10 0" Padding="5" BorderThickness="1" BorderBrush="#007BFF" MinWidth="120" SelectionChanged="SupplierFilterComboBox_SelectionChanged"/>
 
             </StackPanel>
+
+            <Button Content="Add Supplier" Click="AddSupplierButton_Click" Style="{StaticResource ButtonStyle}"
+                    Height="40" />
 
             <!-- ListView для отображения списка поставщиков -->
             <ListView ItemsSource="{Binding Suppliers}" Margin="10" Height="350" Name="supplierListView">

@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MedicalFurnitureAccounting.Modals;
 
 namespace MedicalFurnitureAccounting.Pages
 {
@@ -133,6 +134,22 @@ namespace MedicalFurnitureAccounting.Pages
                 {
                     view.Filter = null; // Если материал не выбран, отключаем фильтрацию
                 }
+            }
+        }
+
+        private void AddSupplierButton_Click(object sender, RoutedEventArgs e)
+        {
+            var addWindow = new AddSupplierModal();
+            if (addWindow.ShowDialog() == true)
+            {
+                string name = addWindow.Name;
+                var newModel = new Supplier() { Name = name };
+                _context.Suppliers.Add(newModel);
+                _context.SaveChanges();
+
+                Suppliers.Add(newModel);
+                DataContext = null;
+                DataContext = this;
             }
         }
     }
