@@ -1,0 +1,16 @@
+﻿<Page x:Class="MedicalFurnitureAccounting.Pages.AcceptanceActPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="Acceptance Act">
+    <Grid Width="600" Height="400">
+        <StackPanel>
+            <TextBlock Text="Acceptance Act" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <TextBlock Text="{Binding Date}" Margin="10"/>
+            <TextBlock Text="{Binding ProductName}" Margin="10"/>
+            <TextBlock Text="{Binding Count}" Margin="10"/>
+            <TextBlock Text="{Binding Room}" Margin="10"/>
+            <TextBlock Text="{Binding SupplierName}" Margin="10"/>
+            <!-- Добавьте другие элементы для отображения информации о товаре и поставке -->
+        </StackPanel>
+    </Grid>
+</Page> 

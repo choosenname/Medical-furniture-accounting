@@ -1,13 +1,16 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Navigation;
 using MedicalFurnitureAccounting.Models;
+using MedicalFurnitureAccounting.Pages;
 
 namespace MedicalFurnitureAccounting.Modals;
 
 public partial class AddProductModal : Window
 {
     private readonly ApplicationDBContext _dbContext;
+    public NavigationService NavigationService { get; set; }
 
     public AddProductModal(ApplicationDBContext dbContext)
     {
@@ -57,6 +60,48 @@ public partial class AddProductModal : Window
         DialogResult = true;
     }
 
+    private void GenerateAcceptanceAct(int supplyId, Product product)
+    {
+        Supply supply = _dbContext.Supplies.FirstOrDefault(s => s.SupplyId == supplyId);
+        if (supply != null)
+        {
+            string supplierName = supply.Supplier != null ? supply.Supplier.Name : "Unknown";
+
+            AcceptanceAct acceptanceAct = new AcceptanceAct
+            {
+                Date = supply.Date,
+                ProductName = product.Name,
+                Count = product.Count,
+                Room = product.Room,
+                SupplierName = supplierName
+            };
+
+            // Создание страницы акта приема-передачи
+            AcceptanceActPage acceptanceActPage = new AcceptanceActPage(acceptanceAct);
+            // Установка DataContext страницы на созданный акт приема-передачи
+            acceptanceActPage.DataContext = acceptanceAct;
+
+            // Отображение страницы в диалоговом окне
+            var dialog = new Window
+            {
+                Content = acceptanceActPage,
+                SizeToContent = SizeToContent.WidthAndHeight,
+                ResizeMode = ResizeMode.NoResize,
+                Title = "Acceptance Act"
+            };
+
+            dialog.ShowDialog();
+        }
+        else
+        {
+            MessageBox.Show("Ошибка при создании акта. Информация о поставке не найдена.");
+        }
+    }
+
+
+
+
+
     private void CancelButton_Click(object sender, RoutedEventArgs e)
     {
         DialogResult = false;
@@ -73,4 +118,6 @@ public partial class AddProductModal : Window
             }
         }
     }
+
+
 }
