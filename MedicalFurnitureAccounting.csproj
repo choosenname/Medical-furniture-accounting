@@ -19,8 +19,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <None Update="identifier.sqlite">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <None Update="MedicalFurnitureAccounting.db">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
     </ItemGroup>
 
