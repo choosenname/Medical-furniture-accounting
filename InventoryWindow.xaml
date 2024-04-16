@@ -1,0 +1,31 @@
+﻿<Window x:Class="MedicalFurnitureAccounting.InventoryWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:MedicalFurnitureAccounting"
+        mc:Ignorable="d"
+        Title="InventoryWindow" Height="625" Width="800">
+    <StackPanel>
+        <TextBlock Text="ИНВЕНТАРИЗАЦИОННАЯ ОПИСЬ" FontSize="24" HorizontalAlignment="Center" FontWeight="Bold" Margin="10"/>
+        <TextBlock Text="товарно-матеиальных ценностей" FontSize="12" HorizontalAlignment="Center" FontWeight="Bold" Margin="10"/>
+
+        <TextBlock Text="РАСПИСКА" FontSize="12" HorizontalAlignment="Center" FontWeight="Bold" Margin="10"/>
+        <TextBlock Text="К началу проведения инвентаризации все расходные и приходные документы на товарно-материальные
+         ценности сданы в бухгалтерию и все товарно-материальные ценности, поступившие на мою (нашу) ответственность, оприходованы,
+          а выбывшие списаны в расход." FontSize="12" HorizontalAlignment="Center" TextWrapping="Wrap" FontWeight="Bold" Margin="10"/>
+
+        <!-- DataGrid для отображения инвентаризационной описи -->
+        <ListView ItemsSource="{Binding Products}" Margin="10" Height="350" Name="productsListView">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Product ID" DisplayMemberBinding="{Binding ProductId}" />
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
+                    <GridViewColumn Header="Count" DisplayMemberBinding="{Binding Count}" />
+                    <GridViewColumn Header="Price" DisplayMemberBinding="{Binding Material.Price}"></GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button Content="Export To Word" Click="ExportToWordButton_Click" Style="{StaticResource ButtonStyle}" Height="40"/>
+    </StackPanel>
+</Window>

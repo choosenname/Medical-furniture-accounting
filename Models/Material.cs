@@ -6,5 +6,5 @@ public class Material
     public string Name { get; set; }
     public int Price { get; set; }
 
-    public ICollection<Product> Products { get; set; }
+    public virtual ICollection<Product> Products { get; set; }
 }

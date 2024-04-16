@@ -139,6 +139,12 @@ namespace MedicalFurnitureAccounting.Pages
             }
         }
 
+        private void ShowInventoryList_Click(object sender, RoutedEventArgs e)
+        {
+            var inventoryWindow = new InventoryWindow(_context);
+            inventoryWindow.ShowDialog();
+        }
+
         private void ChangeRoomButton_Click(object sender, RoutedEventArgs e)
         {
             Button button = (Button)sender;

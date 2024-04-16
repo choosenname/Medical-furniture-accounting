@@ -6,7 +6,7 @@ public class Supply
     public DateTime Date { get; set; }
 
     public int SupplierId { get; set; }
-    public Supplier Supplier { get; set; }
+    public virtual Supplier Supplier { get; set; }
 
-    public ICollection<Product> Products { get; set; }
+    public virtual ICollection<Product> Products { get; set; }
 }

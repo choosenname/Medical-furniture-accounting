@@ -10,11 +10,11 @@ public class Product
     public string Room { get; set; }
 
     public int CategoryId { get; set; }
-    public Category Category { get; set; }
+    public virtual Category Category { get; set; }
 
     public int SupplyId { get; set; }
-    public Supply Suppply { get; set; }
+    public virtual Supply Suppply { get; set; }
 
     public int MaterialId { get; set; }
-    public Material Material { get; set; }
+    public virtual Material Material { get; set; }
 }
