@@ -68,7 +68,6 @@ public partial class AddProductModal : Window
         if (supply != null)
         {
             string supplierName = supply.Supplier.Name;
-            int supplierId = supply.SupplierId; // Получаем идентификатор поставщика
 
             AcceptanceAct acceptanceAct = new AcceptanceAct
             {
@@ -77,9 +76,7 @@ public partial class AddProductModal : Window
                 Count = product.Count,
                 Room = product.Room,
                 Category = product.Category.Name,
-                SupplierName = supplierName,
-                SupplierId = supplierId // Устанавливаем идентификатор поставщика
-
+                SupplierName = supplierName
             };
 
             // Создание страницы акта приема-передачи

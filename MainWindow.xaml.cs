@@ -76,49 +76,7 @@ public partial class MainWindow : System.Windows.Window
     }
 
 
-    private void ExportToWord_Click(object sender, RoutedEventArgs e)
-    {
-        try
-        {
-            // Создаем объект приложения Word
-            Word.Application wordApp = new Word.Application();
-
-            // Создаем новый документ Word
-            Word.Document doc = wordApp.Documents.Add();
-
-            // Добавляем заголовок
-            Word.Paragraph title = doc.Content.Paragraphs.Add();
-            title.Range.Text = "Medical Furniture Accounting Report";
-            title.Range.Font.Bold = 1;
-            title.Range.Font.Size = 16;
-            title.Alignment = Word.WdParagraphAlignment.wdAlignParagraphCenter;
-            title.Range.InsertParagraphAfter();
-
-            // Добавляем содержимое
-            Word.Paragraph content = doc.Content.Paragraphs.Add();
-            // Здесь добавьте содержимое, которое вы хотите экспортировать
-            content.Range.Text = "Sample content to export to Word document.";
-
-            // Формируем имя файла с текущей датой
-            string currentDate = DateTime.Now.ToString("yyyy-MM-dd");
-            string filename = @"C:\Users\xxsam\source\repos\medical-furniture-accounting\Act_" + currentDate + ".docx";
-
-            // Сохраняем документ Word
-            doc.SaveAs2(filename);
-
-            // Закрываем документ Word и завершаем работу приложения
-            doc.Close();
-            wordApp.Quit();
-
-            // Уведомление об успешном создании документа
-            MessageBox.Show("Документ успешно создан и сохранен по следующему пути:\n" + filename, "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
-        }
-        catch (Exception ex)
-        {
-            // Обработка ошибок
-            MessageBox.Show("Ошибка при создании документа: " + ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-        }
-    }
+   
 
 
 
