@@ -60,6 +60,13 @@
                         <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
                         <GridViewColumn Header="Count" DisplayMemberBinding="{Binding Count}"/>
                         <GridViewColumn Header="Room" DisplayMemberBinding="{Binding Room}"/>
+                        <GridViewColumn Header="Room">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="Change Room" Click="ChangeRoomButton_Click" Tag="{Binding ProductId}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
                     </GridView>
                 </ListView.View>
             </ListView>
