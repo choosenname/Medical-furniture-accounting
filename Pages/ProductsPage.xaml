@@ -24,8 +24,10 @@
 
         </StackPanel>
 
-        <Button Content="Добавить товар" Click="AddProductButton_Click" Style="{StaticResource ButtonStyle}"
-                Height="40" />
+        <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Center">
+        <Button Content="Добавить товар" Click="AddProductButton_Click" Style="{StaticResource ButtonStyle}"/>
+        <Button Content="Инвенторизация" Click="ShowInventoryList_Click" Style="{StaticResource ButtonStyle}"/>
+        </StackPanel>
 
         <ListView ItemsSource="{Binding Products}" Margin="10" Height="350" Name="productsListView">
             <ListView.View>

@@ -47,7 +47,7 @@ namespace MedicalFurnitureAccounting
                 Microsoft.Office.Interop.Word.Paragraph title = wordDoc.Paragraphs.Add();
                 title.Range.Text = "Ярлык товара";
                 title.Range.Bold = 1;
-                title.Range.Font.Size = 24;
+                title.Range.Font.Size = 12;
                 title.Range.ParagraphFormat.Alignment = Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphCenter;
                 title.Range.InsertParagraphAfter();
 
