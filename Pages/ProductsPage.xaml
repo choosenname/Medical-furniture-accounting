@@ -1,71 +1,43 @@
 ﻿<Page x:Class="MedicalFurnitureAccounting.Pages.ProductsPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="clr-namespace:MedicalFurnitureAccounting.Pages"
       Title="Products Page" Height="450" Width="800">
-    <Grid>
-        <Grid.Resources>
-            <Style TargetType="Button">
-                <Setter Property="Margin" Value="10" />
-                <Setter Property="Background" Value="#007BFF" />
-                <Setter Property="Foreground" Value="White" />
-                <Setter Property="Padding" Value="10" />
-                <Setter Property="Cursor" Value="Hand" />
-                <Setter Property="BorderThickness" Value="1" />
-                <Setter Property="BorderBrush" Value="#007BFF" />
-                <Setter Property="MinWidth" Value="100" />
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="Button">
-                            <Border Background="{TemplateBinding Background}" CornerRadius="5"
-                                    BorderThickness="{TemplateBinding BorderThickness}"
-                                    BorderBrush="{TemplateBinding BorderBrush}">
-                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
-                            </Border>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
-            <Style TargetType="TextBox">
-                <Setter Property="Margin" Value="0 0 10 0" />
-                <Setter Property="VerticalAlignment" Value="Center" />
-                <Setter Property="Padding" Value="5" />
-                <Setter Property="BorderThickness" Value="1" />
-                <Setter Property="BorderBrush" Value="#007BFF" />
-                <Setter Property="MinWidth" Value="120" />
-            </Style>
-        </Grid.Resources>
         <StackPanel Margin="10">
-
             <StackPanel Orientation="Horizontal" Margin="10" VerticalAlignment="Center">
-                <TextBox x:Name="searchBox" Text="Search" Style="{StaticResource SearchTextBoxStyle}" />
-                <Button Content="Search" Click="SearchButton_Click" Style="{StaticResource ButtonStyle}" />
-                <Button Content="Show All" Click="ShowAllButton_Click" Style="{StaticResource ButtonStyle}" />
-                <Button Content="Sort by Name" Click="SortByNameButton_Click" Style="{StaticResource ButtonStyle}" />
+                    <TextBox x:Name="searchBox" Text="Search" Style="{StaticResource SearchTextBoxStyle}" />
+            <Button Content="Search" Click="SearchButton_Click" Style="{StaticResource ButtonStyle}" />
+            <Button Content="Show All" Click="ShowAllButton_Click" Style="{StaticResource ButtonStyle}" />
+            <Button Content="Sort by Name" Click="SortByNameButton_Click" Style="{StaticResource ButtonStyle}" />
 
-                <Button Content="Sort by ID" Click="SortByIDButton_Click" Style="{StaticResource ButtonStyle}" />
+            <Button Content="Sort by ID" Click="SortByIDButton_Click" Style="{StaticResource ButtonStyle}" />
 
-                <ComboBox x:Name="productsFilterComboBox" Style="{StaticResource ComboBoxStyle}" />
-
+                    <ComboBox x:Name="productsFilterComboBox" Style="{StaticResource ComboBoxStyle}" />
+                
             </StackPanel>
 
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="40">
-                <Button Content="Add Product" Click="AddProductButton_Click" Style="{StaticResource ButtonStyle}" />
-                <Button Content="Inventory List" Click="ShowInventoryList_Click" Style="{StaticResource ButtonStyle}" />
-            </StackPanel>
+            <Button Content="Add Product" Click="AddProductButton_Click" Style="{StaticResource ButtonStyle}"
+                    Height="40" />
 
             <ListView ItemsSource="{Binding Products}" Margin="10" Height="350" Name="productsListView">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="Product ID" DisplayMemberBinding="{Binding ProductId}" />
-                        <GridViewColumn Header="Category ID" DisplayMemberBinding="{Binding CategoryId}" />
-                        <GridViewColumn Header="Material ID" DisplayMemberBinding="{Binding MaterialId}" />
-                        <GridViewColumn Header="Supply ID" DisplayMemberBinding="{Binding SupplyId}" />
-                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
-                        <GridViewColumn Header="Count" DisplayMemberBinding="{Binding Count}" />
-                        <GridViewColumn Header="Room" DisplayMemberBinding="{Binding Room}" />
+                        <GridViewColumn Header="Product ID" DisplayMemberBinding="{Binding ProductId}"/>
+                        <GridViewColumn Header="Category ID" DisplayMemberBinding="{Binding CategoryId}"/>
+                        <GridViewColumn Header="Material ID" DisplayMemberBinding="{Binding MaterialId}"/>
+                        <GridViewColumn Header="Supply ID" DisplayMemberBinding="{Binding SupplyId}"/>
+                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
+                        <GridViewColumn Header="Count" DisplayMemberBinding="{Binding Count}"/>
+                        <GridViewColumn Header="Room" DisplayMemberBinding="{Binding Room}"/>
+                        <GridViewColumn Header="Room">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="Change Room" Click="ChangeRoomButton_Click" Tag="{Binding ProductId}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
                     </GridView>
                 </ListView.View>
             </ListView>
         </StackPanel>
-    </Grid>
 </Page>
