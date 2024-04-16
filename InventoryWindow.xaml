@@ -5,10 +5,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:MedicalFurnitureAccounting"
         mc:Ignorable="d"
-        Title="InventoryWindow" Height="450" Width="800">
+        Title="InventoryWindow" Height="625" Width="800">
     <StackPanel>
-
-        <!-- Заголовок страницы -->
         <TextBlock Text="ИНВЕНТАРИЗАЦИОННАЯ ОПИСЬ" FontSize="24" HorizontalAlignment="Center" FontWeight="Bold" Margin="10"/>
         <TextBlock Text="товарно-матеиальных ценностей" FontSize="12" HorizontalAlignment="Center" FontWeight="Bold" Margin="10"/>
 
@@ -28,5 +26,6 @@
                 </GridView>
             </ListView.View>
         </ListView>
+        <Button Content="Export To Word" Click="ExportToWordButton_Click" Style="{StaticResource ButtonStyle}" Height="40"/>
     </StackPanel>
 </Window>

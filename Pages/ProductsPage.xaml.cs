@@ -145,5 +145,35 @@ namespace MedicalFurnitureAccounting.Pages
             var inventoryWindow = new InventoryWindow(_context);
             inventoryWindow.ShowDialog();
         }
+
+        private void ChangeRoomButton_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            int productId = (int)button.Tag;
+
+            var dialog = new ChangeRoomModal();
+            if (dialog.ShowDialog() == true)
+            {
+                // Пользователь нажал OK, обновить комнату для выбранного продукта
+                string newRoom = dialog.NewRoom;
+                // Здесь вы можете обновить комнату для выбранного продукта
+
+                var productToUpdate = Products.FirstOrDefault(p => p.ProductId == productId);
+                if (productToUpdate != null)
+                {
+                    // Обновите комнату для выбранного продукта
+                    productToUpdate.Room = newRoom;
+                    _context.SaveChanges();
+                    // Здесь вы можете выполнить дополнительные действия по обновлению данных в вашем приложении или базе данных
+
+                    DataContext = null;
+                    DataContext = this;
+                }
+                else
+                {
+                    MessageBox.Show("Product not found.");
+                }
+            }
+        }
     }
 }
