@@ -35,6 +35,14 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
+                    <GridViewColumn Header="Label">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Ярлык" Tag="{Binding ProductId}" Click="Button_Click" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
                 </GridView>
             </ListView.View>
         </ListView>
