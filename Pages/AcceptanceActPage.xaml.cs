@@ -81,15 +81,16 @@ namespace MedicalFurnitureAccounting.Pages
             signature.Range.InsertParagraphAfter();
 
             // Сохранение документа Word
-            string fileName = $"C:\\Users\\xxsam\\source\\repos\\medical-furniture-accounting\\Act({DateTime.Now.ToString("yyyy-MM-dd")}).docx";
-            wordDoc.SaveAs2(fileName);
+            var fileName = $"Act_{DateTime.Now.ToString("yyyyMMdd_HHmmss")}.docx";
+            var filePath = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), fileName);
+            wordDoc.SaveAs2(filePath);
 
             // Освобождение ресурсов
             wordDoc.Close();
             wordApp.Quit();
 
             // Вывод уведомления о сохранении файла
-            MessageBox.Show($"Файл успешно сохранен по пути: {fileName}", "Сохранение завершено", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show($"Файл успешно сохранен по пути: {filePath}", "Сохранение завершено", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
     }

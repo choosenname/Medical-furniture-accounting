@@ -174,6 +174,16 @@ namespace MedicalFurnitureAccounting.Pages
                     MessageBox.Show("Product not found.");
                 }
             }
+
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            int productId = (int)button.Tag;
+            var productToUpdate = Products.FirstOrDefault(p => p.ProductId == productId);
+            var newWindow = new LabelProductWindow(productToUpdate);
+            newWindow.ShowDialog(); 
         }
     }
 }
