@@ -29,7 +29,7 @@ public partial class InventoryWindow : Window
     private void ExportToWordButton_Click(object sender, RoutedEventArgs e)
     {
         // Создаем новый документ Word
-        var fileName = "InventoryList.docx";
+        var fileName = $"InventoryList_{DateTime.Now.ToString("yyyyMMdd_HHmmss")}.docx";
         var filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), fileName);
 
         using (var wordDocument = WordprocessingDocument.Create(filePath, WordprocessingDocumentType.Document))
