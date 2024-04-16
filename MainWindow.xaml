@@ -31,6 +31,7 @@
                 <Button Content="Продукты" Margin="10" Foreground="White" Background="Transparent" BorderBrush="Transparent" Click="Button_Click_Product_Page" />
                 <Button Content="Поставщики" Margin="10" Foreground="White" Background="Transparent" BorderBrush="Transparent" Click="Button_Click_Supplier_Page" />
                 <Button Content="Поставки" Margin="10" Foreground="White" Background="Transparent" BorderBrush="Transparent"  Click="Button_Click_Supply_Page"/>
+
             </StackPanel>
         </Grid>
 

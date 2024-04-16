@@ -1,3 +1,4 @@
+using System.Collections.ObjectModel;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -8,14 +9,18 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MedicalFurnitureAccounting.Modals;
+using MedicalFurnitureAccounting.Models;
 using MedicalFurnitureAccounting.Pages;
+using Word = Microsoft.Office.Interop.Word;
+
 
 namespace MedicalFurnitureAccounting;
 
 /// <summary>
 /// Interaction logic for MainWindow.xaml
 /// </summary>
-public partial class MainWindow : Window
+public partial class MainWindow : System.Windows.Window
 {
     private readonly ApplicationDBContext _dbContext;
     public MainWindow(ApplicationDBContext dbContext)
@@ -23,7 +28,13 @@ public partial class MainWindow : Window
         InitializeComponent();
         _dbContext = dbContext;
     }
-
+    private void OpenAddProductModal()
+    {
+        AddProductModal addProductModal = new AddProductModal(_dbContext); // Передача экземпляра _dbContext в конструктор
+        addProductModal.ShowDialog();
+        // Передача ссылки на NavigationService в AddProductModal
+        addProductModal.NavigationService = MainFrame.NavigationService;
+    }
     private void Button_Click(object sender, RoutedEventArgs e)
     {
         MainFrame.Navigate(new CategoryPage(_dbContext));
@@ -44,5 +55,29 @@ public partial class MainWindow : Window
     {
         MainFrame.Navigate(new SupplyPage(_dbContext));
     }
+
+    private ObservableCollection<Product> GetProductsForExport()
+    {
+        // Получаем основное содержимое (Frame) из главного окна
+        System.Windows.Controls.Frame mainFrame = MainFrame;
+
+        // Предположим, что у вас есть страница "Продукты" и она содержит список продуктов
+        ProductsPage productsPage = mainFrame.Content as ProductsPage;
+
+        // Проверяем, была ли страница "Продукты" загружена
+        if (productsPage != null)
+        {
+            // Получаем доступ к коллекции продуктов из страницы "Продукты"
+            return productsPage.Products;
+        }
+
+        // Если страница "Продукты" не загружена или не найдена, вернем пустую коллекцию
+        return new ObservableCollection<Product>();
+    }
+
+
+   
+
+
 
 }

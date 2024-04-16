@@ -17,4 +17,5 @@ public class ApplicationDBContext : DbContext
         optionsBuilder.UseSqlite("Data Source=MedicalFurnitureAccounting.db");
         optionsBuilder.UseLazyLoadingProxies();
     }
+
 }

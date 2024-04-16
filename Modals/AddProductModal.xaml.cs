@@ -1,13 +1,16 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Navigation;
 using MedicalFurnitureAccounting.Models;
+using MedicalFurnitureAccounting.Pages;
 
 namespace MedicalFurnitureAccounting.Modals;
 
 public partial class AddProductModal : Window
 {
     private readonly ApplicationDBContext _dbContext;
+    public NavigationService NavigationService { get; set; }
 
     public AddProductModal(ApplicationDBContext dbContext)
     {
@@ -53,9 +56,54 @@ public partial class AddProductModal : Window
             Count = Convert.ToInt32(ProductCountTextBox.Text),
             Room = ProductRoomTextBox.Text,
         };
+        GenerateAcceptanceAct(selectedSupply.SupplyId,Product);
 
         DialogResult = true;
     }
+
+
+    private void GenerateAcceptanceAct(int supplyId, Product product)
+    {
+        Supply supply = _dbContext.Supplies.FirstOrDefault(s => s.SupplyId == supplyId);
+        if (supply != null)
+        {
+            string supplierName = supply.Supplier.Name;
+
+            AcceptanceAct acceptanceAct = new AcceptanceAct
+            {
+                Date = supply.Date,
+                ProductName = product.Name,
+                Count = product.Count,
+                Room = product.Room,
+                Category = product.Category.Name,
+                SupplierName = supplierName
+            };
+
+            // Создание страницы акта приема-передачи
+            AcceptanceActPage acceptanceActPage = new AcceptanceActPage(acceptanceAct);
+            // Установка DataContext страницы на созданный акт приема-передачи
+            acceptanceActPage.DataContext = acceptanceAct;
+
+            // Отображение страницы в диалоговом окне
+            var dialog = new Window
+            {
+                Content = acceptanceActPage,
+                SizeToContent = SizeToContent.WidthAndHeight,
+                ResizeMode = ResizeMode.NoResize,
+                Title = "Acceptance Act"
+            };
+
+            dialog.ShowDialog();
+        }
+        else
+        {
+            MessageBox.Show("Ошибка при создании акта. Информация о поставке не найдена.");
+        }
+    }
+
+
+
+
 
     private void CancelButton_Click(object sender, RoutedEventArgs e)
     {
@@ -73,4 +121,15 @@ public partial class AddProductModal : Window
             }
         }
     }
+    public string GetSupplierNameById(int supplierId)
+    {
+        var supplier = _dbContext.Supplies
+                                .Where(s => s.SupplierId == supplierId)
+                                .Select(s => s.Supplier.Name)
+                                .FirstOrDefault();
+        return supplier != null ? supplier : "Unknown";
+    }
+
+
+
 }
