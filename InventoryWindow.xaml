@@ -26,6 +26,6 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button Content="Export To Word" Click="ExportToWordButton_Click" Style="{StaticResource ButtonStyle}" Height="40"/>
+        <Button Content="Экспорт" Click="ExportToWordButton_Click" Style="{StaticResource ButtonStyle}" Height="40"/>
     </StackPanel>
 </Window>

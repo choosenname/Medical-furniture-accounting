@@ -9,24 +9,24 @@
     <Grid>
         <TabControl>
             <!-- Вкладка для страницы входа -->
-            <TabItem Header="Login">
+            <TabItem Header="Вход">
                 <StackPanel Margin="20">
-                    <Label Content="Name"/>
+                    <Label Content="Имя"/>
                     <TextBox x:Name="UsernameTextBox" Margin="0 0 0 10" Style="{StaticResource TextBoxStyle}"/>
-                    <Label Content="Password"/>
+                    <Label Content="Пароль"/>
                     <PasswordBox x:Name="PasswordBox" Margin="0 0 0 10" Style="{StaticResource PasswordBoxStyle}"/>
-                    <Button Content="Login" Click="Login_Click" Style="{StaticResource ButtonStyle}" Height="40px" />
+                    <Button Content="Войти" Click="Login_Click" Style="{StaticResource ButtonStyle}" Height="40px" />
                 </StackPanel>
             </TabItem>
 
             <!-- Вкладка для страницы регистрации -->
-            <TabItem Header="Register">
+            <TabItem Header="Регистрация">
                 <StackPanel Margin="20">
-                    <Label Content="Name"/>
+                    <Label Content="Имя"/>
                     <TextBox x:Name="NewUsernameTextBox" Margin="0 0 0 10" Style="{StaticResource TextBoxStyle}"/>
-                    <Label Content="Password"/>
+                    <Label Content="Пароль"/>
                     <PasswordBox x:Name="NewPasswordBox" Margin="0 0 0 10" Style="{StaticResource PasswordBoxStyle}"/>
-                    <Button Content="Register" Click="Register_Click" Style="{StaticResource ButtonStyle}" Height="40px"/>
+                    <Button Content="Зарегестрироваться" Click="Register_Click" Style="{StaticResource ButtonStyle}" Height="40px"/>
                 </StackPanel>
             </TabItem>
         </TabControl>

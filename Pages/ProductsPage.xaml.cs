@@ -51,7 +51,7 @@ namespace MedicalFurnitureAccounting.Pages
 
         private void SearchBox_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (searchBox.Text == "Search")
+            if (searchBox.Text == "Поиск")
             {
                 searchBox.Text = "";
             }
@@ -61,7 +61,7 @@ namespace MedicalFurnitureAccounting.Pages
         {
             if (string.IsNullOrWhiteSpace(searchBox.Text))
             {
-                searchBox.Text = "Search";
+                searchBox.Text = "Поиск";
             }
         }
 

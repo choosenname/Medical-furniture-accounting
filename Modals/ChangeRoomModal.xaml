@@ -7,12 +7,12 @@
         mc:Ignorable="d"
         Title="ChangeRoomModal" Height="250" Width="300">
     <StackPanel>
-        <Label Content="ADD SUPPLY" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center"/>
-        <Label Content="Enter New Room:" Margin="5"/>
+        <Label Content="Смена комнаты" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center"/>
+        <Label Content="Введите новую комнату:" Margin="5"/>
         <TextBox x:Name="NewRoomTextBox" Style="{StaticResource TextBoxStyle}" Margin="5"/>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="30">
-            <Button Content="Add" Style="{StaticResource ButtonStyle}" Click="AddButton_Click" />
-            <Button Content="Cancel" Style="{StaticResource ButtonStyle}" Click="CancelButton_Click" />
+            <Button Content="Добавить" Style="{StaticResource ButtonStyle}" Click="AddButton_Click" />
+            <Button Content="Отмена" Style="{StaticResource ButtonStyle}" Click="CancelButton_Click" />
         </StackPanel>
     </StackPanel>
 </Window>
