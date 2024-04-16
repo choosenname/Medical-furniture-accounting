@@ -12,18 +12,18 @@
             <!-- Поле поиска -->
 
             <StackPanel Orientation="Horizontal" Margin="10" VerticalAlignment="Center">
-                <TextBox x:Name="searchBox" Text="Search" Style="{StaticResource SearchTextBoxStyle}" />
-                <Button Content="Search"  Click="SearchButton_Click" Style="{StaticResource ButtonStyle}" />
-                <Button Content="Show All" Click="ShowAllButton_Click" Style="{StaticResource ButtonStyle}" />
-                <Button Content="Sort by Name" Click="SortByNameButton_Click" Style="{StaticResource ButtonStyle}" />
+                <TextBox x:Name="searchBox" Text="Поиск" Style="{StaticResource SearchTextBoxStyle}" GotFocus="SearchBox_GotFocus" LostFocus="SearchBox_LostFocus" />
+                <Button Content="Поиск"  Click="SearchButton_Click" Style="{StaticResource ButtonStyle}" />
+                <Button Content="Сброс" Click="ShowAllButton_Click" Style="{StaticResource ButtonStyle}" />
+                <Button Content="Сортировка по name" Click="SortByNameButton_Click" Style="{StaticResource ButtonStyle}" Width="134" />
 
-                <Button Content="Sort by ID" Click="SortByIDButton_Click" Style="{StaticResource ButtonStyle}" />
+                <Button Content="Сортировка по id" Click="SortByIDButton_Click" Style="{StaticResource ButtonStyle}" Width="123" />
 
-                <ComboBox x:Name="supplierFilterComboBox" Style="{StaticResource ComboBoxStyle}" />
+                <ComboBox x:Name="supplierFilterComboBox" Style="{StaticResource ComboBoxStyle}" SelectionChanged="SupplierFilterComboBox_SelectionChanged" />
 
             </StackPanel>
 
-            <Button Content="Add Supplier" Click="AddSupplierButton_Click" Style="{StaticResource ButtonStyle}"
+            <Button Content="Добавить поставщика" Click="AddSupplierButton_Click" Style="{StaticResource ButtonStyle}"
                     Height="40" />
 
             <!-- ListView для отображения списка поставщиков -->

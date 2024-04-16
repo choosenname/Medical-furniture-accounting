@@ -15,10 +15,10 @@
                     <Setter Property="Margin" Value="0,0,10,0" />
                 </Style>
             </StackPanel.Resources>
-            <TextBox x:Name="searchBox" Text="Search" VerticalAlignment="Center" Padding="5" BorderThickness="1"
+            <TextBox x:Name="searchBox" Text="Поиск" VerticalAlignment="Center" Padding="5" BorderThickness="1"
                      BorderBrush="#007BFF" MinWidth="120"
                      GotFocus="SearchBox_GotFocus" LostFocus="SearchBox_LostFocus" />
-            <Button Content="Search" Click="SearchButton_Click" Background="#007BFF" Foreground="White" Padding="10"
+            <Button Content="Поиск" Click="SearchButton_Click" Background="#007BFF" Foreground="White" Padding="10"
                     Cursor="Hand" BorderThickness="0" MinWidth="100">
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
@@ -28,7 +28,7 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button Content="Show All" Click="ShowAllButton_Click" Background="#007BFF" Foreground="White" Padding="10"
+            <Button Content="Сброс" Click="ShowAllButton_Click" Background="#007BFF" Foreground="White" Padding="10"
                     Cursor="Hand" BorderThickness="1" BorderBrush="#007BFF" MinWidth="100">
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
@@ -40,8 +40,8 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button Content="Sort by Name" Click="SortByNameButton_Click" Background="#007BFF" Foreground="White"
-                    Padding="10" Cursor="Hand" BorderThickness="1" BorderBrush="#007BFF" MinWidth="100">
+            <Button Content="Сортировка по name" Click="SortByNameButton_Click" Background="#007BFF" Foreground="White"
+                    Padding="10" Cursor="Hand" BorderThickness="1" BorderBrush="#007BFF" MinWidth="100" Width="133">
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
                         <Border Background="{TemplateBinding Background}" CornerRadius="5"
@@ -53,8 +53,8 @@
                 </Button.Template>
             </Button>
 
-            <Button Content="Sort by ID" Click="SortByIDButton_Click" Background="#007BFF" Foreground="White"
-                    Padding="10" Cursor="Hand" BorderThickness="1" BorderBrush="#007BFF" MinWidth="100">
+            <Button Content="Сортировка по id" Click="SortByIDButton_Click" Background="#007BFF" Foreground="White"
+                    Padding="10" Cursor="Hand" BorderThickness="1" BorderBrush="#007BFF" MinWidth="100" Width="124">
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
                         <Border Background="{TemplateBinding Background}" CornerRadius="5"
@@ -69,7 +69,7 @@
                       BorderBrush="#007BFF" MinWidth="120" SelectionChanged="MaterialFilterComboBox_SelectionChanged" />
         </StackPanel>
 
-        <Button Content="Add Material" Click="AddMaterialButton_Click" Background="#007BFF" Foreground="White"
+        <Button Content="Добавить материал" Click="AddMaterialButton_Click" Background="#007BFF" Foreground="White"
                 Padding="10" Cursor="Hand" BorderThickness="0" MinHeight="40" Margin="8">
             <Button.Template>
                 <ControlTemplate TargetType="Button">

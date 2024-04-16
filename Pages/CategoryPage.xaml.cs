@@ -66,7 +66,7 @@ public partial class CategoryPage : Page
     }
     private void SearchBox_GotFocus(object sender, RoutedEventArgs e)
     {
-        if (SearchBox.Text == "Search")
+        if (SearchBox.Text == "Поиск")
         {
             SearchBox.Text = "";
         }
@@ -76,7 +76,7 @@ public partial class CategoryPage : Page
     {
         if (string.IsNullOrWhiteSpace(SearchBox.Text))
         {
-            SearchBox.Text = "Search";
+            SearchBox.Text = "Поиск";
         }
     }
     private void ShowAllButton_Click(object sender, RoutedEventArgs e)
@@ -140,7 +140,13 @@ public partial class CategoryPage : Page
         }
     }
 
+    private void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
+    {
 
+    }
 
+    private void CategoryFilterComboBox_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+    {
 
+    }
 }
