@@ -16,10 +16,10 @@
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
             <!-- Применение стиля к Button -->
-            <Button Content="Добавить" HorizontalAlignment="Center" Margin="10" Click="AddButton_Click" Style="{StaticResource ButtonStyle}"/>
+            <Button Content="Добавить" HorizontalAlignment="Center" Click="AddButton_Click" Style="{StaticResource ButtonStyle}"/>
 
             <!-- Применение стиля к Button -->
-            <Button Content="Отмена" HorizontalAlignment="Center" Margin="10" Click="CancelButton_Click" Style="{StaticResource ButtonStyle}"/>
+            <Button Content="Отмена" HorizontalAlignment="Center" Click="CancelButton_Click" Style="{StaticResource ButtonStyle}"/>
         </StackPanel>
     </StackPanel>
 </Window>

@@ -4,7 +4,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         mc:Ignorable="d"
-        Title="AddMaterialModal" Height="332" Width="348">
+        Title="AddMaterialModal" Height="300" Width="300">
     <StackPanel>
         <Label Content="Добавление материала" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center"/>
 
@@ -22,10 +22,10 @@
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
             <!-- Применение стиля к Button -->
-            <Button Content="Добавить" Margin="10" Click="AddButton_Click" Style="{StaticResource ButtonStyle}" Height="28"/>
+            <Button Content="Добавить" Click="AddButton_Click" Style="{StaticResource ButtonStyle}" />
 
             <!-- Применение стиля к Button -->
-            <Button Content="Отмена" HorizontalAlignment="Center" Margin="10" Click="CancelButton_Click" Style="{StaticResource ButtonStyle}"/>
+            <Button Content="Отмена" HorizontalAlignment="Center" Click="CancelButton_Click" Style="{StaticResource ButtonStyle}"/>
         </StackPanel>
     </StackPanel>
 </Window>

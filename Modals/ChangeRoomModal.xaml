@@ -5,12 +5,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:MedicalFurnitureAccounting.Modals"
         mc:Ignorable="d"
-        Title="ChangeRoomModal" Height="250" Width="300">
+        Title="ChangeRoomModal" Height="170" Width="300">
     <StackPanel>
         <Label Content="Смена комнаты" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center"/>
         <Label Content="Введите новую комнату:" Margin="5"/>
         <TextBox x:Name="NewRoomTextBox" Style="{StaticResource TextBoxStyle}" Margin="5"/>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="30">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="30" Margin="0 10 0 0">
             <Button Content="Добавить" Style="{StaticResource ButtonStyle}" Click="AddButton_Click" />
             <Button Content="Отмена" Style="{StaticResource ButtonStyle}" Click="CancelButton_Click" />
         </StackPanel>
