@@ -48,7 +48,7 @@
             <!-- Кнопки -->
             <StackPanel Grid.Row="8" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20">
                 <Button Content="Закрыть" Width="100" Margin="10" Style="{StaticResource ButtonStyle}" Click="CloseButton_Click"/>
-                <Button Content="Export to Word" Width="150" Margin="10" Style="{StaticResource ButtonStyle}" Click="ExportAcceptanceAct_Click"/>
+                <Button Content="Экспорт в  Word" Width="150" Margin="10" Style="{StaticResource ButtonStyle}" Click="ExportAcceptanceAct_Click"/>
             </StackPanel>
 
         </Grid>

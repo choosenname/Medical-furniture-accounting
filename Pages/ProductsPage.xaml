@@ -7,7 +7,7 @@
             <TextBox x:Name="searchBox" Text="Поиск" Style="{StaticResource SearchTextBoxStyle}" GotFocus="SearchBox_GotFocus" LostFocus="SearchBox_LostFocus" />
             <Button Content="Поиск" Click="SearchButton_Click" Style="{StaticResource ButtonStyle}" />
             <Button Content="Сброс" Click="ShowAllButton_Click" Style="{StaticResource ButtonStyle}" />
-            <Button Content="Сортировка по name" Click="SortByNameButton_Click" Style="{StaticResource ButtonStyle}" RenderTransformOrigin="0.5,0.5" Width="138" >
+            <Button Content="Сортировка по имени" Click="SortByNameButton_Click" Style="{StaticResource ButtonStyle}" RenderTransformOrigin="0.5,0.5" Width="138" >
                 <Button.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -18,7 +18,6 @@
                 </Button.RenderTransform>
             </Button>
 
-            <Button Content="Сортировка по id" Click="SortByIDButton_Click" Style="{StaticResource ButtonStyle}" Width="122" />
 
             <ComboBox x:Name="productsFilterComboBox" Style="{StaticResource ComboBoxStyle}" SelectionChanged="ProductsFilterComboBox_SelectionChanged" />
 
@@ -32,21 +31,21 @@
         <ListView ItemsSource="{Binding Products}" Margin="10" Height="350" Name="productsListView">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Product ID" DisplayMemberBinding="{Binding ProductId}" />
-                    <GridViewColumn Header="Category ID" DisplayMemberBinding="{Binding CategoryId}" />
-                    <GridViewColumn Header="Material ID" DisplayMemberBinding="{Binding MaterialId}" />
-                    <GridViewColumn Header="Supply ID" DisplayMemberBinding="{Binding SupplyId}" />
-                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
-                    <GridViewColumn Header="Count" DisplayMemberBinding="{Binding Count}" />
-                    <GridViewColumn Header="Room" DisplayMemberBinding="{Binding Room}" />
-                    <GridViewColumn Header="Room">
+                    <GridViewColumn Header="Категория" DisplayMemberBinding="{Binding Category.Name}" />
+                    <GridViewColumn Header="Материал" DisplayMemberBinding="{Binding Material.Name}" />
+                    <GridViewColumn Header="Номер поставки" DisplayMemberBinding="{Binding SupplyId}" />
+                    <GridViewColumn Header="Дата поставки" DisplayMemberBinding="{Binding Suppply.Date}" />
+                    <GridViewColumn Header="Название" DisplayMemberBinding="{Binding Name}" />
+                    <GridViewColumn Header="Колличество (шт)" DisplayMemberBinding="{Binding Count}" />
+                    <GridViewColumn Header="Стелаж" DisplayMemberBinding="{Binding Room}" />
+                    <GridViewColumn Header="Стелаж">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <Button Content="Change Room" Click="ChangeRoomButton_Click" Tag="{Binding ProductId}" Style="{StaticResource ButtonStyle}" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="Label">
+                    <GridViewColumn Header="Ярлык">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <Button Content="Ярлык" Tag="{Binding ProductId}" Click="Button_Click" Style="{StaticResource ButtonStyle}" />

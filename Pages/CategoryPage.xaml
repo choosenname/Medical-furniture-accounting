@@ -10,9 +10,8 @@
             <TextBox x:Name="SearchBox" Text="Поиск" Style="{StaticResource SearchTextBoxStyle}" GotFocus="SearchBox_GotFocus" LostFocus="SearchBox_LostFocus" />
             <Button Content="Поиск" Click="SearchButton_Click" Style="{StaticResource ButtonStyle}" />
             <Button Content="Сброс" Click="ShowAllButton_Click" Style="{StaticResource ButtonStyle}" />
-            <Button Content="Сортировка по name" Click="SortByNameButton_Click" Style="{StaticResource ButtonStyle}" Width="129" />
+            <Button Content="Сортировка по имени" Click="SortByNameButton_Click" Style="{StaticResource ButtonStyle}" Width="129" />
 
-            <Button Content="Сортировка по id" Click="SortByIDButton_Click" Style="{StaticResource ButtonStyle}" Width="115" />
             <ComboBox x:Name="CategoryFilterComboBox" Style="{StaticResource ComboBoxStyle}" SelectionChanged="CategoryFilterComboBox_SelectionChanged" />
         </StackPanel>
 
@@ -22,8 +21,7 @@
         <ListView ItemsSource="{Binding Categories}" Margin="10" Height="300" Name="CategoryListView">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Category ID" DisplayMemberBinding="{Binding CategoryId}" />
-                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
+                    <GridViewColumn Header="Название" DisplayMemberBinding="{Binding Name}" />
                 </GridView>
             </ListView.View>
         </ListView>
