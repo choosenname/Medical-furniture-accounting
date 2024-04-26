@@ -34,45 +34,18 @@ namespace MedicalFurnitureAccounting
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            try
+            var helper = new WordHalper("Lable.docx");
+
+            var items = new Dictionary<string, string>
             {
-                // Создание приложения Word
-                Microsoft.Office.Interop.Word.Application wordApp = new Microsoft.Office.Interop.Word.Application();
-                wordApp.Visible = true;
+                {"<NAME>", Product.Name  },
+                { "<COUNT>", Product.Count.ToString()},
+                { "<MATERIAL>",Product.Material.Name},
+                { "<CATEGORY>", Product.Category.Name},
+                { "<ID>", Product.ProductId.ToString()}
+            };
 
-                // Создание нового документа Word
-                Microsoft.Office.Interop.Word.Document wordDoc = wordApp.Documents.Add();
-
-                // Добавление заголовка
-                Microsoft.Office.Interop.Word.Paragraph title = wordDoc.Paragraphs.Add();
-                title.Range.Text = "Ярлык товара";
-                title.Range.Bold = 1;
-                title.Range.Font.Size = 12;
-                title.Range.ParagraphFormat.Alignment = Microsoft.Office.Interop.Word.WdParagraphAlignment.wdAlignParagraphCenter;
-                title.Range.InsertParagraphAfter();
-
-                // Добавление данных о товаре
-                Microsoft.Office.Interop.Word.Paragraph dataParagraph = wordDoc.Paragraphs.Add();
-                dataParagraph.Range.Text = $"Наименование товара: {Product.Name}\n" +
-                                            $"Количество: {Product.Count}\n" +
-                                            $"Материал: {Product.Material.Name}\n" +
-                                            $"Категория: {Product.Category.Name}";
-                dataParagraph.Range.InsertParagraphAfter();
-
-                var fileName = $"LabelProduct_{DateTime.Now.ToString("yyyyMMdd_HHmmss")}.docx";
-                var filePath = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), fileName);
-                wordDoc.SaveAs2(filePath);
-
-                // Освобождение ресурсов
-                wordDoc.Close();
-                wordApp.Quit();
-
-                MessageBox.Show($"Документ успешно сохранен по пути: {filePath}", "Экспорт завершен", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Ошибка при экспорте данных в Word: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            helper.Process(items);
         }
     }
 }

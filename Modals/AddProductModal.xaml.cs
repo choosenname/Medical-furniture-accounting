@@ -56,33 +56,19 @@ public partial class AddProductModal : Window
             Count = Convert.ToInt32(ProductCountTextBox.Text),
             Room = ProductRoomTextBox.Text,
         };
-        GenerateAcceptanceAct(selectedSupply.SupplyId,Product);
+        GenerateAcceptanceAct(Product);
 
         DialogResult = true;
     }
 
 
-    private void GenerateAcceptanceAct(int supplyId, Product product)
+    private void GenerateAcceptanceAct(Product product)
     {
-        Supply supply = _dbContext.Supplies.FirstOrDefault(s => s.SupplyId == supplyId);
-        if (supply != null)
-        {
-            string supplierName = supply.Supplier.Name;
-
-            AcceptanceAct acceptanceAct = new AcceptanceAct
-            {
-                Date = supply.Date,
-                ProductName = product.Name,
-                Count = product.Count,
-                Room = product.Room,
-                Category = product.Category.Name,
-                SupplierName = supplierName
-            };
 
             // Создание страницы акта приема-передачи
-            AcceptanceActPage acceptanceActPage = new AcceptanceActPage(acceptanceAct);
+            AcceptanceActPage acceptanceActPage = new AcceptanceActPage(product);
             // Установка DataContext страницы на созданный акт приема-передачи
-            acceptanceActPage.DataContext = acceptanceAct;
+            acceptanceActPage.DataContext = product;
 
             // Отображение страницы в диалоговом окне
             var dialog = new Window
@@ -94,11 +80,6 @@ public partial class AddProductModal : Window
             };
 
             dialog.ShowDialog();
-        }
-        else
-        {
-            MessageBox.Show("Ошибка при создании акта. Информация о поставке не найдена.");
-        }
     }
 
 

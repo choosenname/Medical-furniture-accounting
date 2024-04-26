@@ -15,13 +15,15 @@ namespace MedicalFurnitureAccounting.Pages
     public partial class ProductsPage : Page
     {
         private readonly ApplicationDBContext _context;
+        private readonly Storekeeper user;
 
         public ObservableCollection<Product> Products { get; set; }
 
-        public ProductsPage(ApplicationDBContext context)
+        public ProductsPage(ApplicationDBContext context, Storekeeper user)
         {
             InitializeComponent();
             _context = context;
+            this.user = user;
             LoadCategories();
         }
 
@@ -142,7 +144,7 @@ namespace MedicalFurnitureAccounting.Pages
 
         private void ShowInventoryList_Click(object sender, RoutedEventArgs e)
         {
-            var inventoryWindow = new InventoryWindow(_context);
+            var inventoryWindow = new InventoryWindow(_context, user);
             inventoryWindow.ShowDialog();
         }
 

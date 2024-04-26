@@ -15,9 +15,8 @@
             <ListView ItemsSource="{Binding Supplies}" Margin="10" Height="350">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="Supply ID" DisplayMemberBinding="{Binding SupplyId}"/>
-                        <GridViewColumn Header="Date" DisplayMemberBinding="{Binding Date}"/>
-                        <GridViewColumn Header="Supplier ID" DisplayMemberBinding="{Binding SupplierId}"/>
+                        <GridViewColumn Header="Дата" DisplayMemberBinding="{Binding Date }"/>
+                        <GridViewColumn Header="Поставщик" DisplayMemberBinding="{Binding Supplier.Name}"/>
                     </GridView>
                 </ListView.View>
             </ListView>

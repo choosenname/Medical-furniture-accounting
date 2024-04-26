@@ -19,10 +19,10 @@
         <ListView ItemsSource="{Binding Products}" Margin="10" Height="350" Name="productsListView">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Product ID" DisplayMemberBinding="{Binding ProductId}" />
-                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
-                    <GridViewColumn Header="Count" DisplayMemberBinding="{Binding Count}" />
-                    <GridViewColumn Header="Price" DisplayMemberBinding="{Binding Material.Price}"></GridViewColumn>
+                    <GridViewColumn Header="Номер продукта" DisplayMemberBinding="{Binding ProductId}" />
+                    <GridViewColumn Header="Наименование" DisplayMemberBinding="{Binding Name}" />
+                    <GridViewColumn Header="Колличесво" DisplayMemberBinding="{Binding Count}" />
+                    <GridViewColumn Header="Цена" DisplayMemberBinding="{Binding Material.Price}"></GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>
