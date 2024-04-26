@@ -44,7 +44,7 @@ public partial class AuthWindow : Window
 
         if (user != null)
         {
-            MainWindow mainWindow = new MainWindow(_dbContext);
+            MainWindow mainWindow = new MainWindow(_dbContext, user);
             mainWindow.Show();
 
             this.Close();
