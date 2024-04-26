@@ -40,7 +40,7 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button Content="Сортировка по name" Click="SortByNameButton_Click" Background="#007BFF" Foreground="White"
+            <Button Content="Сортировка по имени" Click="SortByNameButton_Click" Background="#007BFF" Foreground="White"
                     Padding="10" Cursor="Hand" BorderThickness="1" BorderBrush="#007BFF" MinWidth="100" Width="133">
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
@@ -53,18 +53,6 @@
                 </Button.Template>
             </Button>
 
-            <Button Content="Сортировка по id" Click="SortByIDButton_Click" Background="#007BFF" Foreground="White"
-                    Padding="10" Cursor="Hand" BorderThickness="1" BorderBrush="#007BFF" MinWidth="100" Width="124">
-                <Button.Template>
-                    <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}" CornerRadius="5"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                BorderBrush="{TemplateBinding BorderBrush}">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
-                        </Border>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
             <ComboBox x:Name="materialFilterComboBox" VerticalAlignment="Center" Padding="5" BorderThickness="1"
                       BorderBrush="#007BFF" MinWidth="120" SelectionChanged="MaterialFilterComboBox_SelectionChanged" />
         </StackPanel>
@@ -82,9 +70,8 @@
         <ListView ItemsSource="{Binding Materials}" Margin="10" Height="300" Name="materialListView">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Material ID" DisplayMemberBinding="{Binding MaterialId}" />
-                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" />
-                    <GridViewColumn Header="Price" DisplayMemberBinding="{Binding Price}" />
+                    <GridViewColumn Header="Название" DisplayMemberBinding="{Binding Name}" />
+                    <GridViewColumn Header="Цена (BYN)" DisplayMemberBinding="{Binding Price}" />
                     <!-- Добавьте другие столбцы по вашему усмотрению -->
                 </GridView>
             </ListView.View>
