@@ -29,14 +29,14 @@ public partial class AddSupplyModal : Window
 
     private void AddButton_Click(object sender, RoutedEventArgs e)
     {
-        if (DatePicker.SelectedDate == null) return;
+        if (DatePicker.Value == null) return;
         // Получаем выбранного поставщика из ComboBox
         var selectedSupplier = (Supplier)SupplierComboBox.SelectedItem;
 
         // Создаем новую поставку
         Supply = new Supply
         {
-            Date = DatePicker.SelectedDate.Value,
+            Date = (DateTime)DatePicker.Value,
             Supplier = selectedSupplier
         };
 
