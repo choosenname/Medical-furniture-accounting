@@ -20,11 +20,6 @@ public class ApplicationDBContext : DbContext
         Database.EnsureCreated();
     }
 
-    public ApplicationDBContext()
-    {
-        //Database.EnsureDeleted();
-        Database.EnsureCreated();
-    }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
