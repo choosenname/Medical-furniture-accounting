@@ -7,37 +7,43 @@
         mc:Ignorable="d"
         Title="AddProductModal" Height="550" Width="300">
     <StackPanel>
-        <Label Content="Добавление товара" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center"/>
-        <Label Content="Название:" Margin="0 10 0 0"/>
-        <TextBox x:Name="ProductNameTextBox" Margin="10"/>
-        <Label Content="Категория:"/>
-        <ComboBox x:Name="CategoryComboBox" Style="{StaticResource ComboBoxStyle}" Margin="10"/>
-        <Label Content="Поставка:"/>
-        <ComboBox x:Name="SupplyComboBox" Style="{StaticResource ComboBoxStyle}" Margin="10"/>
-        <Label Content="Материал:"/>
-        <ComboBox x:Name="MaterialComboBox" Style="{StaticResource ComboBoxStyle}" Margin="10"/>
-        <Label Content="Количество:" Margin="0 10 0 0"/>
-        <TextBox x:Name="ProductCountTextBox" Margin="10" PreviewTextInput="NumberTextBox_PreviewTextInput"/>
-        <Label Content="Комната:" Margin="0 10 0 0"/>
-        <TextBox x:Name="ProductRoomTextBox" Margin="10"/>
+        <ScrollViewer x:Name="scroll" CanContentScroll="True" Height="500">
+            <StackPanel>
+                <Label Content="Добавление товара" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center"/>
+                <Label Content="Название:" Margin="0 10 0 0"/>
+                <TextBox x:Name="ProductNameTextBox" Margin="10"/>
+                <Label Content="Категория:"/>
+                <ComboBox x:Name="CategoryComboBox" Style="{StaticResource ComboBoxStyle}" Margin="10"/>
+                <Label Content="Поставка:"/>
+                <ComboBox x:Name="SupplyComboBox" Style="{StaticResource ComboBoxStyle}" Margin="10"/>
+                <Label Content="Материал:"/>
+                <ComboBox x:Name="MaterialComboBox" Style="{StaticResource ComboBoxStyle}" Margin="10"/>
+                <Label Content="Стелаж:"/>
+                <ComboBox x:Name="SelvingComboBox" Style="{StaticResource ComboBoxStyle}" Margin="10"/>
+                <Label Content="Количество:" Margin="0 10 0 0"/>
+                <TextBox x:Name="ProductCountTextBox" Margin="10" PreviewTextInput="NumberTextBox_PreviewTextInput"/>
+                <Label Content="Комната:" Margin="0 10 0 0"/>
+                <TextBox x:Name="ProductRoomTextBox" Margin="10"/>
 
-        <!-- New fields -->
-        <Label Content="Описание:" Margin="0 10 0 0"/>
-        <TextBox x:Name="ProductDescriptionTextBox" Margin="10"/>
-        <Label Content="Ширина:" Margin="0 10 0 0"/>
-        <TextBox x:Name="ProductWidthTextBox" Margin="10" PreviewTextInput="NumberTextBox_PreviewTextInput"/>
-        <Label Content="Высота:" Margin="0 10 0 0"/>
-        <TextBox x:Name="ProductHeightTextBox" Margin="10" PreviewTextInput="NumberTextBox_PreviewTextInput"/>
-        <Label Content="Длина:" Margin="0 10 0 0"/>
-        <TextBox x:Name="ProductLengthTextBox" Margin="10" PreviewTextInput="NumberTextBox_PreviewTextInput"/>
-        <Label Content="Вес:" Margin="0 10 0 0"/>
-        <TextBox x:Name="ProductWeightTextBox" Margin="10" PreviewTextInput="NumberTextBox_PreviewTextInput"/>
-        <Label Content="Цена:" Margin="0 10 0 0"/>
-        <TextBox x:Name="ProductPriceTextBox" Margin="10" PreviewTextInput="NumberTextBox_PreviewTextInput"/>
+                <!-- New fields -->
+                <Label Content="Описание:" Margin="0 10 0 0"/>
+                <TextBox x:Name="ProductDescriptionTextBox" Margin="10"/>
+                <Label Content="Ширина:" Margin="0 10 0 0"/>
+                <TextBox x:Name="ProductWidthTextBox" Margin="10" PreviewTextInput="NumberTextBox_PreviewTextInput"/>
+                <Label Content="Высота:" Margin="0 10 0 0"/>
+                <TextBox x:Name="ProductHeightTextBox" Margin="10" PreviewTextInput="NumberTextBox_PreviewTextInput"/>
+                <Label Content="Длина:" Margin="0 10 0 0"/>
+                <TextBox x:Name="ProductLengthTextBox" Margin="10" PreviewTextInput="NumberTextBox_PreviewTextInput"/>
+                <Label Content="Вес:" Margin="0 10 0 0"/>
+                <TextBox x:Name="ProductWeightTextBox" Margin="10" PreviewTextInput="NumberTextBox_PreviewTextInput"/>
+                <Label Content="Цена:" Margin="0 10 0 0"/>
+                <TextBox x:Name="ProductPriceTextBox" Margin="10" PreviewTextInput="NumberTextBox_PreviewTextInput"/>
 
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="30">
-            <Button Content="Добавить" Style="{StaticResource ButtonStyle}" Click="AddButton_Click" />
-            <Button Content="Отмена" Style="{StaticResource ButtonStyle}" Click="CancelButton_Click" />
-        </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="30">
+                    <Button Content="Добавить" Style="{StaticResource ButtonStyle}" Click="AddButton_Click" />
+                    <Button Content="Отмена" Style="{StaticResource ButtonStyle}" Click="CancelButton_Click" />
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
     </StackPanel>
 </Window>

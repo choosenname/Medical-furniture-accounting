@@ -33,8 +33,6 @@
             <TextBlock Text="{Binding Name}" FontSize="16" Grid.Row="1" Grid.Column="1"/>
             <TextBlock Text="Количество:" FontSize="16" FontWeight="Bold" Grid.Row="2"/>
             <TextBlock Text="{Binding Count}" FontSize="16" Grid.Row="2" Grid.Column="1"/>
-            <TextBlock Text="Помещение:" FontSize="16" FontWeight="Bold" Grid.Row="3"/>
-            <TextBlock Text="{Binding Room}" FontSize="16" Grid.Row="3" Grid.Column="1"/>
             <TextBlock Text="Категория:" FontSize="16" FontWeight="Bold" Grid.Row="4"/>
             <TextBlock Text="{Binding Category.Name}" FontSize="16" Grid.Row="4" Grid.Column="1"/>
             <TextBlock Text="Поставщик:" FontSize="16" FontWeight="Bold" Grid.Row="5"/>
