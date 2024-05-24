@@ -31,5 +31,4 @@ public class ApplicationDBContext : DbContext
         modelBuilder.Entity<Storekeeper>().HasData(
             new Storekeeper { StorekeeperId = 1, Name = "Admin", Password = "Admin" });
     }
-
 }

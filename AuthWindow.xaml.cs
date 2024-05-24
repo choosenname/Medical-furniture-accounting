@@ -13,25 +13,7 @@ public partial class AuthWindow : Window
         _dbContext = new ApplicationDBContext();
     }
 
-    private void Register_Click(object sender, RoutedEventArgs e)
-    {
-        string username = NewUsernameTextBox.Text;
-        string password = NewPasswordBox.Password;
-
-        // Проверяем, существует ли пользователь с таким же именем
-        if (_dbContext.Storekeepers.Any(u => u.Name == username))
-        {
-            MessageBox.Show("User with this username already exists.");
-            return;
-        }
-
-        // Создаем нового пользователя и добавляем его в базу данных
-        var newUser = new Storekeeper() { Name = username, Password = password };
-        _dbContext.Storekeepers.Add(newUser);
-        _dbContext.SaveChanges();
-
-        MessageBox.Show("Registration successful! Username: " + username);
-    }
+    
 
     private void Login_Click(object sender, RoutedEventArgs e)
     {
