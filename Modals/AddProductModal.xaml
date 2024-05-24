@@ -12,7 +12,7 @@
         <TextBox x:Name="ProductNameTextBox" Margin="10"/>
         <Label Content="Категория:"/>
         <ComboBox x:Name="CategoryComboBox" Style="{StaticResource ComboBoxStyle}" Margin="10"/>
-        <Label Content="Поставщик:"/>
+        <Label Content="Поставка:"/>
         <ComboBox x:Name="SupplyComboBox" Style="{StaticResource ComboBoxStyle}" Margin="10"/>
         <Label Content="Материал:"/>
         <ComboBox x:Name="MaterialComboBox" Style="{StaticResource ComboBoxStyle}" Margin="10"/>

@@ -45,6 +45,31 @@ public partial class CategoryPage : Page
         }
     }
 
+    private void DeleteCategoryButton_Click(object sender, RoutedEventArgs e)
+    {
+        // Get the category to be deleted
+        Button deleteButton = sender as Button;
+        if (deleteButton != null)
+        {
+            Category categoryToDelete = deleteButton.DataContext as Category;
+            if (categoryToDelete != null)
+            {
+                // Confirm deletion
+                var result = MessageBox.Show($"Вы уверены, что хотите удалить категорию '{categoryToDelete.Name}'?", "Подтверждение удаления", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                if (result == MessageBoxResult.Yes)
+                {
+                    // Remove from database
+                    _context.Categories.Remove(categoryToDelete);
+                    _context.SaveChanges();
+
+                    // Remove from observable collection
+                    Categories.Remove(categoryToDelete);
+                }
+            }
+        }
+    }
+
+
     private void SearchButton_Click(object sender, RoutedEventArgs e)
     {
         string searchText = SearchBox.Text;

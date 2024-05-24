@@ -24,13 +24,20 @@
 
             <Button Content="Добавить поставщика" Click="AddSupplierButton_Click" Style="{StaticResource ButtonStyle}"
                     Height="40" />
+            
 
             <!-- ListView для отображения списка поставщиков -->
             <ListView ItemsSource="{Binding Suppliers}" Margin="10" Height="350" Name="supplierListView">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Название" DisplayMemberBinding="{Binding Name}"/>
-                        <!-- Добавьте другие столбцы по вашему усмотрению -->
+                        <GridViewColumn>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="Удалить" Click="DeleteSupplierButton_Click" Tag="{Binding SupplierId}" Style="{StaticResource ButtonStyle}" Height="25" Width="60" Margin="10,0,0,0" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
                     </GridView>
                 </ListView.View>
             </ListView>

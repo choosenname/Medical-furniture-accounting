@@ -17,6 +17,13 @@
                     <GridView>
                         <GridViewColumn Header="Дата" DisplayMemberBinding="{Binding Date, StringFormat='{}{0:dd.MM.yyyy HH:mm}'}"/>
                         <GridViewColumn Header="Поставщик" DisplayMemberBinding="{Binding Supplier.Name}"/>
+                        <GridViewColumn>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="Удалить" Click="DeleteSupplierButton_Click" Tag="{Binding SupplyId}" Style="{StaticResource ButtonStyle}" Height="25" Width="60" Margin="10,0,0,0" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
                     </GridView>
                 </ListView.View>
             </ListView>

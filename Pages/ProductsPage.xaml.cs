@@ -51,6 +51,29 @@ namespace MedicalFurnitureAccounting.Pages
             }
         }
 
+
+        private void DeleteProductsButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button button && button.Tag is int productId)
+            {
+                var productToDelete = Products.FirstOrDefault(p => p.ProductId == productId);
+                if (productToDelete != null)
+                {
+                    var result = MessageBox.Show($"Вы уверены, что хотите удалить продукт '{productToDelete.Name}'?", "Подтверждение удаления", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        // Remove from database
+                        _context.Products.Remove(productToDelete);
+                        _context.SaveChanges();
+
+                        // Remove from observable collection
+                        Products.Remove(productToDelete);
+                    }
+                }
+            }
+        }
+
+
         private void SearchBox_GotFocus(object sender, RoutedEventArgs e)
         {
             if (searchBox.Text == "Поиск")
@@ -187,5 +210,13 @@ namespace MedicalFurnitureAccounting.Pages
             var newWindow = new LabelProductWindow(productToUpdate);
             newWindow.ShowDialog(); 
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+
+
     }
 }
