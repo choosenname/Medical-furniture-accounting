@@ -44,13 +44,6 @@
                     <GridViewColumn Header="Цена (BYN)" DisplayMemberBinding="{Binding Description}" />
                     <GridViewColumn Header="Описание" DisplayMemberBinding="{Binding Count}" />
                     <GridViewColumn Header="Стелаж" DisplayMemberBinding="{Binding Room}" />
-                    <GridViewColumn Header="Стелаж">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <Button Content="Change Room" Click="ChangeRoomButton_Click" Tag="{Binding ProductId}" Style="{StaticResource ButtonStyle}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
                     <GridViewColumn Header="Ярлык">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
