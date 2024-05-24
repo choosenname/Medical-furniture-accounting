@@ -55,7 +55,7 @@ public partial class CategoryPage : Page
             view.Filter = item =>
             {
                 // Здесь вы можете настроить поиск по нужным полям категории
-                // Например, если хотите искать по имени, замените "CategoryId" на "Name"
+                // Например, если хотите искать по имени, замените "CategoryId" на "MaxWeight"
                 return ((Category)item).Name.ToString().Contains(searchText);
             };
         }
@@ -91,7 +91,7 @@ public partial class CategoryPage : Page
         if (view != null)
         {
             view.SortDescriptions.Clear();
-            view.SortDescriptions.Add(new SortDescription("Name", ListSortDirection.Ascending));
+            view.SortDescriptions.Add(new SortDescription("MaxWeight", ListSortDirection.Ascending));
         }
     }
 

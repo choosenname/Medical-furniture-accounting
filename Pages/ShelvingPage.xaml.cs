@@ -22,13 +22,13 @@ namespace MedicalFurnitureAccounting.Pages
     /// <summary>
     /// Логика взаимодействия для SupplierPage.xaml
     /// </summary>
-    public partial class SupplierPage : Page
+    public partial class ShelvingPage : Page
     {
         private readonly ApplicationDBContext _context;
 
-        public ObservableCollection<Supplier> Suppliers { get; set; }
+        public ObservableCollection<Shelving> Shelving { get; set; }
 
-        public SupplierPage(ApplicationDBContext context)
+        public ShelvingPage(ApplicationDBContext context)
         {
             InitializeComponent();
             FillSupplierFilterComboBox();
@@ -38,7 +38,7 @@ namespace MedicalFurnitureAccounting.Pages
 
         private void LoadCategories()
         {
-            Suppliers = new ObservableCollection<Supplier>(_context.Suppliers.ToList());
+            Shelving = new ObservableCollection<Shelving>(_context.Shelving.ToList());
             DataContext = this;
         }
 
@@ -53,7 +53,7 @@ namespace MedicalFurnitureAccounting.Pages
                 {
                     // Здесь вы можете настроить поиск по нужным полям категории
                     // Например, если хотите искать по имени, замените "CategoryId" на "MaxWeight"
-                    return ((Supplier)item).Name.ToString().Contains(searchText);
+                    return ((Shelving)item).MaxWeight.ToString().Contains(searchText);
                 };
             }
             else
@@ -99,7 +99,7 @@ namespace MedicalFurnitureAccounting.Pages
             if (view != null)
             {
                 view.SortDescriptions.Clear();
-                view.SortDescriptions.Add(new SortDescription("SupplierId", ListSortDirection.Ascending));
+                view.SortDescriptions.Add(new SortDescription("ShelvingId", ListSortDirection.Ascending));
             }
         }
 
@@ -107,7 +107,7 @@ namespace MedicalFurnitureAccounting.Pages
         {
             using (var context = new ApplicationDBContext()) // Поменяйте ApplicationDBContext на ваш контекст базы данных
             {
-                var productNames = context.Suppliers.Select(product => product.Name).ToList();
+                var productNames = context.Shelving.Select(product => product.MaxWeight).ToList();
                 supplierFilterComboBox.ItemsSource = productNames;
             }
         }
@@ -123,9 +123,9 @@ namespace MedicalFurnitureAccounting.Pages
                 {
                     view.Filter = item =>
                     {
-                        if (item is Supplier itemType) // Замените YourItemType на ваш тип данных для элементов списка
+                        if (item is Shelving itemType) // Замените YourItemType на ваш тип данных для элементов списка
                         {
-                            return itemType.Name.Equals(selectedMaterial); // Здесь нужно заменить на свойство, по которому вы хотите фильтровать
+                            return itemType.MaxWeight.Equals(selectedMaterial); // Здесь нужно заменить на свойство, по которому вы хотите фильтровать
                         }
                         return false;
                     };
@@ -139,15 +139,16 @@ namespace MedicalFurnitureAccounting.Pages
 
         private void AddSupplierButton_Click(object sender, RoutedEventArgs e)
         {
-            var addWindow = new AddSupplierModal();
+            var addWindow = new AddShelvingModal(_context);
             if (addWindow.ShowDialog() == true)
             {
-                string name = addWindow.Name;
-                var newModel = new Supplier() { Name = name };
-                _context.Suppliers.Add(newModel);
+                var name = addWindow.MaxWeight;
+                var cell = addWindow.Cell;
+                var newModel = new Shelving() { MaxWeight = name, Cell = cell };
+                _context.Shelving.Add(newModel);
                 _context.SaveChanges();
 
-                Suppliers.Add(newModel);
+                Shelving.Add(newModel);
                 DataContext = null;
                 DataContext = this;
             }

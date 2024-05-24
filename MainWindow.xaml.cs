@@ -58,6 +58,14 @@ public partial class MainWindow : System.Windows.Window
     {
         MainFrame.Navigate(new SupplyPage(_dbContext));
     }
+    private void Button_Click_Shelving_Page(object sender, RoutedEventArgs e)
+    {
+        MainFrame.Navigate(new ShelvingPage(_dbContext));
+    }
+    private void Button_Click_Cell_Page(object sender, RoutedEventArgs e)
+    {
+        MainFrame.Navigate(new CellPage(_dbContext));
+    }
 
     private ObservableCollection<Product> GetProductsForExport()
     {

@@ -52,7 +52,7 @@ namespace MedicalFurnitureAccounting.Pages
                 view.Filter = item =>
                 {
                     // Здесь вы можете настроить поиск по нужным полям категории
-                    // Например, если хотите искать по имени, замените "CategoryId" на "Name"
+                    // Например, если хотите искать по имени, замените "CategoryId" на "MaxWeight"
                     return ((Material)item).Name.ToString().Contains(searchText);
                 };
             }
@@ -90,7 +90,7 @@ namespace MedicalFurnitureAccounting.Pages
             if (view != null)
             {
                 view.SortDescriptions.Clear();
-                view.SortDescriptions.Add(new SortDescription("Name", ListSortDirection.Ascending));
+                view.SortDescriptions.Add(new SortDescription("MaxWeight", ListSortDirection.Ascending));
             }
         }
 

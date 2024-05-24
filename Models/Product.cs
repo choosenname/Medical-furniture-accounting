@@ -17,4 +17,7 @@ public class Product
 
     public int MaterialId { get; set; }
     public virtual Material Material { get; set; }
+
+    public int ShelvingId { get; set; }
+    public virtual Shelving Shelving { get; set; }
 }
