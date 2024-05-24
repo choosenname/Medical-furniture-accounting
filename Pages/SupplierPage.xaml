@@ -27,7 +27,7 @@
             
 
             <!-- ListView для отображения списка поставщиков -->
-            <ListView ItemsSource="{Binding Suppliers}" Margin="10" Height="350" Name="SupplierListView">
+            <ListView ItemsSource="{Binding Suppliers}" Margin="10" Height="350" Name="supplierListView">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Название" DisplayMemberBinding="{Binding Name}" Width="150"/>

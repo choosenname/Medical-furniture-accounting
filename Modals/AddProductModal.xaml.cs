@@ -54,7 +54,6 @@ public partial class AddProductModal : Window
             Category = selectedCategory,
             Material = materialCategory,
             Count = Convert.ToInt32(ProductCountTextBox.Text),
-            Room = ProductRoomTextBox.Text,
             Description = ProductDescriptionTextBox.Text,
             Width = Convert.ToInt32(ProductWidthTextBox.Text),
             Height = Convert.ToInt32(ProductHeightTextBox.Text),
