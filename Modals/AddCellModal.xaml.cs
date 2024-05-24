@@ -1,41 +1,64 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Input;
-using MedicalFurnitureAccounting.Models;
 
-namespace MedicalFurnitureAccounting.Modals;
-
-public partial class AddCellModal : Window
+namespace MedicalFurnitureAccounting.Modals
 {
-    public int Number { get; private set; }
-
-    public AddCellModal()
+    public partial class AddCellModal : Window
     {
-        InitializeComponent();
-    }
+        public int Number { get; private set; }
 
-    private void AddButton_Click(object sender, RoutedEventArgs e)
-    {
-        // Получаем имя категории из текстового поля
-        Number = Int32.Parse(SupplierNameTextBox.Text);
-        // Закрываем окно
-        DialogResult = true;
-    }
-
-    private void NumberTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
-    {
-        foreach (char c in e.Text)
+        public AddCellModal()
         {
-            if (!char.IsDigit(c))
+            InitializeComponent();
+        }
+
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Проверяем, что текстовое поле не пустое
+            if (string.IsNullOrEmpty(NumberTextBox.Text))
             {
-                e.Handled = true; // Отменяем ввод символа, если он не является цифрой
-                break;
+                MessageBox.Show("Номер ячейки не может быть пустым.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            // Пытаемся преобразовать текст в int
+            if (int.TryParse(NumberTextBox.Text, out int number))
+            {
+                // Проверка, что номер ячейки находится в допустимом диапазоне
+                if (number <= 0)
+                {
+                    MessageBox.Show("Номер ячейки должен быть положительным числом.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                Number = number;
+                // Закрываем окно
+                DialogResult = true;
+            }
+            else
+            {
+                // Обработка ошибки: введено недопустимое значение
+                MessageBox.Show("Введите корректное числовое значение для номера ячейки.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-    }
 
-    private void CancelButton_Click(object sender, RoutedEventArgs e)
-    {
-        // Закрываем окно
-        DialogResult = false;
+        private void NumberTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            foreach (char c in e.Text)
+            {
+                if (!char.IsDigit(c))
+                {
+                    e.Handled = true; // Отменяем ввод символа, если он не является цифрой
+                    break;
+                }
+            }
+        }
+
+        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Закрываем окно
+            DialogResult = false;
+        }
     }
 }

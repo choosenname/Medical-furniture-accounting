@@ -9,7 +9,7 @@
     <StackPanel>
         <Label Content="Добавление стеллажа" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center"/>
         <Label Content="Максимальный вес:" Margin="0 10 0 0"/>
-        <TextBox x:Name="SupplierNameTextBox" Style="{StaticResource TextBoxStyle}" Margin="10" PreviewTextInput="NumberTextBox_PreviewTextInput" />
+        <TextBox x:Name="MaxWeightTextBox" Style="{StaticResource TextBoxStyle}" Margin="10" PreviewTextInput="NumberTextBox_PreviewTextInput" />
         <Label Content="Ячейка:"/>
         <ComboBox x:Name="CellComboBox" Style="{StaticResource ComboBoxStyle}" Margin="10"/>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="30">
