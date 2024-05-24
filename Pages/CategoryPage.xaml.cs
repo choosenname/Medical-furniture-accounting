@@ -35,7 +35,9 @@ public partial class CategoryPage : Page
         if (addCategoryWindow.ShowDialog() == true)
         {
             string categoryName = addCategoryWindow.CategoryName;
-            Category newCategory = new Category() { Name = categoryName };
+            double allowedPrice = addCategoryWindow.Allowance;
+
+            Category newCategory = new Category() { Name = categoryName, Allowance = allowedPrice };
             _context.Categories.Add(newCategory);
             _context.SaveChanges();
 
@@ -44,6 +46,7 @@ public partial class CategoryPage : Page
             DataContext = this;
         }
     }
+
 
     private void DeleteCategoryButton_Click(object sender, RoutedEventArgs e)
     {

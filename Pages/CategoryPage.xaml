@@ -26,13 +26,14 @@
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="{Binding Name}" VerticalAlignment="Center" Margin="0,0,10,0" />
+                                    <TextBlock Text="{Binding Allowance}" VerticalAlignment="Center" Margin="0,0,10,0" />
                                     <Button Content="Удалить" Click="DeleteCategoryButton_Click" Style="{StaticResource ButtonStyle}" Height="25" Width="60" Margin="10,0,0,0" />
                                 </StackPanel>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
 
-                    <GridViewColumn Header="Наценка" DisplayMemberBinding="{Binding ExtraCharge}" Width="200"/>
+                    <GridViewColumn Header="Наценка" DisplayMemberBinding="{Binding Allowance}" Width="200"/>
                 </GridView>
             </ListView.View>
         </ListView>

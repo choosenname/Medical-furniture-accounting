@@ -16,14 +16,20 @@ public class ApplicationDBContext : DbContext
 
     public ApplicationDBContext()
     {
-        //Database.EnsureDeleted();
+        Database.EnsureDeleted();
         Database.EnsureCreated();
     }
+
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.UseSqlite("Data Source=MedicalFurnitureAccounting.db");
         optionsBuilder.UseLazyLoadingProxies();
+    }
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Storekeeper>().HasData(
+            new Storekeeper { StorekeeperId = 1, Name = "Admin", Password = "Admin" });
     }
 
 }

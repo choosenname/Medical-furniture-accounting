@@ -41,9 +41,8 @@
                     <GridViewColumn Header="Длина" DisplayMemberBinding="{Binding Length}" />
                     <GridViewColumn Header="Высота" DisplayMemberBinding="{Binding Height}" />
                     <GridViewColumn Header="Вес" DisplayMemberBinding="{Binding Weight}" />
-                    <GridViewColumn Header="Цена (BYN)" DisplayMemberBinding="{Binding Description}" />
-                    <GridViewColumn Header="Описание" DisplayMemberBinding="{Binding Count}" />
-                    <GridViewColumn Header="Стелаж" DisplayMemberBinding="{Binding Room}" />
+                    <GridViewColumn Header="Цена (BYN)" DisplayMemberBinding="{Binding Price}" />
+                    <GridViewColumn Header="Описание" DisplayMemberBinding="{Binding Description}" />
                     <GridViewColumn Header="Ярлык">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
