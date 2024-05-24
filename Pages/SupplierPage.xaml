@@ -27,16 +27,16 @@
             
 
             <!-- ListView для отображения списка поставщиков -->
-            <ListView ItemsSource="{Binding Suppliers}" Margin="10" Height="350" Name="supplierListView">
+            <ListView ItemsSource="{Binding Suppliers}" Margin="10" Height="350" Name="SupplierListView">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="Название" DisplayMemberBinding="{Binding Name}"/>
-                        <GridViewColumn Header="Телефон" DisplayMemberBinding="{Binding Phone}"/>
-                        <GridViewColumn Header="УНП" DisplayMemberBinding="{Binding RegistrationNumber}"/>
-                        <GridViewColumn Header="Адрес" DisplayMemberBinding="{Binding Addres}"/>
-                        <GridViewColumn Header="Страна" DisplayMemberBinding="{Binding Country}"/>
-                        <GridViewColumn Header="Почта" DisplayMemberBinding="{Binding Email}"/>
-                        <GridViewColumn>
+                        <GridViewColumn Header="Название" DisplayMemberBinding="{Binding Name}" Width="150"/>
+                        <GridViewColumn Header="Телефон" DisplayMemberBinding="{Binding Phone}" Width="100"/>
+                        <GridViewColumn Header="Электронная почта" DisplayMemberBinding="{Binding Email}" Width="150"/>
+                        <GridViewColumn Header="Регистрационный номер" DisplayMemberBinding="{Binding RegistrationNumber}" Width="150"/>
+                        <GridViewColumn Header="Адрес" DisplayMemberBinding="{Binding Addres}" Width="200"/>
+                        <GridViewColumn Header="Страна" DisplayMemberBinding="{Binding Country}" Width="100"/>
+                        <GridViewColumn Header="Действие" Width="100">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <Button Content="Удалить" Click="DeleteSupplierButton_Click" Tag="{Binding SupplierId}" Style="{StaticResource ButtonStyle}" Height="25" Width="60" Margin="10,0,0,0" />
@@ -46,6 +46,7 @@
                     </GridView>
                 </ListView.View>
             </ListView>
+
         </StackPanel>
     </Grid>
 </Page>

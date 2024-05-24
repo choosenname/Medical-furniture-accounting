@@ -10,6 +10,21 @@
         <Label Content="Добавление поставщика" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center"/>
         <Label Content="Название:" Margin="0 10 0 0"/>
         <TextBox x:Name="SupplierNameTextBox" Style="{StaticResource TextBoxStyle}" Margin="10" />
+
+        <Label Content="Телефон:" Margin="0 10 0 0"/>
+        <TextBox x:Name="SupplierPhoneTextBox" Style="{StaticResource TextBoxStyle}" Margin="10" />
+
+        <Label Content="Электронная почта:" Margin="0 10 0 0"/>
+        <TextBox x:Name="SupplierEmailTextBox" Style="{StaticResource TextBoxStyle}" Margin="10" />
+
+        <Label Content="Регистрационный номер:" Margin="0 10 0 0"/>
+        <TextBox x:Name="SupplierRegistrationNumberTextBox" Style="{StaticResource TextBoxStyle}" Margin="10" />
+
+        <Label Content="Адрес:" Margin="0 10 0 0"/>
+        <TextBox x:Name="SupplierAddresTextBox" Style="{StaticResource TextBoxStyle}" Margin="10" />
+
+        <Label Content="Страна:" Margin="0 10 0 0"/>
+        <TextBox x:Name="SupplierCountryTextBox" Style="{StaticResource TextBoxStyle}" Margin="10" />
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="30">
             <Button Content="Добавить" Style="{StaticResource ButtonStyle}" Click="AddButton_Click" />
             <Button Content="Отмена" Style="{StaticResource ButtonStyle}" Click="CancelButton_Click" />

@@ -55,6 +55,14 @@ public partial class AddProductModal : Window
             Material = materialCategory,
             Count = Convert.ToInt32(ProductCountTextBox.Text),
             Room = ProductRoomTextBox.Text,
+            Description = ProductDescriptionTextBox.Text,
+            Width = Convert.ToInt32(ProductWidthTextBox.Text),
+            Height = Convert.ToInt32(ProductHeightTextBox.Text),
+            Length = Convert.ToInt32(ProductLengthTextBox.Text),
+            Weight = Convert.ToInt32(ProductWeightTextBox.Text),
+            Price = Convert.ToInt32(ProductPriceTextBox.Text)
+
+
         };
         GenerateAcceptanceAct(Product);
 
