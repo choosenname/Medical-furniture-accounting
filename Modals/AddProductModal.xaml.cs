@@ -31,12 +31,17 @@ public partial class AddProductModal : Window
         var categories = _dbContext.Categories.ToList();
 
         CategoryComboBox.ItemsSource = categories;
-        CategoryComboBox.DisplayMemberPath = "MaxWeight";
+        CategoryComboBox.DisplayMemberPath = "Name";
 
         var materials = _dbContext.Materials.ToList();
 
         MaterialComboBox.ItemsSource = materials;
-        MaterialComboBox.DisplayMemberPath = "MaxWeight";
+        MaterialComboBox.DisplayMemberPath = "Name";
+
+        var shelving = _dbContext.Shelving.ToList();
+
+        SelvingComboBox.ItemsSource = shelving;
+        SelvingComboBox.DisplayMemberPath = "ShelvingId";
     }
 
     private void AddButton_Click(object sender, RoutedEventArgs e)
@@ -46,6 +51,7 @@ public partial class AddProductModal : Window
         var selectedSupply = (Supply)SupplyComboBox.SelectedItem;
         var selectedCategory = (Category)CategoryComboBox.SelectedItem;
         var materialCategory = (Material)MaterialComboBox.SelectedItem;
+        var shelving = (Shelving)SelvingComboBox.SelectedItem;
 
         Product = new Product
         {
@@ -53,8 +59,16 @@ public partial class AddProductModal : Window
             Suppply = selectedSupply,
             Category = selectedCategory,
             Material = materialCategory,
+            Shelving = shelving,
             Count = Convert.ToInt32(ProductCountTextBox.Text),
-            Room = ProductRoomTextBox.Text,
+            Description = ProductDescriptionTextBox.Text,
+            Width = Convert.ToInt32(ProductWidthTextBox.Text),
+            Height = Convert.ToInt32(ProductHeightTextBox.Text),
+            Length = Convert.ToInt32(ProductLengthTextBox.Text),
+            Weight = Convert.ToInt32(ProductWeightTextBox.Text),
+            Price = Convert.ToInt32(ProductPriceTextBox.Text)
+
+
         };
         GenerateAcceptanceAct(Product);
 

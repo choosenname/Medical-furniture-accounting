@@ -23,7 +23,7 @@ public partial class AddSupplyModal : Window
 
         // Заполняем ComboBox списком поставщиков
         SupplierComboBox.ItemsSource = suppliers;
-        SupplierComboBox.DisplayMemberPath = "MaxWeight"; // Указываем, какое свойство использовать для отображения
+        SupplierComboBox.DisplayMemberPath = "Name"; // Указываем, какое свойство использовать для отображения
     }
 
 

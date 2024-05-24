@@ -143,7 +143,14 @@ namespace MedicalFurnitureAccounting.Pages
             if (addWindow.ShowDialog() == true)
             {
                 string name = addWindow.Name;
-                var newModel = new Supplier() { Name = name };
+                string phone = addWindow.Phone;
+                string email =addWindow.Email;
+                string registrationNumber = addWindow.RegistrationNumber;
+                string addres = addWindow.Addres;
+                string country = addWindow.Country;
+
+                var newModel = new Supplier() { Name = name, Phone = phone, Email = email, RegistrationNumber = registrationNumber,
+                Addres = addres, Country = country};
                 _context.Suppliers.Add(newModel);
                 _context.SaveChanges();
 

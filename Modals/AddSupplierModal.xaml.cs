@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Windows;
 using MedicalFurnitureAccounting.Models;
 
 namespace MedicalFurnitureAccounting.Modals;
@@ -6,6 +7,11 @@ namespace MedicalFurnitureAccounting.Modals;
 public partial class AddSupplierModal : Window
 {
     public string Name { get; private set; }
+    public string Phone { get; private set; }
+    public string Email { get; private set; }
+    public string RegistrationNumber { get; private set; }
+    public string Addres { get; private set; }
+    public string Country { get; private set; }
 
     public AddSupplierModal()
     {
@@ -16,6 +22,11 @@ public partial class AddSupplierModal : Window
     {
         // Получаем имя категории из текстового поля
         Name = SupplierNameTextBox.Text;
+        Phone = SupplierPhoneTextBox.Text;
+        Email = SupplierEmailTextBox.Text;
+        RegistrationNumber = SupplierRegistrationNumberTextBox.Text;
+        Addres = SupplierAddresTextBox.Text;
+        Country = SupplierCountryTextBox.Text;
         // Закрываем окно
         DialogResult = true;
     }

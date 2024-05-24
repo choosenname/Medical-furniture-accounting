@@ -29,6 +29,6 @@ public class ApplicationDBContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Storekeeper>().HasData(
-            new Storekeeper { StorekeeperId = 1, Name = "Admin",Password= "Admin" });
+            new Storekeeper { StorekeeperId = 1, Name = "Admin", Password = "Admin" });
     }
 }

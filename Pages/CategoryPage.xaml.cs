@@ -47,6 +47,7 @@ public partial class CategoryPage : Page
         }
     }
 
+
     private void DeleteCategoryButton_Click(object sender, RoutedEventArgs e)
     {
         // Get the category to be deleted
