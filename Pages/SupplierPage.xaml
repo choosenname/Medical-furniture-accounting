@@ -31,6 +31,11 @@
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Название" DisplayMemberBinding="{Binding Name}"/>
+                        <GridViewColumn Header="Телефон" DisplayMemberBinding="{Binding Phone}"/>
+                        <GridViewColumn Header="УНП" DisplayMemberBinding="{Binding RegistrationNumber}"/>
+                        <GridViewColumn Header="Адрес" DisplayMemberBinding="{Binding Addres}"/>
+                        <GridViewColumn Header="Страна" DisplayMemberBinding="{Binding Country}"/>
+                        <GridViewColumn Header="Почта" DisplayMemberBinding="{Binding Email}"/>
                         <GridViewColumn>
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>

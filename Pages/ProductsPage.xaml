@@ -37,6 +37,12 @@
                     <GridViewColumn Header="Дата поставки" DisplayMemberBinding="{Binding Suppply.Date, StringFormat='{}{0:dd.MM.yyyy HH:mm}'}" />
                     <GridViewColumn Header="Название" DisplayMemberBinding="{Binding Name}" />
                     <GridViewColumn Header="Колличество (шт)" DisplayMemberBinding="{Binding Count}" />
+                    <GridViewColumn Header="Ширина" DisplayMemberBinding="{Binding Width}" />
+                    <GridViewColumn Header="Длина" DisplayMemberBinding="{Binding Length}" />
+                    <GridViewColumn Header="Высота" DisplayMemberBinding="{Binding Height}" />
+                    <GridViewColumn Header="Вес" DisplayMemberBinding="{Binding Weight}" />
+                    <GridViewColumn Header="Цена (BYN)" DisplayMemberBinding="{Binding Description}" />
+                    <GridViewColumn Header="Описание" DisplayMemberBinding="{Binding Count}" />
                     <GridViewColumn Header="Стелаж" DisplayMemberBinding="{Binding Room}" />
                     <GridViewColumn Header="Стелаж">
                         <GridViewColumn.CellTemplate>
