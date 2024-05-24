@@ -152,5 +152,27 @@ namespace MedicalFurnitureAccounting.Pages
                 DataContext = this;
             }
         }
+
+
+        private void DeleteSupplierButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button button && button.Tag is int supplierId)
+            {
+                var supplierToDelete = Suppliers.FirstOrDefault(p => p.SupplierId == supplierId);
+                if (supplierToDelete != null)
+                {
+                    var result = MessageBox.Show($"Вы уверены, что хотите удалить поставщика '{supplierToDelete.Name}'?", "Подтверждение удаления", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        // Remove from database
+                        _context.Suppliers.Remove(supplierToDelete);
+                        _context.SaveChanges();
+
+                        // Remove from observable collection
+                        Suppliers.Remove(supplierToDelete);
+                    }
+                }
+            }
+        }
     }
 }

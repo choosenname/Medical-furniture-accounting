@@ -151,8 +151,33 @@ namespace MedicalFurnitureAccounting.Pages
                 DataContext = this;
             }
         }
+
+        private void DeleteMaterialButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Get the material to be deleted
+            Button deleteButton = sender as Button;
+            if (deleteButton != null)
+            {
+                Material materialToDelete = deleteButton.DataContext as Material;
+                if (materialToDelete != null)
+                {
+                    // Confirm deletion
+                    var result = MessageBox.Show($"Вы уверены, что хотите удалить материал '{materialToDelete.Name}'?", "Подтверждение удаления", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        // Remove from database
+                        _context.Materials.Remove(materialToDelete);
+                        _context.SaveChanges();
+
+                        // Remove from observable collection
+                        Materials.Remove(materialToDelete);
+                    }
+                }
+            }
+        }
+
     }
 
-    
+
 
 }

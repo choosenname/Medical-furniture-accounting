@@ -54,5 +54,26 @@ namespace MedicalFurnitureAccounting.Pages
                 DataContext = this;
             }
         }
+
+        private void DeleteSupplierButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button button && button.Tag is int supplyId)
+            {
+                var supplyToDelete = Supplies.FirstOrDefault(p => p.SupplyId == supplyId);
+                if (supplyToDelete != null)
+                {
+                    var result = MessageBox.Show($"Вы уверены, что хотите удалить поставщика '{supplyToDelete.Date}'?", "Подтверждение удаления", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        // Remove from database
+                        _context.Supplies.Remove(supplyToDelete);
+                        _context.SaveChanges();
+
+                        // Remove from observable collection
+                        Supplies.Remove(supplyToDelete);
+                    }
+                }
+            }
+        }
     }
 }
