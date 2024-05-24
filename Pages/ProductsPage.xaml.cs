@@ -102,7 +102,7 @@ namespace MedicalFurnitureAccounting.Pages
             if (view != null)
             {
                 view.SortDescriptions.Clear();
-                view.SortDescriptions.Add(new SortDescription("Name", ListSortDirection.Ascending));
+                view.SortDescriptions.Add(new SortDescription("MaxWeight", ListSortDirection.Ascending));
             }
         }
 

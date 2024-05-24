@@ -31,12 +31,12 @@ public partial class AddProductModal : Window
         var categories = _dbContext.Categories.ToList();
 
         CategoryComboBox.ItemsSource = categories;
-        CategoryComboBox.DisplayMemberPath = "Name";
+        CategoryComboBox.DisplayMemberPath = "MaxWeight";
 
         var materials = _dbContext.Materials.ToList();
 
         MaterialComboBox.ItemsSource = materials;
-        MaterialComboBox.DisplayMemberPath = "Name";
+        MaterialComboBox.DisplayMemberPath = "MaxWeight";
     }
 
     private void AddButton_Click(object sender, RoutedEventArgs e)

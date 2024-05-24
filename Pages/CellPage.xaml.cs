@@ -22,13 +22,13 @@ namespace MedicalFurnitureAccounting.Pages
     /// <summary>
     /// Логика взаимодействия для SupplierPage.xaml
     /// </summary>
-    public partial class SupplierPage : Page
+    public partial class CellPage : Page
     {
         private readonly ApplicationDBContext _context;
 
-        public ObservableCollection<Supplier> Suppliers { get; set; }
+        public ObservableCollection<Cell> Cell { get; set; }
 
-        public SupplierPage(ApplicationDBContext context)
+        public CellPage(ApplicationDBContext context)
         {
             InitializeComponent();
             FillSupplierFilterComboBox();
@@ -38,7 +38,7 @@ namespace MedicalFurnitureAccounting.Pages
 
         private void LoadCategories()
         {
-            Suppliers = new ObservableCollection<Supplier>(_context.Suppliers.ToList());
+            Cell = new ObservableCollection<Cell>(_context.Cell.ToList());
             DataContext = this;
         }
 
@@ -53,7 +53,7 @@ namespace MedicalFurnitureAccounting.Pages
                 {
                     // Здесь вы можете настроить поиск по нужным полям категории
                     // Например, если хотите искать по имени, замените "CategoryId" на "MaxWeight"
-                    return ((Supplier)item).Name.ToString().Contains(searchText);
+                    return ((Cell)item).Number.ToString().Contains(searchText);
                 };
             }
             else
@@ -89,7 +89,7 @@ namespace MedicalFurnitureAccounting.Pages
             if (view != null)
             {
                 view.SortDescriptions.Clear();
-                view.SortDescriptions.Add(new SortDescription("MaxWeight", ListSortDirection.Ascending));
+                view.SortDescriptions.Add(new SortDescription("Number", ListSortDirection.Ascending));
             }
         }
 
@@ -99,7 +99,7 @@ namespace MedicalFurnitureAccounting.Pages
             if (view != null)
             {
                 view.SortDescriptions.Clear();
-                view.SortDescriptions.Add(new SortDescription("SupplierId", ListSortDirection.Ascending));
+                view.SortDescriptions.Add(new SortDescription("CellId", ListSortDirection.Ascending));
             }
         }
 
@@ -107,7 +107,7 @@ namespace MedicalFurnitureAccounting.Pages
         {
             using (var context = new ApplicationDBContext()) // Поменяйте ApplicationDBContext на ваш контекст базы данных
             {
-                var productNames = context.Suppliers.Select(product => product.Name).ToList();
+                var productNames = context.Cell.Select(product => product.Number).ToList();
                 supplierFilterComboBox.ItemsSource = productNames;
             }
         }
@@ -123,9 +123,9 @@ namespace MedicalFurnitureAccounting.Pages
                 {
                     view.Filter = item =>
                     {
-                        if (item is Supplier itemType) // Замените YourItemType на ваш тип данных для элементов списка
+                        if (item is Shelving itemType) // Замените YourItemType на ваш тип данных для элементов списка
                         {
-                            return itemType.Name.Equals(selectedMaterial); // Здесь нужно заменить на свойство, по которому вы хотите фильтровать
+                            return itemType.MaxWeight.Equals(selectedMaterial); // Здесь нужно заменить на свойство, по которому вы хотите фильтровать
                         }
                         return false;
                     };
@@ -139,39 +139,17 @@ namespace MedicalFurnitureAccounting.Pages
 
         private void AddSupplierButton_Click(object sender, RoutedEventArgs e)
         {
-            var addWindow = new AddSupplierModal();
+            var addWindow = new AddCellModal();
             if (addWindow.ShowDialog() == true)
             {
-                string name = addWindow.Name;
-                var newModel = new Supplier() { Name = name };
-                _context.Suppliers.Add(newModel);
+                var name = addWindow.Number;
+                var newModel = new Cell() { Number = name };
+                _context.Cell.Add(newModel);
                 _context.SaveChanges();
 
-                Suppliers.Add(newModel);
+                Cell.Add(newModel);
                 DataContext = null;
                 DataContext = this;
-            }
-        }
-
-
-        private void DeleteSupplierButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (sender is Button button && button.Tag is int supplierId)
-            {
-                var supplierToDelete = Suppliers.FirstOrDefault(p => p.SupplierId == supplierId);
-                if (supplierToDelete != null)
-                {
-                    var result = MessageBox.Show($"Вы уверены, что хотите удалить поставщика '{supplierToDelete.Name}'?", "Подтверждение удаления", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-                    if (result == MessageBoxResult.Yes)
-                    {
-                        // Remove from database
-                        _context.Suppliers.Remove(supplierToDelete);
-                        _context.SaveChanges();
-
-                        // Remove from observable collection
-                        Suppliers.Remove(supplierToDelete);
-                    }
-                }
             }
         }
     }

@@ -25,6 +25,12 @@
     <Page Update="LabelProductWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Modals\AddCellModal.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Modals\AddShelvingModal.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Pages\AcceptanceActPage.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -32,6 +38,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\ProductsPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\CellPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\ShelvingPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\SupplierPage.xaml">

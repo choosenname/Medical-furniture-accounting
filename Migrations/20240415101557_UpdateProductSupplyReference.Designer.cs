@@ -26,7 +26,7 @@ namespace MedicalFurnitureAccounting.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("MaxWeight")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -41,7 +41,7 @@ namespace MedicalFurnitureAccounting.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("MaxWeight")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -65,7 +65,7 @@ namespace MedicalFurnitureAccounting.Migrations
                     b.Property<int>("CategoryId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("MaxWeight")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -87,7 +87,7 @@ namespace MedicalFurnitureAccounting.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("MaxWeight")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -106,7 +106,7 @@ namespace MedicalFurnitureAccounting.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("MaxWeight")
                         .IsRequired()
                         .HasColumnType("TEXT");
 

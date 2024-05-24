@@ -11,6 +11,14 @@ public class ApplicationDBContext : DbContext
     public DbSet<Material> Materials { get; set; }
     public DbSet<Supply> Supplies { get; set; }
     public DbSet<Storekeeper> Storekeepers { get; set; }
+    public DbSet<Shelving> Shelving { get; set; }
+    public DbSet<Cell> Cell { get; set; }
+
+    public ApplicationDBContext()
+    {
+        //Database.EnsureDeleted();
+        Database.EnsureCreated();
+    }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
