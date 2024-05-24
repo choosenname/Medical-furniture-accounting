@@ -5,30 +5,17 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:MedicalFurnitureAccounting"
         mc:Ignorable="d"
-        Title="AuthWindow" Height="350" Width="400">
+        Title="Вход" Height="350" Width="400">
     <Grid>
-        <TabControl>
-            <!-- Вкладка для страницы входа -->
-            <TabItem Header="Вход">
-                <StackPanel Margin="20">
-                    <Label Content="Имя"/>
-                    <TextBox x:Name="UsernameTextBox" Margin="0 0 0 10" Style="{StaticResource TextBoxStyle}"/>
-                    <Label Content="Пароль"/>
-                    <PasswordBox x:Name="PasswordBox" Margin="0 0 0 10" Style="{StaticResource PasswordBoxStyle}"/>
-                    <Button Content="Войти" Click="Login_Click" Style="{StaticResource ButtonStyle}" Height="40px" />
-                </StackPanel>
-            </TabItem>
-
-            <!-- Вкладка для страницы регистрации -->
-            <TabItem Header="Регистрация">
-                <StackPanel Margin="20">
-                    <Label Content="Имя"/>
-                    <TextBox x:Name="NewUsernameTextBox" Margin="0 0 0 10" Style="{StaticResource TextBoxStyle}"/>
-                    <Label Content="Пароль"/>
-                    <PasswordBox x:Name="NewPasswordBox" Margin="0 0 0 10" Style="{StaticResource PasswordBoxStyle}"/>
-                    <Button Content="Зарегестрироваться" Click="Register_Click" Style="{StaticResource ButtonStyle}" Height="40px"/>
-                </StackPanel>
-            </TabItem>
-        </TabControl>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock Text="Вход" FontSize="24" FontWeight="Bold" Margin="0 0 0 20" HorizontalAlignment="Center"/>
+            <StackPanel Margin="20">
+                <Label Content="Имя"/>
+                <TextBox x:Name="UsernameTextBox" Margin="0 0 0 10" Style="{StaticResource TextBoxStyle}"/>
+                <Label Content="Пароль"/>
+                <PasswordBox x:Name="PasswordBox" Margin="0 0 0 10" Style="{StaticResource PasswordBoxStyle}"/>
+                <Button Content="Войти" Click="Login_Click" Style="{StaticResource ButtonStyle}" Height="40px" />
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </Window>
