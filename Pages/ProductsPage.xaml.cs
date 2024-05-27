@@ -73,6 +73,28 @@ namespace MedicalFurnitureAccounting.Pages
             }
         }
 
+        private void ChangeShelvingButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button button && button.Tag is int productId)
+            {
+                var productToUpdate = Products.FirstOrDefault(p => p.ProductId == productId);
+                if (productToUpdate != null)
+                {
+                    var changeShelvingWindow = new ChangeShelvingWindow(_context);
+                    if (changeShelvingWindow.ShowDialog() == true)
+                    {
+                        if (changeShelvingWindow.NewShelvingId.HasValue)
+                        {
+                            productToUpdate.ShelvingId = changeShelvingWindow.NewShelvingId.Value;
+                            _context.SaveChanges();
+                            productsListView.Items.Refresh();
+                            MessageBox.Show("Номер стелажа успешно обновлен.", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
+                        }
+                    }
+                }
+            }
+        }
+
 
         private void SearchBox_GotFocus(object sender, RoutedEventArgs e)
         {
@@ -179,13 +201,6 @@ namespace MedicalFurnitureAccounting.Pages
             var newWindow = new LabelProductWindow(productToUpdate, user);
             newWindow.ShowDialog(); 
         }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-
 
     }
 }

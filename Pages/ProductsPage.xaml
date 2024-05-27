@@ -1,7 +1,7 @@
 ﻿<Page x:Class="MedicalFurnitureAccounting.Pages.ProductsPage"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      Title="Products Page">
+          xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+          Title="Products Page">
     <StackPanel Margin="10">
         <StackPanel Orientation="Horizontal" Margin="10" VerticalAlignment="Center">
             <TextBox x:Name="searchBox" Text="Поиск" Style="{StaticResource SearchTextBoxStyle}" GotFocus="SearchBox_GotFocus" LostFocus="SearchBox_LostFocus" />
@@ -24,8 +24,8 @@
         </StackPanel>
 
         <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Center">
-        <Button Content="Добавить товар" Click="AddProductButton_Click" Style="{StaticResource ButtonStyle}"/>
-        <Button Content="Инвентаризация" Click="ShowInventoryList_Click" Style="{StaticResource ButtonStyle}"/>
+            <Button Content="Добавить товар" Click="AddProductButton_Click" Style="{StaticResource ButtonStyle}"/>
+            <Button Content="Инвентаризация" Click="ShowInventoryList_Click" Style="{StaticResource ButtonStyle}"/>
         </StackPanel>
 
         <ListView ItemsSource="{Binding Products}" Margin="10" Height="350" Width="1000" Name="productsListView">
@@ -34,6 +34,7 @@
                     <GridViewColumn Header="Категория" DisplayMemberBinding="{Binding Category.Name}" />
                     <GridViewColumn Header="Материал" DisplayMemberBinding="{Binding Material.Name}" />
                     <GridViewColumn Header="Номер поставки" DisplayMemberBinding="{Binding SupplyId}" />
+                    <GridViewColumn Header="Стелаж" DisplayMemberBinding="{Binding ShelvingId}" />
                     <GridViewColumn Header="Дата поставки" DisplayMemberBinding="{Binding Suppply.Date, StringFormat='{}{0:dd.MM.yyyy HH:mm}'}" />
                     <GridViewColumn Header="Название" DisplayMemberBinding="{Binding Name}" />
                     <GridViewColumn Header="Колличество (шт)" DisplayMemberBinding="{Binding Count}" />
@@ -54,6 +55,13 @@
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <Button Content="Удалить" Click="DeleteProductsButton_Click" Tag="{Binding ProductId}" Style="{StaticResource ButtonStyle}" Height="25" Width="60" Margin="10,0,0,0" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Переместить" Click="ChangeShelvingButton_Click" Tag="{Binding ProductId}" Style="{StaticResource ButtonStyle}" Height="25" Width="60" Margin="10,0,0,0" />
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>

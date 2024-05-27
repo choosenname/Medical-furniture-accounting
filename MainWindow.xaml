@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MedicalFurnitureAccounting"
         mc:Ignorable="d"
-        Title="Medical Furniture Accounting" Height="450" Width="1200">
+        Title="Medical Furniture Accounting" Height="600" Width="1200">
     
 
     <!-- Хедер (верхняя полоса) -->
