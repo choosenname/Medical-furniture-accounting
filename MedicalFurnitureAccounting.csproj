@@ -55,6 +55,9 @@
       <None Update="Inventory.doc">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
+      <None Update="Lable.doc">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
       <None Update="Lable.docx">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>

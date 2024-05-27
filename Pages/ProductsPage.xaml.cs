@@ -176,7 +176,7 @@ namespace MedicalFurnitureAccounting.Pages
             Button button = (Button)sender;
             int productId = (int)button.Tag;
             var productToUpdate = Products.FirstOrDefault(p => p.ProductId == productId);
-            var newWindow = new LabelProductWindow(productToUpdate);
+            var newWindow = new LabelProductWindow(productToUpdate, user);
             newWindow.ShowDialog(); 
         }
 
