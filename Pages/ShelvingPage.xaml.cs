@@ -42,6 +42,28 @@ namespace MedicalFurnitureAccounting.Pages
             DataContext = this;
         }
 
+        private void ChangeCellButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button button && button.Tag is int shelvingId)
+            {
+                var shelvingToUpdate = Shelving.FirstOrDefault(s => s.ShelvingId == shelvingId);
+                if (shelvingToUpdate != null)
+                {
+                    var changeCellWindow = new ChangeCellWindow(_context);
+                    if (changeCellWindow.ShowDialog() == true)
+                    {
+                        if (changeCellWindow.NewCellId.HasValue)
+                        {
+                            shelvingToUpdate.CellId = changeCellWindow.NewCellId.Value;
+                            _context.SaveChanges();
+                            supplierListView.Items.Refresh();
+                            MessageBox.Show("Ячейка успешно обновлена.", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
+                        }
+                    }
+                }
+            }
+        }
+
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
             string searchText = searchBox.Text;

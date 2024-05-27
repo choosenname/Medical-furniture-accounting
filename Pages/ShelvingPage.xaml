@@ -33,6 +33,13 @@
                         <GridViewColumn Header="Максимальный вес (г)" DisplayMemberBinding="{Binding MaxWeight}"/>
                         <GridViewColumn Header="Ячейка" DisplayMemberBinding="{Binding Cell.Number}"/>
                         <!-- Добавьте другие столбцы по вашему усмотрению -->
+                        <GridViewColumn>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="Изменить ячейку" Click="ChangeCellButton_Click" Tag="{Binding ShelvingId}" Style="{StaticResource ButtonStyle}" Height="25" Width="100" Margin="10,0,0,0" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
                     </GridView>
                 </ListView.View>
             </ListView>
