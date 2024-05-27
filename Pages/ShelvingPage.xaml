@@ -30,7 +30,7 @@
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Номер" DisplayMemberBinding="{Binding ShelvingId}"/>
-                        <GridViewColumn Header="Максимальный вес" DisplayMemberBinding="{Binding MaxWeight}"/>
+                        <GridViewColumn Header="Максимальный вес (г)" DisplayMemberBinding="{Binding MaxWeight}"/>
                         <GridViewColumn Header="Ячейка" DisplayMemberBinding="{Binding Cell.Number}"/>
                         <!-- Добавьте другие столбцы по вашему усмотрению -->
                     </GridView>
