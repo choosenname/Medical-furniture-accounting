@@ -65,6 +65,13 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
+                    <GridViewColumn>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Изменить количество" Click="ChangeCountButton_Click" Tag="{Binding ProductId}" Style="{StaticResource ButtonStyle}" Height="25" Width="120" Margin="10,0,0,0" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>

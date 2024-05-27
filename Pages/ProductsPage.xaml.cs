@@ -187,6 +187,28 @@ namespace MedicalFurnitureAccounting.Pages
             }
         }
 
+        private void ChangeCountButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button button && button.Tag is int productId)
+            {
+                var productToUpdate = Products.FirstOrDefault(p => p.ProductId == productId);
+                if (productToUpdate != null)
+                {
+                    var changeCountWindow = new ChangeCountWindow();
+                    if (changeCountWindow.ShowDialog() == true)
+                    {
+                        if (changeCountWindow.NewCount.HasValue)
+                        {
+                            productToUpdate.Count = changeCountWindow.NewCount.Value;
+                            _context.SaveChanges();
+                            productsListView.Items.Refresh();
+                            MessageBox.Show("Количество товара успешно обновлено.", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
+                        }
+                    }
+                }
+            }
+        }
+
         private void ShowInventoryList_Click(object sender, RoutedEventArgs e)
         {
             var inventoryWindow = new InventoryWindow(_context, user);

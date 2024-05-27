@@ -5,6 +5,9 @@
     <Compile Update="ChangeCellWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="ChangeCountWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="ChangeShelvingWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -29,6 +32,9 @@
   </ItemGroup>
   <ItemGroup>
     <Page Update="ChangeCellWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ChangeCountWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="ChangeShelvingWindow.xaml">
