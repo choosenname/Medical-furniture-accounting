@@ -58,9 +58,6 @@
       <None Update="Lable.doc">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
-      <None Update="Lable.docx">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
       <None Update="MedicalFurnitureAccounting.db">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
