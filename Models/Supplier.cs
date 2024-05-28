@@ -15,5 +15,5 @@ public class Supplier
     
     public string Country { get; set; }
 
-    public virtual Supply Supply { get; set; }
+    public virtual ICollection<Supply> Supply { get; set; }
 }

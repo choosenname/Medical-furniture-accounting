@@ -23,7 +23,7 @@ public class Product
     public virtual Category Category { get; set; }
 
     public int SupplyId { get; set; }
-    public virtual Supply Suppply { get; set; }
+    public virtual ICollection<Supply> Suppply { get; set; }
 
     public int MaterialId { get; set; }
     public virtual Material Material { get; set; }
