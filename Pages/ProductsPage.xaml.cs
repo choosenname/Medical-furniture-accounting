@@ -38,7 +38,25 @@ namespace MedicalFurnitureAccounting.Pages
             Materials = new ObservableCollection<Models.Material>(_context.Materials.ToList());
             Shelving = new ObservableCollection<Shelving>(_context.Shelving.ToList());
             Cell = new ObservableCollection<Cell>(_context.Cell.ToList());
+
+            Products.CollectionChanged += (sender, e) =>
+            {
+                OnPropertyChanged(nameof(TotalProductCount));
+            };
+
             DataContext = this;
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public int TotalProductCount
+        {
+            get { return Products.Sum(product => product.Count); }
         }
 
         private void AddCategoryButton_Click(object sender, RoutedEventArgs e)

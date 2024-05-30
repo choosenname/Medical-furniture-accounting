@@ -37,7 +37,6 @@ public partial class MainWindow : System.Windows.Window
         addProductModal.ShowDialog();
         // Передача ссылки на NavigationService в AddProductModal
         addProductModal.NavigationService = MainFrame.NavigationService;
-        MainFrame.Navigate(new ProductsPage(_dbContext, user));
     }
     private void Button_Click_Product_Page(object sender, RoutedEventArgs e)
     {

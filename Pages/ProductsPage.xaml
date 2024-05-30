@@ -25,6 +25,7 @@
                 <ComboBox x:Name="productsFilterComboBox" Style="{StaticResource ComboBoxStyle}"
                           SelectionChanged="ProductsFilterComboBox_SelectionChanged" />
 
+                <TextBlock Text="{Binding TotalProductCount, StringFormat='Общее количество товаров: {0}'}" Margin="10"/>
             </StackPanel>
 
             <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Center">
