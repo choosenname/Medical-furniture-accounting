@@ -81,7 +81,7 @@ namespace MedicalFurnitureAccounting.Modals
             Product = new Product
             {
                 Name = ProductNameTextBox.Text.Trim(),
-                Suppply = selectedSupply,
+                Suppply = [selectedSupply],
                 Category = selectedCategory,
                 Material = selectedMaterial,
                 Shelving = selectedShelving,

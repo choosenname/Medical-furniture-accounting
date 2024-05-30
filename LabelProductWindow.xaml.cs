@@ -45,10 +45,10 @@ namespace MedicalFurnitureAccounting
                 { "<MATERIAL>",Product.Material.Name},
                 { "<CATEGORY>", Product.Category.Name},
                 { "<ID>", Product.ProductId.ToString()},
-                { "<ORGANIZATION>", Product.Suppply.Supplier.Name},
+                /*{ "<ORGANIZATION>", Product.Suppply.Supplier.Name},
                 { "<ADRESS>", Product.Suppply.Supplier.Addres},
                 { "<PHONE>", Product.Suppply.Supplier.Phone},
-                { "<EMAIL>", Product.Suppply.Supplier.Email},
+                { "<EMAIL>", Product.Suppply.Supplier.Email},*/
                 { "<WIDTH>", Product.Width.ToString()},
                 { "<LENGTH>", Product.Length.ToString()},
                 { "<HEIGHT>", Product.Height.ToString()},
