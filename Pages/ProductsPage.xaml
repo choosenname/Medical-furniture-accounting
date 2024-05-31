@@ -1,79 +1,247 @@
 ﻿<Page x:Class="MedicalFurnitureAccounting.Pages.ProductsPage"
-          xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-          Title="Products Page">
-    <StackPanel Margin="10">
-        <StackPanel Orientation="Horizontal" Margin="10" VerticalAlignment="Center">
-            <TextBox x:Name="searchBox" Text="Поиск" Style="{StaticResource SearchTextBoxStyle}" GotFocus="SearchBox_GotFocus" LostFocus="SearchBox_LostFocus" />
-            <Button Content="Поиск" Click="SearchButton_Click" Style="{StaticResource ButtonStyle}" />
-            <Button Content="Сброс" Click="ShowAllButton_Click" Style="{StaticResource ButtonStyle}" />
-            <Button Content="Сортировка по имени" Click="SortByNameButton_Click" Style="{StaticResource ButtonStyle}" RenderTransformOrigin="0.5,0.5" Width="138" >
-                <Button.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform Angle="0.16"/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </Button.RenderTransform>
-            </Button>
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="Products Page">
+    <ScrollViewer CanContentScroll="True" Height="500" Margin="10">
+        <StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="10" VerticalAlignment="Center">
+                <TextBox x:Name="searchBox" Text="Поиск" Style="{StaticResource SearchTextBoxStyle}"
+                         GotFocus="SearchBox_GotFocus" LostFocus="SearchBox_LostFocus" />
+                <Button Content="Поиск" Click="SearchButton_Click" Style="{StaticResource ButtonStyle}" />
+                <Button Content="Сброс" Click="ShowAllButton_Click" Style="{StaticResource ButtonStyle}" />
+                <Button Content="Сортировка по имени" Click="SortByNameButton_Click"
+                        Style="{StaticResource ButtonStyle}" RenderTransformOrigin="0.5,0.5" Width="138">
+                    <Button.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform />
+                            <SkewTransform />
+                            <RotateTransform Angle="0.16" />
+                            <TranslateTransform />
+                        </TransformGroup>
+                    </Button.RenderTransform>
+                </Button>
 
 
-            <ComboBox x:Name="productsFilterComboBox" Style="{StaticResource ComboBoxStyle}" SelectionChanged="ProductsFilterComboBox_SelectionChanged" />
+                <ComboBox x:Name="productsFilterComboBox" Style="{StaticResource ComboBoxStyle}"
+                          SelectionChanged="ProductsFilterComboBox_SelectionChanged" />
 
+                <TextBlock Text="{Binding TotalProductCount, StringFormat='Общее количество товаров: {0}'}" Margin="10"/>
+            </StackPanel>
+
+            <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Content="Добавить товар" Click="AddProductButton_Click"
+                        Style="{StaticResource ButtonStyle}" />
+                <Button Content="Инвентаризация" Click="ShowInventoryList_Click"
+                        Style="{StaticResource ButtonStyle}" />
+            </StackPanel>
+
+            <ListView ItemsSource="{Binding Products}" Margin="10" Height="350" Width="1000"
+                      Name="productsListView">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Категория" DisplayMemberBinding="{Binding Category.Name}" />
+                        <GridViewColumn Header="Материал" DisplayMemberBinding="{Binding Material.Name}" />
+                        <GridViewColumn Header="Стелаж" DisplayMemberBinding="{Binding ShelvingId}" />
+                        <GridViewColumn Header="Название" DisplayMemberBinding="{Binding Name}" />
+                        <GridViewColumn Header="Колличество (шт)" DisplayMemberBinding="{Binding Count}" />
+                        <GridViewColumn Header="Ширина (см)" DisplayMemberBinding="{Binding Width}" />
+                        <GridViewColumn Header="Длина (см)" DisplayMemberBinding="{Binding Length}" />
+                        <GridViewColumn Header="Высота (см)" DisplayMemberBinding="{Binding Height}" />
+                        <GridViewColumn Header="Вес (г)" DisplayMemberBinding="{Binding Weight}" />
+                        <GridViewColumn Header="Цена (BYN)" DisplayMemberBinding="{Binding Price}" />
+                        <GridViewColumn Header="Описание" DisplayMemberBinding="{Binding Description}" />
+                        <GridViewColumn Header="Ярлык">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="Ярлык" Tag="{Binding ProductId}" Click="Button_Click"
+                                            Style="{StaticResource ButtonStyle}" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="Удалить" Click="DeleteProductsButton_Click"
+                                            Tag="{Binding ProductId}" Style="{StaticResource ButtonStyle}"
+                                            Height="25" Width="60" Margin="10,0,0,0" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="Переместить" Click="ChangeShelvingButton_Click"
+                                            Tag="{Binding ProductId}" Style="{StaticResource ButtonStyle}"
+                                            Height="25" Width="60" Margin="10,0,0,0" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="Изменить количество" Click="ChangeCountButton_Click"
+                                            Tag="{Binding ProductId}" Style="{StaticResource ButtonStyle}"
+                                            Height="25" Width="120" Margin="10,0,0,0" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+            <StackPanel>
+                <TextBlock Text="Поставки продукции" FontSize="20"/>
+                <ListView ItemsSource="{Binding Supplies}" Margin="10" Height="350" Width="1000"
+                          Name="productSupplyListView">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Номер поставки" DisplayMemberBinding="{Binding SupplyId}" />
+                            <GridViewColumn Header="Дата поставки" DisplayMemberBinding="{Binding Date}" />
+                            <GridViewColumn Header="Продукты">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <ItemsControl ItemsSource="{Binding Products}">
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding Name}" />
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </StackPanel>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0">
+                    <Button Content="Добавить категорию" Click="AddCategoryButton_Click"
+                            Style="{StaticResource ButtonStyle}"
+                            Height="40" />
+
+                    <ListView ItemsSource="{Binding Categories}" Margin="10" Height="300" Name="CategoryListView">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Название" Width="200">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="{Binding Name}" VerticalAlignment="Center"
+                                                           Margin="0,0,10,0" />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="Надбавка (BYN)" Width="100">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Allowance}" VerticalAlignment="Center"
+                                                       Margin="0,0,10,0" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Content="Удалить" Click="DeleteCategoryButton_Click"
+                                                    Style="{StaticResource ButtonStyle}" Height="25" Width="60"
+                                                    Margin="10,0,0,0" Tag="{Binding CategoryId}" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1">
+                    <Button Content="Добавить материал" Click="AddMaterialButton_Click"
+                            Style="{StaticResource ButtonStyle}"
+                            Height="40">
+                    </Button>
+
+                    <ListView ItemsSource="{Binding Materials}" Margin="10" Height="300" Name="materialListView">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Название" Width="200">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="{Binding Name}" VerticalAlignment="Center"
+                                                           Margin="0,0,10,0" />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="Цена (BYN)" DisplayMemberBinding="{Binding Price}" />
+                                <GridViewColumn>
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Content="Удалить" Click="DeleteMaterialButton_Click"
+                                                    Style="{StaticResource ButtonStyle}" Height="25" Width="60"
+                                                    Margin="10,0,0,0" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <!-- Добавьте другие столбцы по вашему усмотрению -->
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </StackPanel>
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0">
+                    <Button Content="Добавить стеллажа" Click="AddShelvingButton_Click"
+                            Style="{StaticResource ButtonStyle}"
+                            Height="40" />
+
+                    <!-- ListView для отображения списка поставщиков -->
+                    <ListView ItemsSource="{Binding Shelving}" Margin="10" Height="350" Name="shelvingListView">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Номер" DisplayMemberBinding="{Binding ShelvingId}" />
+                                <GridViewColumn Header="Максимальный вес (г)"
+                                                DisplayMemberBinding="{Binding MaxWeight}" />
+                                <GridViewColumn Header="Ячейка" DisplayMemberBinding="{Binding Cell.Number}" />
+                                <!-- Добавьте другие столбцы по вашему усмотрению -->
+                                <GridViewColumn>
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Content="Изменить ячейку" Click="ChangeCellButton_Click"
+                                                    Tag="{Binding ShelvingId}" Style="{StaticResource ButtonStyle}"
+                                                    Height="25" Width="100" Margin="10,0,0,0" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <Button Content="Добавить ячейку" Click="AddCellButton_Click" Style="{StaticResource ButtonStyle}"
+                            Height="40" />
+
+                    <!-- ListView для отображения списка поставщиков -->
+                    <ListView ItemsSource="{Binding Cell}" Margin="10" Height="350" Name="cellListView">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Номер" DisplayMemberBinding="{Binding Number}" />
+                                <!-- Добавьте другие столбцы по вашему усмотрению -->
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </StackPanel>
+            </Grid>
         </StackPanel>
-
-        <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button Content="Добавить товар" Click="AddProductButton_Click" Style="{StaticResource ButtonStyle}"/>
-            <Button Content="Инвентаризация" Click="ShowInventoryList_Click" Style="{StaticResource ButtonStyle}"/>
-        </StackPanel>
-
-        <ListView ItemsSource="{Binding Products}" Margin="10" Height="350" Width="1000" Name="productsListView">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Категория" DisplayMemberBinding="{Binding Category.Name}" />
-                    <GridViewColumn Header="Материал" DisplayMemberBinding="{Binding Material.Name}" />
-                    <GridViewColumn Header="Номер поставки" DisplayMemberBinding="{Binding SupplyId}" />
-                    <GridViewColumn Header="Стелаж" DisplayMemberBinding="{Binding ShelvingId}" />
-                    <GridViewColumn Header="Дата поставки" DisplayMemberBinding="{Binding Suppply.Date, StringFormat='{}{0:dd.MM.yyyy HH:mm}'}" />
-                    <GridViewColumn Header="Название" DisplayMemberBinding="{Binding Name}" />
-                    <GridViewColumn Header="Колличество (шт)" DisplayMemberBinding="{Binding Count}" />
-                    <GridViewColumn Header="Ширина (см)" DisplayMemberBinding="{Binding Width}" />
-                    <GridViewColumn Header="Длина (см)" DisplayMemberBinding="{Binding Length}" />
-                    <GridViewColumn Header="Высота (см)" DisplayMemberBinding="{Binding Height}"  />
-                    <GridViewColumn Header="Вес (г)" DisplayMemberBinding="{Binding Weight}" />
-                    <GridViewColumn Header="Цена (BYN)" DisplayMemberBinding="{Binding Price}" />
-                    <GridViewColumn Header="Описание" DisplayMemberBinding="{Binding Description}" />
-                    <GridViewColumn Header="Ярлык">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <Button Content="Ярлык" Tag="{Binding ProductId}" Click="Button_Click" Style="{StaticResource ButtonStyle}" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn>
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <Button Content="Удалить" Click="DeleteProductsButton_Click" Tag="{Binding ProductId}" Style="{StaticResource ButtonStyle}" Height="25" Width="60" Margin="10,0,0,0" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn>
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <Button Content="Переместить" Click="ChangeShelvingButton_Click" Tag="{Binding ProductId}" Style="{StaticResource ButtonStyle}" Height="25" Width="60" Margin="10,0,0,0" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn>
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <Button Content="Изменить количество" Click="ChangeCountButton_Click" Tag="{Binding ProductId}" Style="{StaticResource ButtonStyle}" Height="25" Width="120" Margin="10,0,0,0" />
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                </GridView>
-            </ListView.View>
-        </ListView>
-    </StackPanel>
+    </ScrollViewer>
 </Page>

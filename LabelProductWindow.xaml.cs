@@ -38,6 +38,8 @@ namespace MedicalFurnitureAccounting
         {
             var helper = new WordHalper("Lable.doc");
 
+            var Suppply = Product.Suppply.LastOrDefault();
+
             var items = new Dictionary<string, string>
             {
                 {"<NAME>", Product.Name  },
@@ -45,10 +47,10 @@ namespace MedicalFurnitureAccounting
                 { "<MATERIAL>",Product.Material.Name},
                 { "<CATEGORY>", Product.Category.Name},
                 { "<ID>", Product.ProductId.ToString()},
-                { "<ORGANIZATION>", Product.Suppply.Supplier.Name},
-                { "<ADRESS>", Product.Suppply.Supplier.Addres},
-                { "<PHONE>", Product.Suppply.Supplier.Phone},
-                { "<EMAIL>", Product.Suppply.Supplier.Email},
+                { "<ORGANIZATION>", Suppply.Supplier.Name},
+                { "<ADRESS>", Suppply.Supplier.Addres},
+                { "<PHONE>", Suppply.Supplier.Phone},
+                { "<EMAIL>", Suppply.Supplier.Email},
                 { "<WIDTH>", Product.Width.ToString()},
                 { "<LENGTH>", Product.Length.ToString()},
                 { "<HEIGHT>", Product.Height.ToString()},

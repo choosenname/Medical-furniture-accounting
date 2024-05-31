@@ -17,9 +17,6 @@
     <Compile Update="Pages\AcceptanceActPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Pages\MaterialPage.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="Pages\ProductsPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -50,9 +47,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\AcceptanceActPage.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Pages\MaterialPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\ProductsPage.xaml">

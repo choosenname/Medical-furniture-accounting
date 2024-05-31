@@ -27,6 +27,7 @@ namespace MedicalFurnitureAccounting.Pages
         private readonly ApplicationDBContext _context;
 
         public ObservableCollection<Supplier> Suppliers { get; set; }
+        public ObservableCollection<Supply> Supplies { get; set; }
 
         public SupplierPage(ApplicationDBContext context)
         {
@@ -39,6 +40,7 @@ namespace MedicalFurnitureAccounting.Pages
         private void LoadCategories()
         {
             Suppliers = new ObservableCollection<Supplier>(_context.Suppliers.ToList());
+            Supplies = new ObservableCollection<Supply>(_context.Supplies.ToList());
             DataContext = this;
         }
 
@@ -179,6 +181,21 @@ namespace MedicalFurnitureAccounting.Pages
                         Suppliers.Remove(supplierToDelete);
                     }
                 }
+            }
+        }
+
+        private void AddSupplyButton_Click(object sender, RoutedEventArgs e)
+        {
+            var addWindow = new AddSupplyModal(_context);
+            if (addWindow.ShowDialog() == true)
+            {
+                var newModel = addWindow.Supply;
+                _context.Supplies.Add(newModel);
+                _context.SaveChanges();
+
+                Supplies.Add(newModel);
+                DataContext = null;
+                DataContext = this;
             }
         }
     }

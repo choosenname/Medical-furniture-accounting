@@ -32,15 +32,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Compile Update="Pages\CellPage.xaml.cs">
-        <SubType>Code</SubType>
-      </Compile>
-      <Compile Update="Pages\ShelvingPage.xaml.cs">
-        <SubType>Code</SubType>
-      </Compile>
-    </ItemGroup>
-
-    <ItemGroup>
       <Page Update="Modals\AddMaterialModal.xaml">
         <Generator>MSBuild:Compile</Generator>
         <XamlRuntime>Wpf</XamlRuntime>
