@@ -30,6 +30,7 @@ public partial class MainWindow : System.Windows.Window
         InitializeComponent();
         _dbContext = dbContext;
         this.user = user;
+        MainFrame.Navigate(new ProductsPage(_dbContext, user));
     }
     private void OpenAddProductModal()
     {

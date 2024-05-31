@@ -96,7 +96,7 @@
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="Номер поставки" DisplayMemberBinding="{Binding SupplyId}" />
-                            <GridViewColumn Header="Дата поставки" DisplayMemberBinding="{Binding Date}" />
+                            <GridViewColumn Header="Дата поставки" DisplayMemberBinding="{Binding Date, StringFormat='{}{0:dd.MM.yyyy HH:mm}'}" />
                             <GridViewColumn Header="Продукты">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
