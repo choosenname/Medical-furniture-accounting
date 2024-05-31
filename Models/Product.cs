@@ -29,4 +29,12 @@ public class Product
 
     public int ShelvingId { get; set; }
     public virtual Shelving Shelving { get; set; }
+
+    public Supply? LastSupply
+    {
+        get
+        {
+            return Suppply.LastOrDefault();
+        }
+    }
 }

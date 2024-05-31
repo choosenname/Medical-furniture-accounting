@@ -42,11 +42,11 @@ namespace MedicalFurnitureAccounting.Pages
             var items = new Dictionary<string, string>
             {
                 {"<DATE_NOW>", DateTime.Now.ToString("dd-MM-yyyy HH:mm")  },
-                //{ "<SUPPLIER>", _product.Suppply.Supplier.Name},
+                { "<SUPPLIER>", _product.LastSupply.Supplier.Name},
                 { "<NAME>", _product.Name},
                 { "<COUNT>", _product.Count.ToString()},
-                //{ "<NUM>", _product.Suppply.SupplyId.ToString()},
-                //{ "<DATE>", _product.Suppply.Date.ToString("dd-MM-yyyy HH:mm")}
+                { "<NUM>", _product.LastSupply.SupplyId.ToString()},
+                { "<DATE>", _product.LastSupply.Date.ToString("dd-MM-yyyy HH:mm")}
             };
 
             helper.Process(items);

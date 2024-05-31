@@ -36,7 +36,7 @@
             <TextBlock Text="Категория:" FontSize="16" FontWeight="Bold" Grid.Row="4"/>
             <TextBlock Text="{Binding Category.Name}" FontSize="16" Grid.Row="4" Grid.Column="1"/>
             <TextBlock Text="Поставщик:" FontSize="16" FontWeight="Bold" Grid.Row="5"/>
-            <TextBlock Text="{Binding Suppply.Supplier.Name}" FontSize="16" Grid.Row="5" Grid.Column="1"/>
+            <TextBlock Text="{Binding LastSupply.Supplier.Name}" FontSize="16" Grid.Row="5" Grid.Column="1"/>
 
             <!-- Подпись -->
             <TextBlock Text="Подпись получателя:" FontSize="16" FontWeight="Bold" Grid.Row="7" Margin="0,20"/>
