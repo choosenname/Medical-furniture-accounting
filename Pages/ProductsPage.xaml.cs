@@ -21,6 +21,8 @@ namespace MedicalFurnitureAccounting.Pages
         public ObservableCollection<Material> Materials { get; set; }
         public ObservableCollection<Shelving> Shelving { get; set; }
         public ObservableCollection<Cell> Cell { get; set; }
+        public ObservableCollection<Supply> Supplies { get; set; }
+
 
         public ProductsPage(ApplicationDBContext context, Storekeeper user)
         {
@@ -38,6 +40,7 @@ namespace MedicalFurnitureAccounting.Pages
             Materials = new ObservableCollection<Models.Material>(_context.Materials.ToList());
             Shelving = new ObservableCollection<Shelving>(_context.Shelving.ToList());
             Cell = new ObservableCollection<Cell>(_context.Cell.ToList());
+            Supplies = new ObservableCollection<Supply>(_context.Supplies.ToList());
 
             Products.CollectionChanged += (sender, e) =>
             {
@@ -247,10 +250,34 @@ namespace MedicalFurnitureAccounting.Pages
             if (addWindow.ShowDialog() == true)
             {
                 var newModel = addWindow.Product;
-                _context.Products.Add(newModel);
-                _context.SaveChanges();
 
-                Products.Add(newModel);
+                // Проверяем, существует ли товар с таким же именем
+                var existingProduct = Products.FirstOrDefault(p => p.Name == newModel.Name);
+                if (existingProduct != null)
+                {
+                    // Если товар существует, обновляем его свойства
+                    existingProduct.Count += newModel.Count;
+                    existingProduct.Width = newModel.Width;
+                    existingProduct.Height = newModel.Height;
+                    existingProduct.Length = newModel.Length;
+                    existingProduct.Weight = newModel.Weight;
+                    existingProduct.Price = newModel.Price;
+                    existingProduct.Description = newModel.Description;
+                    existingProduct.Category = newModel.Category;
+                    existingProduct.Material = newModel.Material;
+                    existingProduct.Shelving = newModel.Shelving;
+                    existingProduct.Suppply = existingProduct.Suppply.Union(newModel.Suppply).ToList();
+
+                    _context.SaveChanges();
+                }
+                else
+                {
+                    // Если товар не существует, добавляем новый товар в коллекцию
+                    _context.Products.Add(newModel);
+                    _context.SaveChanges();
+                    Products.Add(newModel);
+                }
+
                 DataContext = null;
                 DataContext = this;
             }

@@ -41,10 +41,7 @@
                     <GridView>
                         <GridViewColumn Header="Категория" DisplayMemberBinding="{Binding Category.Name}" />
                         <GridViewColumn Header="Материал" DisplayMemberBinding="{Binding Material.Name}" />
-                        <GridViewColumn Header="Номер поставки" DisplayMemberBinding="{Binding SupplyId}" />
                         <GridViewColumn Header="Стелаж" DisplayMemberBinding="{Binding ShelvingId}" />
-                        <GridViewColumn Header="Дата поставки"
-                                        DisplayMemberBinding="{Binding Suppply.Date, StringFormat='{}{0:dd.MM.yyyy HH:mm}'}" />
                         <GridViewColumn Header="Название" DisplayMemberBinding="{Binding Name}" />
                         <GridViewColumn Header="Колличество (шт)" DisplayMemberBinding="{Binding Count}" />
                         <GridViewColumn Header="Ширина (см)" DisplayMemberBinding="{Binding Width}" />
@@ -91,6 +88,33 @@
                     </GridView>
                 </ListView.View>
             </ListView>
+
+            <StackPanel>
+                <TextBlock Text="Поставки продукции" FontSize="20"/>
+                <ListView ItemsSource="{Binding Supplies}" Margin="10" Height="350" Width="1000"
+                          Name="productSupplyListView">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Номер поставки" DisplayMemberBinding="{Binding SupplyId}" />
+                            <GridViewColumn Header="Дата поставки" DisplayMemberBinding="{Binding Date}" />
+                            <GridViewColumn Header="Продукты">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <ItemsControl ItemsSource="{Binding Products}">
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding Name}" />
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </StackPanel>
+
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
