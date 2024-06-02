@@ -1,60 +1,47 @@
-﻿using MedicalFurnitureAccounting.Models;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using System.Windows;
+using MedicalFurnitureAccounting.Models;
 
-namespace MedicalFurnitureAccounting
+namespace MedicalFurnitureAccounting;
+
+/// <summary>
+///     Логика взаимодействия для ChangeShelvingWindow.xaml
+/// </summary>
+public partial class ChangeShelvingWindow
 {
-    /// <summary>
-    /// Логика взаимодействия для ChangeShelvingWindow.xaml
-    /// </summary>
-    public partial class ChangeShelvingWindow : Window
+    private readonly ApplicationDBContext _dbContext;
+
+    public ChangeShelvingWindow(ApplicationDBContext dbContext)
     {
-        public int? NewShelvingId { get; private set; }
-        private readonly ApplicationDBContext _dbContext;
+        InitializeComponent();
+        _dbContext = dbContext;
+        LoadSuppliers();
+    }
 
-        public ChangeShelvingWindow(ApplicationDBContext dbContext)
+    public int? NewShelvingId { get; private set; }
+
+    private void SaveButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (SelvingComboBox.SelectedItem != null)
         {
-            InitializeComponent();
-            _dbContext = dbContext;
-            LoadSuppliers();
+            NewShelvingId = ((Shelving)SelvingComboBox.SelectedItem).ShelvingId;
+            DialogResult = true;
         }
-
-        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        else
         {
-            if (SelvingComboBox.SelectedItem != null)
-            {
-                NewShelvingId = ((Shelving)SelvingComboBox.SelectedItem).ShelvingId;
-                DialogResult = true;
-            }
-            else
-            {
-                MessageBox.Show("Пожалуйста, введите корректный номер стелажа.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            MessageBox.Show("Пожалуйста, введите корректный номер стелажа.", "Ошибка", MessageBoxButton.OK,
+                MessageBoxImage.Error);
         }
+    }
 
-        private void LoadSuppliers()
-        {
+    private void LoadSuppliers()
+    {
+        var shelving = _dbContext.Shelving.ToList();
+        SelvingComboBox.ItemsSource = shelving;
+        SelvingComboBox.DisplayMemberPath = "ShelvingId";
+    }
 
-            var shelving = _dbContext.Shelving.ToList();
-            SelvingComboBox.ItemsSource = shelving;
-            SelvingComboBox.DisplayMemberPath = "ShelvingId";
-        }
-
-        private void CancelButton_Click(object sender, RoutedEventArgs e)
-        {
-            DialogResult = false;
-        }
+    private void CancelButton_Click(object sender, RoutedEventArgs e)
+    {
+        DialogResult = false;
     }
 }

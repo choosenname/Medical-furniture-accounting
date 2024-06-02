@@ -3,17 +3,20 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:local="clr-namespace:MedicalFurnitureAccounting"
         mc:Ignorable="d"
         Title="InventoryWindow" Height="625" Width="800">
     <StackPanel>
-        <TextBlock Text="ИНВЕНТАРИЗАЦИОННАЯ ОПИСЬ" FontSize="24" HorizontalAlignment="Center" FontWeight="Bold" Margin="10"/>
-        <TextBlock Text="товарно-матеиальных ценностей" FontSize="12" HorizontalAlignment="Center" FontWeight="Bold" Margin="10"/>
+        <TextBlock Text="ИНВЕНТАРИЗАЦИОННАЯ ОПИСЬ" FontSize="24" HorizontalAlignment="Center" FontWeight="Bold"
+                   Margin="10" />
+        <TextBlock Text="товарно-матеиальных ценностей" FontSize="12" HorizontalAlignment="Center" FontWeight="Bold"
+                   Margin="10" />
 
-        <TextBlock Text="РАСПИСКА" FontSize="12" HorizontalAlignment="Center" FontWeight="Bold" Margin="10"/>
-        <TextBlock Text="К началу проведения инвентаризации все расходные и приходные документы на товарно-материальные
+        <TextBlock Text="РАСПИСКА" FontSize="12" HorizontalAlignment="Center" FontWeight="Bold" Margin="10" />
+        <TextBlock
+            Text="К началу проведения инвентаризации все расходные и приходные документы на товарно-материальные
          ценности сданы в бухгалтерию и все товарно-материальные ценности, поступившие на мою (нашу) ответственность, оприходованы,
-          а выбывшие списаны в расход." FontSize="12" HorizontalAlignment="Center" TextWrapping="Wrap" FontWeight="Bold" Margin="10"/>
+          а выбывшие списаны в расход."
+            FontSize="12" HorizontalAlignment="Center" TextWrapping="Wrap" FontWeight="Bold" Margin="10" />
 
         <!-- DataGrid для отображения инвентаризационной описи -->
         <ListView ItemsSource="{Binding Products}" Margin="10" Height="350" Name="productsListView">
@@ -22,10 +25,10 @@
                     <GridViewColumn Header="Номер продукта" DisplayMemberBinding="{Binding ProductId}" />
                     <GridViewColumn Header="Наименование" DisplayMemberBinding="{Binding Name}" />
                     <GridViewColumn Header="Колличесво" DisplayMemberBinding="{Binding Count}" />
-                    <GridViewColumn Header="Цена" DisplayMemberBinding="{Binding Material.Price}"></GridViewColumn>
+                    <GridViewColumn Header="Цена" DisplayMemberBinding="{Binding Material.Price}" />
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button Content="Экспорт" Click="ExportToWordButton_Click" Style="{StaticResource ButtonStyle}" Height="40"/>
+        <Button Content="Экспорт" Click="ExportToWordButton_Click" Style="{StaticResource ButtonStyle}" Height="40" />
     </StackPanel>
 </Window>

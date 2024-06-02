@@ -6,18 +6,20 @@
         mc:Ignorable="d"
         Title="AddCategoryModal" Height="200" Width="300">
     <StackPanel>
-        <Label Content="Добавление категории" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center"/>
+        <Label Content="Добавление категории" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" />
 
         <!-- Применение стиля к Label -->
-        <Label Content="Название категории:" Margin="0 10 0 0"/>
-        <TextBox x:Name="CategoryNameTextBox" Margin="10" Style="{StaticResource TextBoxStyle}"/>
+        <Label Content="Название категории:" Margin="0 10 0 0" />
+        <TextBox x:Name="CategoryNameTextBox" Margin="10" Style="{StaticResource TextBoxStyle}" />
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
             <!-- Применение стиля к Button -->
-            <Button Content="Добавить" HorizontalAlignment="Center" Click="AddButton_Click" Style="{StaticResource ButtonStyle}"/>
+            <Button Content="Добавить" HorizontalAlignment="Center" Click="AddButton_Click"
+                    Style="{StaticResource ButtonStyle}" />
 
             <!-- Применение стиля к Button -->
-            <Button Content="Отмена" HorizontalAlignment="Center" Click="CancelButton_Click" Style="{StaticResource ButtonStyle}"/>
+            <Button Content="Отмена" HorizontalAlignment="Center" Click="CancelButton_Click"
+                    Style="{StaticResource ButtonStyle}" />
         </StackPanel>
     </StackPanel>
 </Window>

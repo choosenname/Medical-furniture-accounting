@@ -1,152 +1,148 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.Linq;
+﻿using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Input;
-using System.Windows.Navigation;
 using MedicalFurnitureAccounting.Models;
 using MedicalFurnitureAccounting.Pages;
 
-namespace MedicalFurnitureAccounting.Modals
+namespace MedicalFurnitureAccounting.Modals;
+
+public partial class AddProductModal : Window
 {
-    public partial class AddProductModal : Window
+    private readonly ApplicationDBContext _dbContext;
+
+
+    public AddProductModal(ApplicationDBContext dbContext)
     {
-        private readonly ApplicationDBContext _dbContext;
-        public ObservableCollection<Material> Materials { get; set; }
+        _dbContext = dbContext;
+        InitializeComponent();
+        LoadSuppliers();
+    }
 
+    public ObservableCollection<Material> Materials { get; set; }
 
-        public AddProductModal(ApplicationDBContext dbContext)
+    public Product Product { get; private set; }
+
+    private void LoadSuppliers()
+    {
+        Materials = new ObservableCollection<Material>(_dbContext.Materials.ToList());
+        MaterialComboBox.ItemsSource = Materials;
+        MaterialComboBox.DisplayMemberPath = "Name";
+
+        var shelving = _dbContext.Shelving.ToList();
+        ShelvingComboBox.ItemsSource = shelving;
+        ShelvingComboBox.DisplayMemberPath = "ShelvingId";
+    }
+
+    private void AddButton_Click(object sender, RoutedEventArgs e)
+    {
+        // Проверка, что имя продукта не пустое
+        if (string.IsNullOrEmpty(ProductNameTextBox.Text.Trim()))
         {
-            _dbContext = dbContext;
-            InitializeComponent();
-            LoadSuppliers();
+            MessageBox.Show("Имя продукта не может быть пустым.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            return;
         }
 
-        public Product Product { get; private set; }
-
-        private void LoadSuppliers()
+        // Проверка, что выбраны все обязательные поля
+        if (MaterialComboBox.SelectedItem == null ||
+            ShelvingComboBox.SelectedItem == null)
         {
-
-            Materials = new ObservableCollection<Models.Material>(_dbContext.Materials.ToList());
-            MaterialComboBox.ItemsSource = Materials;
-            MaterialComboBox.DisplayMemberPath = "Name";
-
-            var shelving = _dbContext.Shelving.ToList();
-            ShelvingComboBox.ItemsSource = shelving;
-            ShelvingComboBox.DisplayMemberPath = "ShelvingId";
+            MessageBox.Show("Пожалуйста, выберите все необходимые поля.", "Ошибка", MessageBoxButton.OK,
+                MessageBoxImage.Error);
+            return;
         }
 
-        private void AddButton_Click(object sender, RoutedEventArgs e)
+        // Проверка, что числовые поля введены корректно
+        if (!int.TryParse(ProductCountTextBox.Text, out var count) ||
+            !int.TryParse(ProductWidthTextBox.Text, out var width) ||
+            !int.TryParse(ProductHeightTextBox.Text, out var height) ||
+            !int.TryParse(ProductLengthTextBox.Text, out var length) ||
+            !int.TryParse(ProductWeightTextBox.Text, out var weight) ||
+            !int.TryParse(ProductPriceTextBox.Text, out var price))
         {
-            // Проверка, что имя продукта не пустое
-            if (string.IsNullOrEmpty(ProductNameTextBox.Text.Trim()))
+            MessageBox.Show("Введите корректные числовые значения для всех полей.", "Ошибка", MessageBoxButton.OK,
+                MessageBoxImage.Error);
+            return;
+        }
+
+        var selectedMaterial = (Material)MaterialComboBox.SelectedItem;
+        var selectedShelving = (Shelving)ShelvingComboBox.SelectedItem;
+
+        // Создание нового объекта Product
+        Product = new Product
+        {
+            Name = ProductNameTextBox.Text.Trim(),
+            Material = selectedMaterial,
+            Shelving = selectedShelving,
+            Count = count,
+            Description = ProductDescriptionTextBox.Text.Trim(),
+            Width = width,
+            Height = height,
+            Length = length,
+            Weight = weight,
+            Price = price
+        };
+
+        GenerateAcceptanceAct(Product);
+
+        DialogResult = true;
+    }
+
+    private void GenerateAcceptanceAct(Product product)
+    {
+        // Создание страницы акта приема-передачи
+        var acceptanceActPage = new AcceptanceActPage(product)
+        {
+            DataContext = product
+        };
+
+        // Отображение страницы в диалоговом окне
+        var dialog = new Window
+        {
+            Content = acceptanceActPage,
+            SizeToContent = SizeToContent.WidthAndHeight,
+            ResizeMode = ResizeMode.NoResize,
+            Title = "Acceptance Act"
+        };
+
+        dialog.ShowDialog();
+    }
+
+    private void CancelButton_Click(object sender, RoutedEventArgs e)
+    {
+        DialogResult = false;
+    }
+
+    private void NumberTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+    {
+        foreach (var c in e.Text)
+            if (!char.IsDigit(c))
             {
-                MessageBox.Show("Имя продукта не может быть пустым.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
+                e.Handled = true; // Отменяем ввод символа, если он не является цифрой
+                break;
             }
+    }
 
-            // Проверка, что выбраны все обязательные поля
-            if (MaterialComboBox.SelectedItem == null ||
-                ShelvingComboBox.SelectedItem == null)
-            {
-                MessageBox.Show("Пожалуйста, выберите все необходимые поля.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
+    public string GetSupplierNameById(int supplierId)
+    {
+        var supplier = _dbContext.Supplies
+            .Where(s => s.SupplierId == supplierId)
+            .Select(s => s.Supplier.Name)
+            .FirstOrDefault();
+        return supplier ?? "Unknown";
+    }
 
-            // Проверка, что числовые поля введены корректно
-            if (!int.TryParse(ProductCountTextBox.Text, out int count) ||
-                !int.TryParse(ProductWidthTextBox.Text, out int width) ||
-                !int.TryParse(ProductHeightTextBox.Text, out int height) ||
-                !int.TryParse(ProductLengthTextBox.Text, out int length) ||
-                !int.TryParse(ProductWeightTextBox.Text, out int weight) ||
-                !int.TryParse(ProductPriceTextBox.Text, out int price))
-            {
-                MessageBox.Show("Введите корректные числовые значения для всех полей.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-
-            var selectedMaterial = (Material)MaterialComboBox.SelectedItem;
-            var selectedShelving = (Shelving)ShelvingComboBox.SelectedItem;
-
-            // Создание нового объекта Product
-            Product = new Product
-            {
-                Name = ProductNameTextBox.Text.Trim(),
-                Material = selectedMaterial,
-                Shelving = selectedShelving,
-                Count = count,
-                Description = ProductDescriptionTextBox.Text.Trim(),
-                Width = width,
-                Height = height,
-                Length = length,
-                Weight = weight,
-                Price = price
-            };
-
-            GenerateAcceptanceAct(Product);
-
-            DialogResult = true;
-        }
-
-        private void GenerateAcceptanceAct(Product product)
+    private void AddMaterialButton_Click(object sender, RoutedEventArgs e)
+    {
+        var addWindow = new AddMaterialModal();
+        if (addWindow.ShowDialog() == true)
         {
-            // Создание страницы акта приема-передачи
-            AcceptanceActPage acceptanceActPage = new AcceptanceActPage(product)
-            {
-                DataContext = product
-            };
+            var newMaterial = addWindow.Material;
+            _dbContext.Materials.Add(newMaterial);
+            _dbContext.SaveChanges();
 
-            // Отображение страницы в диалоговом окне
-            var dialog = new Window
-            {
-                Content = acceptanceActPage,
-                SizeToContent = SizeToContent.WidthAndHeight,
-                ResizeMode = ResizeMode.NoResize,
-                Title = "Acceptance Act"
-            };
-
-            dialog.ShowDialog();
-        }
-
-        private void CancelButton_Click(object sender, RoutedEventArgs e)
-        {
-            DialogResult = false;
-        }
-
-        private void NumberTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            foreach (char c in e.Text)
-            {
-                if (!char.IsDigit(c))
-                {
-                    e.Handled = true; // Отменяем ввод символа, если он не является цифрой
-                    break;
-                }
-            }
-        }
-
-        public string GetSupplierNameById(int supplierId)
-        {
-            var supplier = _dbContext.Supplies
-                                    .Where(s => s.SupplierId == supplierId)
-                                    .Select(s => s.Supplier.Name)
-                                    .FirstOrDefault();
-            return supplier ?? "Unknown";
-        }
-
-        private void AddMaterialButton_Click(object sender, RoutedEventArgs e)
-        {
-            var addWindow = new AddMaterialModal();
-            if (addWindow.ShowDialog() == true)
-            {
-                var newMaterial = addWindow.Material;
-                _dbContext.Materials.Add(newMaterial);
-                _dbContext.SaveChanges();
-
-                Materials.Add(newMaterial);
-                DataContext = null;
-                DataContext = this;
-            }
+            Materials.Add(newMaterial);
+            DataContext = null;
+            DataContext = this;
         }
     }
 }

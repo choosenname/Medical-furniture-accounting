@@ -1,106 +1,93 @@
-﻿using MedicalFurnitureAccounting.Models;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using MedicalFurnitureAccounting.Modals;
+using MedicalFurnitureAccounting.Models;
 
-namespace MedicalFurnitureAccounting.Pages
+namespace MedicalFurnitureAccounting.Pages;
+
+/// <summary>
+///     Логика взаимодействия для SupplierPage.xaml
+/// </summary>
+public partial class SupplierPage : Page
 {
-    /// <summary>
-    /// Логика взаимодействия для SupplierPage.xaml
-    /// </summary>
-    public partial class SupplierPage : Page
+    private readonly ApplicationDBContext _context;
+
+    public SupplierPage(ApplicationDBContext context)
     {
-        private readonly ApplicationDBContext _context;
+        InitializeComponent();
+        _context = context;
+        LoadCategories();
+    }
 
-        public ObservableCollection<Supplier> Suppliers { get; set; }
-        public ObservableCollection<Supply> Supplies { get; set; }
+    public ObservableCollection<Supplier> Suppliers { get; set; }
+    public ObservableCollection<Supply> Supplies { get; set; }
 
-        public SupplierPage(ApplicationDBContext context)
+    private void LoadCategories()
+    {
+        Suppliers = new ObservableCollection<Supplier>(_context.Suppliers.ToList());
+        Supplies = new ObservableCollection<Supply>(_context.Supplies.ToList());
+        DataContext = this;
+    }
+
+    private void AddSupplierButton_Click(object sender, RoutedEventArgs e)
+    {
+        var addWindow = new AddSupplierModal();
+        if (addWindow.ShowDialog() == true)
         {
-            InitializeComponent();
-            _context = context;
-            LoadCategories();
-        }
+            var name = addWindow.Name;
+            var phone = addWindow.Phone;
+            var email = addWindow.Email;
+            var registrationNumber = addWindow.RegistrationNumber;
+            var addres = addWindow.Addres;
+            var country = addWindow.Country;
 
-        private void LoadCategories()
-        {
-            Suppliers = new ObservableCollection<Supplier>(_context.Suppliers.ToList());
-            Supplies = new ObservableCollection<Supply>(_context.Supplies.ToList());
+            var newModel = new Supplier(name, phone, email,
+                registrationNumber, addres, country);
+            _context.Suppliers.Add(newModel);
+            _context.SaveChanges();
+
+            Suppliers.Add(newModel);
+            DataContext = null;
             DataContext = this;
         }
+    }
 
-        private void AddSupplierButton_Click(object sender, RoutedEventArgs e)
+
+    private void DeleteSupplierButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (sender is Button button && button.Tag is int supplierId)
         {
-            var addWindow = new AddSupplierModal();
-            if (addWindow.ShowDialog() == true)
+            var supplierToDelete = Suppliers.FirstOrDefault(p => p.SupplierId == supplierId);
+            if (supplierToDelete != null)
             {
-                string name = addWindow.Name;
-                string phone = addWindow.Phone;
-                string email =addWindow.Email;
-                string registrationNumber = addWindow.RegistrationNumber;
-                string addres = addWindow.Addres;
-                string country = addWindow.Country;
-
-                var newModel = new Supplier(name: name, phone: phone, email: email,
-                    registrationNumber: registrationNumber, addres: addres, country: country);
-                _context.Suppliers.Add(newModel);
-                _context.SaveChanges();
-
-                Suppliers.Add(newModel);
-                DataContext = null;
-                DataContext = this;
-            }
-        }
-
-
-        private void DeleteSupplierButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (sender is Button button && button.Tag is int supplierId)
-            {
-                var supplierToDelete = Suppliers.FirstOrDefault(p => p.SupplierId == supplierId);
-                if (supplierToDelete != null)
+                var result = MessageBox.Show($"Вы уверены, что хотите удалить поставщика '{supplierToDelete.Name}'?",
+                    "Подтверждение удаления", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                if (result == MessageBoxResult.Yes)
                 {
-                    var result = MessageBox.Show($"Вы уверены, что хотите удалить поставщика '{supplierToDelete.Name}'?", "Подтверждение удаления", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-                    if (result == MessageBoxResult.Yes)
-                    {
-                        // Remove from database
-                        _context.Suppliers.Remove(supplierToDelete);
-                        _context.SaveChanges();
+                    // Remove from database
+                    _context.Suppliers.Remove(supplierToDelete);
+                    _context.SaveChanges();
 
-                        // Remove from observable collection
-                        Suppliers.Remove(supplierToDelete);
-                    }
+                    // Remove from observable collection
+                    Suppliers.Remove(supplierToDelete);
                 }
             }
         }
+    }
 
-        private void AddSupplyButton_Click(object sender, RoutedEventArgs e)
+    private void AddSupplyButton_Click(object sender, RoutedEventArgs e)
+    {
+        var addWindow = new AddSupplyModal(_context);
+        if (addWindow.ShowDialog() == true)
         {
-            var addWindow = new AddSupplyModal(_context);
-            if (addWindow.ShowDialog() == true)
-            {
-                var newModel = addWindow.Supply;
-                _context.Supplies.Add(newModel);
-                _context.SaveChanges();
+            var newModel = addWindow.Supply;
+            _context.Supplies.Add(newModel);
+            _context.SaveChanges();
 
-                Supplies.Add(newModel);
-                DataContext = null;
-                DataContext = this;
-            }
+            Supplies.Add(newModel);
+            DataContext = null;
+            DataContext = this;
         }
     }
 }

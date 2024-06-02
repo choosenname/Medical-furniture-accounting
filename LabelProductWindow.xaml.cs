@@ -1,66 +1,52 @@
-﻿using MedicalFurnitureAccounting.Models;
-using MedicalFurnitureAccounting.Pages;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Office.Interop.Word;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Globalization;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using MedicalFurnitureAccounting.Models;
 
-namespace MedicalFurnitureAccounting
+namespace MedicalFurnitureAccounting;
+
+/// <summary>
+///     Логика взаимодействия для LabelProduct.xaml
+/// </summary>
+public partial class LabelProductWindow
 {
-    /// <summary>
-    /// Логика взаимодействия для LabelProduct.xaml
-    /// </summary>
-    public partial class LabelProductWindow : System.Windows.Window
+    private readonly Storekeeper _user;
+
+    public LabelProductWindow(Product product, Storekeeper user)
     {
-        public Product Product { get; set; }
-        private readonly Storekeeper user;
+        InitializeComponent();
+        Product = product;
+        DataContext = Product;
+        this._user = user;
+    }
 
-        public LabelProductWindow(Product product, Storekeeper user)
+    public Product Product { get; set; }
+
+    private void Button_Click(object sender, RoutedEventArgs e)
+    {
+        var helper = new WordHalper("Lable.doc");
+
+        var suppply = Product.Suppply.LastOrDefault();
+
+        var items = new Dictionary<string, string>
         {
-            InitializeComponent();
-            Product = product;
-            DataContext = Product;
-            this.user = user;
-        }
+            { "<NAME>", Product.Name },
+            { "<COUNT>", Product.Count.ToString() },
+            { "<MATERIAL>", Product.Material.Name },
+            { "<CATEGORY>", Product.Category.Name },
+            { "<ID>", Product.ProductId.ToString() },
+            { "<ORGANIZATION>", suppply?.Supplier.Name ?? "" },
+            { "<ADDRESS>", suppply?.Supplier.Addres ?? "" },
+            { "<PHONE>", suppply?.Supplier.Phone ?? "" },
+            { "<EMAIL>", suppply?.Supplier.Email ?? "" },
+            { "<WIDTH>", Product.Width.ToString() },
+            { "<LENGTH>", Product.Length.ToString() },
+            { "<HEIGHT>", Product.Height.ToString() },
+            { "<WEIGHT>", Product.Weight.ToString() },
+            { "<PRICE>", Product.Price.ToString() },
+            { "<USER_NAME>", _user.Name },
+            { "<DATE_NOW>", DateTime.Now.ToString(CultureInfo.InvariantCulture) }
+        };
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            var helper = new WordHalper("Lable.doc");
-
-            var Suppply = Product.Suppply.LastOrDefault();
-
-            var items = new Dictionary<string, string>
-            {
-                {"<NAME>", Product.Name  },
-                { "<COUNT>", Product.Count.ToString()},
-                { "<MATERIAL>",Product.Material.Name},
-                { "<CATEGORY>", Product.Category.Name},
-                { "<ID>", Product.ProductId.ToString()},
-                { "<ORGANIZATION>", Suppply.Supplier.Name},
-                { "<ADRESS>", Suppply.Supplier.Addres},
-                { "<PHONE>", Suppply.Supplier.Phone},
-                { "<EMAIL>", Suppply.Supplier.Email},
-                { "<WIDTH>", Product.Width.ToString()},
-                { "<LENGTH>", Product.Length.ToString()},
-                { "<HEIGHT>", Product.Height.ToString()},
-                { "<WEIGHT>", Product.Weight.ToString()},
-                { "<PRICE>", Product.Price.ToString()},
-                { "<USER_NAME>", user.Name },
-                { "<DATE_NOW>", DateTime.Now.ToString() },
-            };
-
-            helper.Process(items);
-        }
+        helper.Process(items);
     }
 }

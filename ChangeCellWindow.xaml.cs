@@ -1,57 +1,47 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using System.Windows;
+using MedicalFurnitureAccounting.Models;
 
-namespace MedicalFurnitureAccounting
+namespace MedicalFurnitureAccounting;
+
+/// <summary>
+///     Логика взаимодействия для ChangeCellWindow.xaml
+/// </summary>
+public partial class ChangeCellWindow
 {
-    /// <summary>
-    /// Логика взаимодействия для ChangeCellWindow.xaml
-    /// </summary>
-    public partial class ChangeCellWindow : Window
+    private readonly ApplicationDBContext _dbContext;
+
+    public ChangeCellWindow(ApplicationDBContext dbContext)
     {
-        public int? NewCellId { get; private set; }
-        private readonly ApplicationDBContext _dbContext;
+        InitializeComponent();
+        _dbContext = dbContext;
+        LoadCells();
+    }
 
-        public ChangeCellWindow(ApplicationDBContext dbContext)
-        {
-            InitializeComponent();
-            _dbContext = dbContext;
-            LoadCells();
-        }
+    public int? NewCellId { get; private set; }
 
-        private void SaveButton_Click(object sender, RoutedEventArgs e)
+    private void SaveButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (CellComboBox.SelectedItem != null)
         {
-            if (CellComboBox.SelectedItem != null)
-            {
-                NewCellId = ((Models.Cell)CellComboBox.SelectedItem).CellId;
-                DialogResult = true;
-            }
-            else
-            {
-                MessageBox.Show("Пожалуйста, выберите корректную ячейку.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            NewCellId = ((Cell)CellComboBox.SelectedItem).CellId;
+            DialogResult = true;
         }
+        else
+        {
+            MessageBox.Show("Пожалуйста, выберите корректную ячейку.", "Ошибка", MessageBoxButton.OK,
+                MessageBoxImage.Error);
+        }
+    }
 
-        private void LoadCells()
-        {
-            var cells = _dbContext.Cell.ToList();
-            CellComboBox.ItemsSource = cells;
-            CellComboBox.DisplayMemberPath = "Number";
-        }
+    private void LoadCells()
+    {
+        var cells = _dbContext.Cell.ToList();
+        CellComboBox.ItemsSource = cells;
+        CellComboBox.DisplayMemberPath = "Number";
+    }
 
-        private void CancelButton_Click(object sender, RoutedEventArgs e)
-        {
-            DialogResult = false;
-        }
+    private void CancelButton_Click(object sender, RoutedEventArgs e)
+    {
+        DialogResult = false;
     }
 }

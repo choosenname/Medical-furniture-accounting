@@ -14,9 +14,6 @@ public class Supply
 
     public int CountTotalProductCount
     {
-        get
-        {
-            return Products.Sum(product => product.Count);
-        }
+        get { return Products.Sum(product => product.Count); }
     }
 }

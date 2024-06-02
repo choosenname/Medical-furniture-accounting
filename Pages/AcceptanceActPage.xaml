@@ -4,49 +4,53 @@
       Title="Acceptance Act">
     <Grid Background="White" Width="800" Height="600">
         <!-- Заголовок -->
-        <TextBlock Text="Акт приема-передачи" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,20"/>
+        <TextBlock Text="Акт приема-передачи" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center"
+                   Margin="0,20" />
 
         <!-- Таблица с данными -->
         <Grid Margin="60">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
             <!-- Данные акта -->
             <!-- Остальные TextBlock'и оставляем без изменений -->
-            <TextBlock Text="Дата:" FontSize="16" FontWeight="Bold" Grid.Row="0"/>
-            <TextBlock Text="{Binding Suppply.Date}" FontSize="16" Grid.Row="0" Grid.Column="1"/>
-            <TextBlock Text="Наименование товара:" FontSize="16" FontWeight="Bold" Grid.Row="1"/>
-            <TextBlock Text="{Binding Name}" FontSize="16" Grid.Row="1" Grid.Column="1"/>
-            <TextBlock Text="Количество:" FontSize="16" FontWeight="Bold" Grid.Row="2"/>
-            <TextBlock Text="{Binding Count}" FontSize="16" Grid.Row="2" Grid.Column="1"/>
-            <TextBlock Text="Категория:" FontSize="16" FontWeight="Bold" Grid.Row="4"/>
-            <TextBlock Text="{Binding Category.Name}" FontSize="16" Grid.Row="4" Grid.Column="1"/>
-            <TextBlock Text="Поставщик:" FontSize="16" FontWeight="Bold" Grid.Row="5"/>
-            <TextBlock Text="{Binding LastSupply.Supplier.Name}" FontSize="16" Grid.Row="5" Grid.Column="1"/>
+            <TextBlock Text="Дата:" FontSize="16" FontWeight="Bold" Grid.Row="0" />
+            <TextBlock Text="{Binding Suppply.Date}" FontSize="16" Grid.Row="0" Grid.Column="1" />
+            <TextBlock Text="Наименование товара:" FontSize="16" FontWeight="Bold" Grid.Row="1" />
+            <TextBlock Text="{Binding Name}" FontSize="16" Grid.Row="1" Grid.Column="1" />
+            <TextBlock Text="Количество:" FontSize="16" FontWeight="Bold" Grid.Row="2" />
+            <TextBlock Text="{Binding Count}" FontSize="16" Grid.Row="2" Grid.Column="1" />
+            <TextBlock Text="Категория:" FontSize="16" FontWeight="Bold" Grid.Row="4" />
+            <TextBlock Text="{Binding Category.Name}" FontSize="16" Grid.Row="4" Grid.Column="1" />
+            <TextBlock Text="Поставщик:" FontSize="16" FontWeight="Bold" Grid.Row="5" />
+            <TextBlock Text="{Binding LastSupply.Supplier.Name}" FontSize="16" Grid.Row="5" Grid.Column="1" />
 
             <!-- Подпись -->
-            <TextBlock Text="Подпись получателя:" FontSize="16" FontWeight="Bold" Grid.Row="7" Margin="0,20"/>
-            <Border Grid.Row="7" Grid.Column="1" Margin="10,0" BorderThickness="0,0,0,1" BorderBrush="Black" Width="120" HorizontalAlignment="Left">
-            </Border>
+            <TextBlock Text="Подпись получателя:" FontSize="16" FontWeight="Bold" Grid.Row="7" Margin="0,20" />
+            <Border Grid.Row="7" Grid.Column="1" Margin="10,0" BorderThickness="0,0,0,1" BorderBrush="Black"
+                    Width="120" HorizontalAlignment="Left" />
 
             <!-- Кнопки -->
-            <StackPanel Grid.Row="8" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20">
-                <Button Content="Закрыть" Width="100" Margin="10" Style="{StaticResource ButtonStyle}" Click="CloseButton_Click"/>
-                <Button Content="Экспорт в  Word" Width="150" Margin="10" Style="{StaticResource ButtonStyle}" Click="ExportAcceptanceAct_Click"/>
+            <StackPanel Grid.Row="8" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center"
+                        Margin="0,20">
+                <Button Content="Закрыть" Width="100" Margin="10" Style="{StaticResource ButtonStyle}"
+                        Click="CloseButton_Click" />
+                <Button Content="Экспорт в  Word" Width="150" Margin="10" Style="{StaticResource ButtonStyle}"
+                        Click="ExportAcceptanceAct_Click" />
             </StackPanel>
 
         </Grid>

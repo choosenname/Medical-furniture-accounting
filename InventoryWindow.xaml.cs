@@ -1,8 +1,4 @@
-﻿using System.IO;
-using System.Windows;
-using DocumentFormat.OpenXml;
-using DocumentFormat.OpenXml.Packaging;
-using DocumentFormat.OpenXml.Wordprocessing;
+﻿using System.Windows;
 using MedicalFurnitureAccounting.Models;
 
 namespace MedicalFurnitureAccounting;
@@ -35,11 +31,11 @@ public partial class InventoryWindow : Window
         var sum = Products.Sum(p => p.Count * p.Material.Price);
 
         var items = new Dictionary<string, string>
-            {
-                {"<DATE>", DateTime.Now.ToString("dd-MM-yyyy")  },
-                { "<NAME>", user.Name},
-                { "<SUM>", sum.ToString()},
-            };
+        {
+            { "<DATE>", DateTime.Now.ToString("dd-MM-yyyy") },
+            { "<NAME>", user.Name },
+            { "<SUM>", sum.ToString() }
+        };
 
         helper.AddTableAndReplaceData(items, Products);
     }
