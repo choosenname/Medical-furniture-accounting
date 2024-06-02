@@ -4,8 +4,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         mc:Ignorable="d"
-        Title="ChangeRoomModal" Height="170" Width="300">
-    <StackPanel>
+        Title="ChangeRoomModal">
+    <StackPanel Margin="10">
         <Label Content="Смена комнаты" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" />
         <Label Content="Введите новую комнату:" Margin="5" />
         <TextBox x:Name="NewRoomTextBox" Style="{StaticResource TextBoxStyle}" Margin="5" />

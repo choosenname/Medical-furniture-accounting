@@ -4,8 +4,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         mc:Ignorable="d"
-        Title="AddShelvingModal" Height="300" Width="300">
-    <StackPanel>
+        Title="AddShelvingModal">
+    <StackPanel Margin="10">
         <Label Content="Добавление стеллажа" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" />
         <Label Content="Максимальный вес:" Margin="0 10 0 0" />
         <TextBox x:Name="MaxWeightTextBox" Style="{StaticResource TextBoxStyle}" Margin="10"

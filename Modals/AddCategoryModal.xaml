@@ -4,8 +4,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         mc:Ignorable="d"
-        Title="AddCategoryModal" Height="200" Width="300">
-    <StackPanel>
+        Title="AddCategoryModal">
+    <StackPanel Margin="10">
         <Label Content="Добавление категории" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" />
 
         <!-- Применение стиля к Label -->

@@ -4,8 +4,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         mc:Ignorable="d"
-        Title="AddProductModal" Height="550" Width="300">
-    <StackPanel>
+        Title="AddProductModal">
+    <StackPanel Margin="10">
         <ScrollViewer CanContentScroll="True" Height="500">
             <StackPanel>
                 <Label Content="Добавление товара" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" />
