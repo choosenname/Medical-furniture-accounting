@@ -30,7 +30,7 @@ public partial class LabelProductWindow
         var items = new Dictionary<string, string>
         {
             { "<NAME>", Product.Name },
-            { "<COUNT>", Product.Count.ToString() },
+            { "<COUNT>", suppply?.Count.ToString() ?? "" },
             { "<MATERIAL>", Product.Material.Name },
             { "<CATEGORY>", Product.Category.Name },
             { "<ID>", Product.ProductId.ToString() },

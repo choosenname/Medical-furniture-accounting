@@ -76,7 +76,7 @@ public partial class AddShelvingModal : Window
         if (addWindow.ShowDialog() == true)
         {
             var name = addWindow.Number;
-            var newModel = new Cell() { Number = name };
+            var newModel = new Cell(number: name );
             _dbContext.Cell.Add(newModel);
             _dbContext.SaveChanges();
 

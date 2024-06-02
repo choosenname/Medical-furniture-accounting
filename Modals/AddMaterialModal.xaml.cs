@@ -33,10 +33,10 @@ public partial class AddMaterialModal : Window
 
         // Создание нового объекта Material
         Material = new Material
-        {
-            Name = MaterialNameTextBox.Text.Trim(),
-            Price = price
-        };
+        (
+            MaterialNameTextBox.Text.Trim(),
+            price
+        );
 
         DialogResult = true;
     }

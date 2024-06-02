@@ -32,7 +32,7 @@ public partial class AcceptanceActPage : Page
             { "<DATE_NOW>", DateTime.Now.ToString("dd-MM-yyyy HH:mm") },
             { "<SUPPLIER>", _product.LastSupply.Supplier.Name },
             { "<NAME>", _product.Name },
-            { "<COUNT>", _product.Count.ToString() },
+            { "<COUNT>", _product.LastSupply.Count.ToString() },
             { "<NUM>", _product.LastSupply.SupplyId.ToString() },
             { "<DATE>", _product.LastSupply.Date.ToString("dd-MM-yyyy HH:mm") }
         };

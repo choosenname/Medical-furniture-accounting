@@ -2,7 +2,14 @@
 
 public class Shelving
 {
+    public Shelving(int maxWeight, Cell cell)
+    {
+        MaxWeight = maxWeight;
+        Cell = cell;
+    }
+
     public int ShelvingId { get; set; }
+
     public int MaxWeight { get; set; }
 
     public int CellId { get; set; }

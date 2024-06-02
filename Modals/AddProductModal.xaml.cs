@@ -69,18 +69,17 @@ public partial class AddProductModal : Window
 
         // Создание нового объекта Product
         Product = new Product
-        {
-            Name = ProductNameTextBox.Text.Trim(),
-            Material = selectedMaterial,
-            Shelving = selectedShelving,
-            Count = count,
-            Description = ProductDescriptionTextBox.Text.Trim(),
-            Width = width,
-            Height = height,
-            Length = length,
-            Weight = weight,
-            Price = price
-        };
+        (
+            name: ProductNameTextBox.Text.Trim(),
+            material: selectedMaterial,
+            shelving: selectedShelving,
+            description: ProductDescriptionTextBox.Text.Trim(),
+            width: width,
+            height: height,
+            length: length,
+            weight: weight,
+            price: price
+        );
 
         GenerateAcceptanceAct(Product);
 
@@ -166,7 +165,7 @@ public partial class AddProductModal : Window
         {
             var name = addWindow.MaxWeight;
             var cell = addWindow.Cell;
-            var newModel = new Shelving() { MaxWeight = name, Cell = cell };
+            var newModel = new Shelving( maxWeight: name, cell: cell );
             _dbContext.Shelving.Add(newModel);
             _dbContext.SaveChanges();
 

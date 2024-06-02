@@ -2,10 +2,23 @@
 
 public class Product
 {
-    public int ProductId { get; set; }
-    public string Name { get; set; }
+    public Product(string name, string description, int width, int height, int length, int weight,
+        int price, Material material, Shelving shelving)
+    {
+        Name = name;
+        Description = description;
+        Width = width;
+        Height = height;
+        Length = length;
+        Weight = weight;
+        Price = price;
+        Material = material;
+        Shelving = shelving;
+    }
 
-    public int Count { get; set; }
+    public int ProductId { get; set; }
+
+    public string Name { get; set; }
 
     public string Description { get; set; }
 

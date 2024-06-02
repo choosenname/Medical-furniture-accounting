@@ -136,7 +136,7 @@ internal class WordHalper
             {
                 table.Cell(rowIndex, 1).Range.Text = product.ProductId.ToString();
                 table.Cell(rowIndex, 2).Range.Text = product.Name;
-                table.Cell(rowIndex, 3).Range.Text = product.Count.ToString();
+                table.Cell(rowIndex, 3).Range.Text = "  ";//TODO fix it
                 table.Cell(rowIndex, 4).Range.Text = product.Material.Price.ToString();
                 table.Cell(rowIndex, 5).Range.Text = product.ShelvingId.ToString();
                 rowIndex++;

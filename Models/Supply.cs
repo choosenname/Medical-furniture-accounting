@@ -2,7 +2,15 @@
 
 public class Supply
 {
+    public Supply(DateTime date, int count, Supplier supplier)
+    {
+        Date = date;
+        Count = count;
+        Supplier = supplier;
+    }
+
     public int SupplyId { get; set; }
+
     public DateTime Date { get; set; }
 
     public int Count { get; set; }
@@ -11,9 +19,4 @@ public class Supply
     public virtual Supplier Supplier { get; set; }
 
     public virtual ICollection<Product> Products { get; set; }
-
-    public int CountTotalProductCount
-    {
-        get { return Products.Sum(product => product.Count); }
-    }
 }

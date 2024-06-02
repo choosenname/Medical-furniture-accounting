@@ -65,10 +65,11 @@ public partial class AddSupplyModal : Window
         var selectedSupplier = (Supplier)SupplierComboBox.SelectedItem;
 
         Supply = new Supply
-        {
-            Date = (DateTime)DatePicker.Value,
-            Supplier = selectedSupplier
-        };
+        (
+            date: (DateTime)DatePicker.Value,
+            count: 0, //TODO: fix it
+            supplier: selectedSupplier
+        );
 
         DialogResult = true;
     }
@@ -86,7 +87,7 @@ public partial class AddSupplyModal : Window
             var categoryName = addCategoryWindow.CategoryName;
             var allowedPrice = addCategoryWindow.Allowance;
 
-            var newCategory = new Category { Name = categoryName, Allowance = allowedPrice };
+            var newCategory = new Category(name: categoryName);
             _dbContext.Categories.Add(newCategory);
             _dbContext.SaveChanges();
 

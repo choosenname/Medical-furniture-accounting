@@ -32,11 +32,6 @@ public partial class ProductsPage : Page
     public ObservableCollection<Cell> Cell { get; set; }
     public ObservableCollection<Supply> Supplies { get; set; }
 
-    public int TotalProductCount
-    {
-        get { return Products.Sum(product => product.Count); }
-    }
-
     private void LoadCategories()
     {
         Products = new ObservableCollection<Product>(_context.Products.ToList());
@@ -46,16 +41,7 @@ public partial class ProductsPage : Page
         Cell = new ObservableCollection<Cell>(_context.Cell.ToList());
         Supplies = new ObservableCollection<Supply>(_context.Supplies.ToList());
 
-        Products.CollectionChanged += (sender, e) => { OnPropertyChanged(nameof(TotalProductCount)); };
-
         DataContext = this;
-    }
-
-    public event PropertyChangedEventHandler PropertyChanged;
-
-    protected void OnPropertyChanged(string propertyName)
-    {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 
     private void SearchButton_Click(object sender, RoutedEventArgs e)
@@ -135,27 +121,6 @@ public partial class ProductsPage : Page
         {
             view.SortDescriptions.Clear();
             view.SortDescriptions.Add(new SortDescription("MaxWeight", ListSortDirection.Ascending));
-        }
-    }
-
-    private void ChangeCountButton_Click(object sender, RoutedEventArgs e)
-    {
-        if (sender is Button button && button.Tag is int productId)
-        {
-            var productToUpdate = Products.FirstOrDefault(p => p.ProductId == productId);
-            if (productToUpdate != null)
-            {
-                var changeCountWindow = new ChangeCountWindow();
-                if (changeCountWindow.ShowDialog() == true)
-                    if (changeCountWindow.NewCount.HasValue)
-                    {
-                        productToUpdate.Count = changeCountWindow.NewCount.Value;
-                        _context.SaveChanges();
-                        productsListView.Items.Refresh();
-                        MessageBox.Show("Количество товара успешно обновлено.", "Успех", MessageBoxButton.OK,
-                            MessageBoxImage.Information);
-                    }
-            }
         }
     }
 
