@@ -141,6 +141,28 @@ public partial class AddSupplyModal : Window
         }
     }
 
+    private void DeleteSupplierButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (SupplierComboBox.SelectedItem == null)
+        {
+            MessageBox.Show("Пожалуйста, выберите поставщика.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            return;
+        }
+
+        var selectedSupplier = (Supplier)SupplierComboBox.SelectedItem;
+
+        var result = MessageBox.Show($"Вы уверены, что хотите удалить поставщика '{selectedSupplier.Name}'?",
+            "Подтверждение удаления", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+        if (result == MessageBoxResult.Yes)
+        {
+            _dbContext.Suppliers.Remove(selectedSupplier);
+            _dbContext.SaveChanges();
+
+            Suppliers.Remove(selectedSupplier);
+        }
+    }
+
     private void AddProductButton_Click(object sender, RoutedEventArgs e)
     {
         var addWindow = new AddProductModal(_dbContext);
@@ -155,6 +177,28 @@ public partial class AddSupplyModal : Window
 
             DataContext = null;
             DataContext = this;
+        }
+    }
+
+    private void DeleteProductButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (ProductComboBox.SelectedItem == null)
+        {
+            MessageBox.Show("Пожалуйста, выберите товар.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            return;
+        }
+
+        var selectedProduct = (Product)ProductComboBox.SelectedItem;
+
+        var result = MessageBox.Show($"Вы уверены, что хотите удалить товар '{selectedProduct.Name}'?",
+            "Подтверждение удаления", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+        if (result == MessageBoxResult.Yes)
+        {
+            _dbContext.Products.Remove(selectedProduct);
+            _dbContext.SaveChanges();
+
+            Products.Remove(selectedProduct);
         }
     }
 }
