@@ -5,12 +5,12 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       mc:Ignorable="d"
       Title="SupplierPage">
-    <StackPanel>
+    <StackPanel Margin="10">
         <Button Content="Добавить поставку" Click="AddSupplyButton_Click"
                 Style="{StaticResource ButtonStyle}"
                 Height="40" />
 
-        <ListView ItemsSource="{Binding Supplies}" Margin="10" Height="350">
+        <ListView ItemsSource="{Binding Supplies}" Margin="10" Height="350" Width="1000">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Номер поставки" DisplayMemberBinding="{Binding SupplyId}" />

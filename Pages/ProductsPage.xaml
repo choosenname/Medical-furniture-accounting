@@ -20,9 +20,6 @@
                 </Button.RenderTransform>
             </Button>
 
-            <ComboBox x:Name="productsFilterComboBox" Style="{StaticResource ComboBoxStyle}"
-                      SelectionChanged="ProductsFilterComboBox_SelectionChanged" />
-
             <Button Content="Инвентаризация" Click="ShowInventoryList_Click"
                     Style="{StaticResource ButtonStyle}" />
 

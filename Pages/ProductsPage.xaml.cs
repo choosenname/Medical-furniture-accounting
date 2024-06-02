@@ -14,14 +14,14 @@ namespace MedicalFurnitureAccounting.Pages;
 public partial class ProductsPage : Page
 {
     private readonly ApplicationDBContext _context;
-    private readonly Storekeeper user;
+    private readonly Storekeeper _user;
 
 
     public ProductsPage(ApplicationDBContext context, Storekeeper user)
     {
         InitializeComponent();
         _context = context;
-        this.user = user;
+        this._user = user;
         LoadCategories();
     }
 
@@ -40,7 +40,6 @@ public partial class ProductsPage : Page
     private void LoadCategories()
     {
         Products = new ObservableCollection<Product>(_context.Products.ToList());
-        FillProductFilterComboBox();
         Categories = new ObservableCollection<Category>(_context.Categories.ToList());
         Materials = new ObservableCollection<Material>(_context.Materials.ToList());
         Shelving = new ObservableCollection<Shelving>(_context.Shelving.ToList());
@@ -105,7 +104,7 @@ public partial class ProductsPage : Page
                         productToUpdate.ShelvingId = changeShelvingWindow.NewShelvingId.Value;
                         _context.SaveChanges();
                         productsListView.Items.Refresh();
-                        MessageBox.Show("Номер стелажа успешно обновлен.", "Успех", MessageBoxButton.OK,
+                        MessageBox.Show("Номер стеллажа успешно обновлен.", "Успех", MessageBoxButton.OK,
                             MessageBoxImage.Information);
                     }
             }
@@ -139,35 +138,6 @@ public partial class ProductsPage : Page
         }
     }
 
-    private void FillProductFilterComboBox()
-    {
-        using (var context = new ApplicationDBContext()) // Поменяйте ApplicationDBContext на ваш контекст базы данных
-        {
-            var productNames = context.Products.Select(product => product.Name).ToList();
-            productsFilterComboBox.ItemsSource = productNames;
-        }
-    }
-
-    private void ProductsFilterComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-    {
-        var selectedMaterial = productsFilterComboBox.SelectedItem as string;
-
-        var view = CollectionViewSource.GetDefaultView(productsListView.ItemsSource);
-        if (view != null)
-        {
-            if (!string.IsNullOrEmpty(selectedMaterial))
-                view.Filter = item =>
-                {
-                    if (item is Product itemType) // Замените YourItemType на ваш тип данных для элементов списка
-                        return itemType.Name.Equals(
-                            selectedMaterial); // Здесь нужно заменить на свойство, по которому вы хотите фильтровать
-                    return false;
-                };
-            else
-                view.Filter = null; // Если материал не выбран, отключаем фильтрацию
-        }
-    }
-
     private void ChangeCountButton_Click(object sender, RoutedEventArgs e)
     {
         if (sender is Button button && button.Tag is int productId)
@@ -191,7 +161,7 @@ public partial class ProductsPage : Page
 
     private void ShowInventoryList_Click(object sender, RoutedEventArgs e)
     {
-        var inventoryWindow = new InventoryWindow(_context, user);
+        var inventoryWindow = new InventoryWindow(_context, _user);
         inventoryWindow.ShowDialog();
     }
 
@@ -200,7 +170,7 @@ public partial class ProductsPage : Page
         var button = (Button)sender;
         var productId = (int)button.Tag;
         var productToUpdate = Products.FirstOrDefault(p => p.ProductId == productId);
-        var newWindow = new LabelProductWindow(productToUpdate, user);
+        var newWindow = new LabelProductWindow(productToUpdate, _user);
         newWindow.ShowDialog();
     }
 }

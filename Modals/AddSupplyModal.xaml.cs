@@ -49,7 +49,6 @@ public partial class AddSupplyModal : Window
 
     private void AddButton_Click(object sender, RoutedEventArgs e)
     {
-        // Проверка, что дата выбрана
         if (DatePicker.Value == null)
         {
             MessageBox.Show("Пожалуйста, выберите дату поставки.", "Ошибка", MessageBoxButton.OK,
@@ -57,17 +56,14 @@ public partial class AddSupplyModal : Window
             return;
         }
 
-        // Проверка, что выбран поставщик
         if (SupplierComboBox.SelectedItem == null)
         {
             MessageBox.Show("Пожалуйста, выберите поставщика.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             return;
         }
 
-        // Получаем выбранного поставщика из ComboBox
         var selectedSupplier = (Supplier)SupplierComboBox.SelectedItem;
 
-        // Создаем новую поставку
         Supply = new Supply
         {
             Date = (DateTime)DatePicker.Value,
@@ -80,6 +76,46 @@ public partial class AddSupplyModal : Window
     private void CancelButton_Click(object sender, RoutedEventArgs e)
     {
         DialogResult = false;
+    }
+
+    private void AddCategoryButton_Click(object sender, RoutedEventArgs e)
+    {
+        var addCategoryWindow = new AddCategoryModal();
+        if (addCategoryWindow.ShowDialog() == true)
+        {
+            var categoryName = addCategoryWindow.CategoryName;
+            var allowedPrice = addCategoryWindow.Allowance;
+
+            var newCategory = new Category { Name = categoryName, Allowance = allowedPrice };
+            _dbContext.Categories.Add(newCategory);
+            _dbContext.SaveChanges();
+
+            Categories.Add(newCategory);
+            DataContext = null;
+            DataContext = this;
+        }
+    }
+
+    private void DeleteCategoryButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (CategoryComboBox.SelectedItem == null)
+        {
+            MessageBox.Show("Пожалуйста, выберите категорию.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            return;
+        }
+
+        var selectedCategory = (Category)CategoryComboBox.SelectedItem;
+
+        var result = MessageBox.Show($"Вы уверены, что хотите удалить категорию '{selectedCategory.Name}'?",
+            "Подтверждение удаления", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+        if (result == MessageBoxResult.Yes)
+        {
+            _dbContext.Categories.Remove(selectedCategory);
+            _dbContext.SaveChanges();
+
+            Categories.Remove(selectedCategory);
+        }
     }
 
     private void AddSupplierButton_Click(object sender, RoutedEventArgs e)
@@ -100,24 +136,6 @@ public partial class AddSupplyModal : Window
             _dbContext.SaveChanges();
 
             Suppliers.Add(newModel);
-            DataContext = null;
-            DataContext = this;
-        }
-    }
-
-    private void AddCategoryButton_Click(object sender, RoutedEventArgs e)
-    {
-        var addCategoryWindow = new AddCategoryModal();
-        if (addCategoryWindow.ShowDialog() == true)
-        {
-            var categoryName = addCategoryWindow.CategoryName;
-            var allowedPrice = addCategoryWindow.Allowance;
-
-            var newCategory = new Category { Name = categoryName, Allowance = allowedPrice };
-            _dbContext.Categories.Add(newCategory);
-            _dbContext.SaveChanges();
-
-            Categories.Add(newCategory);
             DataContext = null;
             DataContext = this;
         }
