@@ -24,25 +24,7 @@ namespace MedicalFurnitureAccounting.Modals
                 return;
             }
 
-            // Пытаемся преобразовать текст из AllowanceNameTextBox в double
-            if (double.TryParse(AllowanceNameTextBox.Text, out double allowance))
-            {
-                // Проверка, что значение надбавки находится в допустимом диапазоне
-                if (allowance < 0)
-                {
-                    MessageBox.Show("Надбавка не может быть отрицательной.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return;
-                }
-
-                Allowance = allowance;
-                // Закрываем окно
-                DialogResult = true;
-            }
-            else
-            {
-                // Обработка ошибки: введено недопустимое значение
-                MessageBox.Show("Введите корректное числовое значение для надбавки.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            DialogResult = true;
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)

@@ -11,9 +11,6 @@
         <!-- Применение стиля к Label -->
         <Label Content="Название категории:" Margin="0 10 0 0"/>
         <TextBox x:Name="CategoryNameTextBox" Margin="10" Style="{StaticResource TextBoxStyle}"/>
-        <Label Content="Надбавка:" Margin="0 10 0 0"/>
-        <TextBox x:Name="AllowanceNameTextBox" Margin="10" Style="{StaticResource TextBoxStyle}"/>
-
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
             <!-- Применение стиля к Button -->
