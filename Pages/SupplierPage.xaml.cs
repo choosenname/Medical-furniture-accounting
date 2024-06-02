@@ -20,57 +20,32 @@ public partial class SupplierPage : Page
         LoadCategories();
     }
 
-    public ObservableCollection<Supplier> Suppliers { get; set; }
     public ObservableCollection<Supply> Supplies { get; set; }
 
     private void LoadCategories()
     {
-        Suppliers = new ObservableCollection<Supplier>(_context.Suppliers.ToList());
         Supplies = new ObservableCollection<Supply>(_context.Supplies.ToList());
         DataContext = this;
-    }
-
-    private void AddSupplierButton_Click(object sender, RoutedEventArgs e)
-    {
-        var addWindow = new AddSupplierModal();
-        if (addWindow.ShowDialog() == true)
-        {
-            var name = addWindow.Name;
-            var phone = addWindow.Phone;
-            var email = addWindow.Email;
-            var registrationNumber = addWindow.RegistrationNumber;
-            var addres = addWindow.Addres;
-            var country = addWindow.Country;
-
-            var newModel = new Supplier(name, phone, email,
-                registrationNumber, addres, country);
-            _context.Suppliers.Add(newModel);
-            _context.SaveChanges();
-
-            Suppliers.Add(newModel);
-            DataContext = null;
-            DataContext = this;
-        }
     }
 
 
     private void DeleteSupplierButton_Click(object sender, RoutedEventArgs e)
     {
-        if (sender is Button button && button.Tag is int supplierId)
+        if (sender is Button button && button.Tag is int suppliesId)
         {
-            var supplierToDelete = Suppliers.FirstOrDefault(p => p.SupplierId == supplierId);
-            if (supplierToDelete != null)
+            var supplyToDelete = Supplies.FirstOrDefault(p => p.SupplyId == suppliesId);
+            if (supplyToDelete != null)
             {
-                var result = MessageBox.Show($"Вы уверены, что хотите удалить поставщика '{supplierToDelete.Name}'?",
+                var result = MessageBox.Show($"Вы уверены, что хотите удалить поставку '{supplyToDelete.SupplyId}'?",
                     "Подтверждение удаления", MessageBoxButton.YesNo, MessageBoxImage.Warning);
                 if (result == MessageBoxResult.Yes)
                 {
                     // Remove from database
-                    _context.Suppliers.Remove(supplierToDelete);
+                    _context.Supplies.Remove(supplyToDelete);
                     _context.SaveChanges();
 
                     // Remove from observable collection
-                    Suppliers.Remove(supplierToDelete);
+                    Supplies.Remove(supplyToDelete);
                 }
             }
         }

@@ -3,14 +3,13 @@
 public class Supplier
 {
     public Supplier(string name, string phone, string email,
-        string registrationNumber, string addres, string country)
+        string registrationNumber, string addres)
     {
         Name = name;
         Phone = phone;
         Email = email;
         RegistrationNumber = registrationNumber;
         Addres = addres;
-        Country = country;
     }
 
     public Supplier()
@@ -24,12 +23,10 @@ public class Supplier
     public string Phone { get; set; }
 
     public string Email { get; set; }
-
+    //TODO: fix
     public string RegistrationNumber { get; set; }
 
     public string Addres { get; set; }
-
-    public string Country { get; set; }
 
     public virtual ICollection<Supply> Supply { get; set; }
 }

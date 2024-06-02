@@ -17,8 +17,8 @@
                     <GridViewColumn Header="Дата"
                                     DisplayMemberBinding="{Binding Date, StringFormat='{}{0:dd.MM.yyyy HH:mm}'}" />
                     <GridViewColumn Header="Поставщик" DisplayMemberBinding="{Binding Supplier.Name}" />
-                    <GridViewColumn Header="Количество (шт)"
-                                    DisplayMemberBinding="{Binding CountTotalProductCount }" />
+                    <GridViewColumn Header="Количество (шт)" DisplayMemberBinding="{Binding Count }" />
+                    <GridViewColumn Header="Товар" DisplayMemberBinding="{Binding Products.Name }" />
                     <GridViewColumn>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>

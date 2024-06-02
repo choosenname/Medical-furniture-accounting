@@ -58,12 +58,14 @@ public partial class AddSupplyModal : Window
         }
 
         var selectedSupplier = (Supplier)SupplierComboBox.SelectedItem;
+        var selectedProduct = (Product)ProductComboBox.SelectedItem;
 
         Supply = new Supply
         (
             date: (DateTime)DatePicker.Value,
             count: Int32.Parse(CountTextBox.Text),
-            supplier: selectedSupplier
+            supplier: selectedSupplier,
+            products: selectedProduct
         );
 
         DialogResult = true;
@@ -84,10 +86,9 @@ public partial class AddSupplyModal : Window
             var email = addWindow.Email;
             var registrationNumber = addWindow.RegistrationNumber;
             var addres = addWindow.Addres;
-            var country = addWindow.Country;
 
             var newModel = new Supplier(name, phone, email,
-                registrationNumber, addres, country);
+                registrationNumber, addres);
             _dbContext.Suppliers.Add(newModel);
             _dbContext.SaveChanges();
 

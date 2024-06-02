@@ -49,4 +49,6 @@ public class Product
     public virtual Shelving Shelving { get; set; }
 
     public Supply? LastSupply => Suppply.LastOrDefault();
+
+    public int Count => Suppply.Sum(s => s.Count);
 }

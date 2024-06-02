@@ -16,7 +16,6 @@ public partial class AddSupplierModal : Window
     public string Email { get; private set; }
     public string RegistrationNumber { get; private set; }
     public string Addres { get; private set; }
-    public string Country { get; private set; }
 
     private void AddButton_Click(object sender, RoutedEventArgs e)
     {
@@ -26,11 +25,10 @@ public partial class AddSupplierModal : Window
         Email = SupplierEmailTextBox.Text.Trim();
         RegistrationNumber = SupplierRegistrationNumberTextBox.Text.Trim();
         Addres = SupplierAddresTextBox.Text.Trim();
-        Country = SupplierCountryTextBox.Text.Trim();
 
         // Проверка на пустые значения
         if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(Phone) || string.IsNullOrEmpty(Email) ||
-            string.IsNullOrEmpty(RegistrationNumber) || string.IsNullOrEmpty(Addres) || string.IsNullOrEmpty(Country))
+            string.IsNullOrEmpty(RegistrationNumber) || string.IsNullOrEmpty(Addres))
         {
             MessageBox.Show("Все поля должны быть заполнены.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             return;
