@@ -19,7 +19,7 @@
                 <ColumnDefinition Width="30" />
             </Grid.ColumnDefinitions>
             <ComboBox x:Name="CategoryComboBox" Style="{StaticResource ComboBoxStyle}" Margin="10" />
-            <Button Grid.Column="1" Content="+" Width="20" Height="20" FontSize="10" />
+            <Button Click="AddCategoryButton_Click" Grid.Column="1" Content="+" Width="20" Height="20" FontSize="10" />
         </Grid>
 
         <Label Content="Поставщик:" />

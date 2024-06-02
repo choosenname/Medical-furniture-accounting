@@ -11,6 +11,8 @@ namespace MedicalFurnitureAccounting.Modals
     {
         private readonly ApplicationDBContext _dbContext;
         public ObservableCollection<Supplier> Suppliers { get; set; }
+        public ObservableCollection<Category> Categories { get; set; }
+        public ObservableCollection<Product> Products { get; set; }
 
         public AddSupplyModal(ApplicationDBContext dbContext)
         {
@@ -27,12 +29,12 @@ namespace MedicalFurnitureAccounting.Modals
             SupplierComboBox.ItemsSource = Suppliers;
             SupplierComboBox.DisplayMemberPath = "Name";
 
-            var categories = _dbContext.Categories.ToList();
-            CategoryComboBox.ItemsSource = categories;
+            Categories = new ObservableCollection<Category>(_dbContext.Categories.ToList());
+            CategoryComboBox.ItemsSource = Categories;
             CategoryComboBox.DisplayMemberPath = "Name";
 
-            var product = _dbContext.Products.ToList();
-            ProductComboBox.ItemsSource = product;
+            Products = new ObservableCollection<Product>(_dbContext.Products.ToList());
+            ProductComboBox.ItemsSource = Products;
             ProductComboBox.DisplayMemberPath = "Name";
         }
 
@@ -100,6 +102,41 @@ namespace MedicalFurnitureAccounting.Modals
                 _dbContext.SaveChanges();
 
                 Suppliers.Add(newModel);
+                DataContext = null;
+                DataContext = this;
+            }
+        }
+
+        private void AddCategoryButton_Click(object sender, RoutedEventArgs e)
+        {
+            var addCategoryWindow = new AddCategoryModal();
+            if (addCategoryWindow.ShowDialog() == true)
+            {
+                string categoryName = addCategoryWindow.CategoryName;
+                double allowedPrice = addCategoryWindow.Allowance;
+
+                Category newCategory = new Category() { Name = categoryName, Allowance = allowedPrice };
+                _dbContext.Categories.Add(newCategory);
+                _dbContext.SaveChanges();
+
+                Categories.Add(newCategory);
+                DataContext = null;
+                DataContext = this;
+            }
+        }
+
+        private void AddProductButton_Click(object sender, RoutedEventArgs e)
+        {
+            var addWindow = new AddProductModal(_dbContext);
+            if (addWindow.ShowDialog() == true)
+            {
+                var newModel = addWindow.Product;
+
+                    // Если товар не существует, добавляем новый товар в коллекцию
+                _dbContext.Products.Add(newModel);
+                _dbContext.SaveChanges();
+                Products.Add(newModel);
+
                 DataContext = null;
                 DataContext = this;
             }

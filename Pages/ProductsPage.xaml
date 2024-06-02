@@ -28,9 +28,7 @@
                 <TextBlock Text="{Binding TotalProductCount, StringFormat='Общее количество товаров: {0}'}" Margin="10"/>
             </StackPanel>
 
-            <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button Content="Добавить товар" Click="AddProductButton_Click"
-                        Style="{StaticResource ButtonStyle}" />
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <Button Content="Инвентаризация" Click="ShowInventoryList_Click"
                         Style="{StaticResource ButtonStyle}" />
             </StackPanel>
