@@ -5,11 +5,11 @@ using Word = Microsoft.Office.Interop.Word;
 
 namespace MedicalFurnitureAccounting;
 
-internal class WordHalper
+internal class WordHelper
 {
     private readonly FileInfo _fileInfo;
 
-    public WordHalper(string fileName)
+    public WordHelper(string fileName)
     {
         if (File.Exists(fileName))
             _fileInfo = new FileInfo(fileName);
@@ -126,9 +126,8 @@ internal class WordHalper
             // Заполнение заголовка таблицы
             table.Cell(1, 1).Range.Text = "Номер продукта";
             table.Cell(1, 2).Range.Text = "Наименование";
-            table.Cell(1, 3).Range.Text = "Количество";
-            table.Cell(1, 4).Range.Text = "Цена";
-            table.Cell(1, 5).Range.Text = "Стелаж";
+            table.Cell(1, 3).Range.Text = "Цена";
+            table.Cell(1, 4).Range.Text = "Стеллаж";
 
             // Заполнение данных в таблице
             var rowIndex = 2; // Начинаем с 2-й строки, т.к. первая строка занята заголовком
@@ -136,9 +135,8 @@ internal class WordHalper
             {
                 table.Cell(rowIndex, 1).Range.Text = product.ProductId.ToString();
                 table.Cell(rowIndex, 2).Range.Text = product.Name;
-                table.Cell(rowIndex, 3).Range.Text = "  ";//TODO fix it
-                table.Cell(rowIndex, 4).Range.Text = product.Material.Price.ToString();
-                table.Cell(rowIndex, 5).Range.Text = product.ShelvingId.ToString();
+                table.Cell(rowIndex, 3).Range.Text = product.Material.Price.ToString();
+                table.Cell(rowIndex, 4).Range.Text = product.ShelvingId.ToString();
                 rowIndex++;
             }
 

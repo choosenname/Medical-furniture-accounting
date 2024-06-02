@@ -26,7 +26,7 @@ public partial class InventoryWindow : Window
 
     private void ExportToWordButton_Click(object sender, RoutedEventArgs e)
     {
-        var helper = new WordHalper("Inventory.doc");
+        var helper = new WordHelper("Inventory.doc");
 
         var sum = Products.Sum(p => p.Count * p.Material.Price);
 

@@ -25,7 +25,7 @@ public partial class AcceptanceActPage : Page
 
     public void ExportAcceptanceAct_Click(object sender, RoutedEventArgs e)
     {
-        var helper = new WordHalper("AcceptanceAct.docx");
+        var helper = new WordHelper("AcceptanceAct.docx");
 
         var items = new Dictionary<string, string>
         {

@@ -67,7 +67,7 @@ public partial class AddSupplyModal : Window
         Supply = new Supply
         (
             date: (DateTime)DatePicker.Value,
-            count: 0, //TODO: fix it
+            count: Int32.Parse(CountTextBox.Text),
             supplier: selectedSupplier
         );
 
