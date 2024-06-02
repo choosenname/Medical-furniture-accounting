@@ -32,13 +32,6 @@ public partial class MainWindow : System.Windows.Window
         this.user = user;
         MainFrame.Navigate(new ProductsPage(_dbContext, user));
     }
-    private void OpenAddProductModal()
-    {
-        AddProductModal addProductModal = new AddProductModal(_dbContext); // Передача экземпляра _dbContext в конструктор
-        addProductModal.ShowDialog();
-        // Передача ссылки на NavigationService в AddProductModal
-        addProductModal.NavigationService = MainFrame.NavigationService;
-    }
     private void Button_Click_Product_Page(object sender, RoutedEventArgs e)
     {
         MainFrame.Navigate(new ProductsPage(_dbContext, user));

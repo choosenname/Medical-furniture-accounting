@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
@@ -11,7 +12,8 @@ namespace MedicalFurnitureAccounting.Modals
     public partial class AddProductModal : Window
     {
         private readonly ApplicationDBContext _dbContext;
-        public NavigationService NavigationService { get; set; }
+        public ObservableCollection<Material> Materials { get; set; }
+
 
         public AddProductModal(ApplicationDBContext dbContext)
         {
@@ -25,8 +27,8 @@ namespace MedicalFurnitureAccounting.Modals
         private void LoadSuppliers()
         {
 
-            var materials = _dbContext.Materials.ToList();
-            MaterialComboBox.ItemsSource = materials;
+            Materials = new ObservableCollection<Models.Material>(_dbContext.Materials.ToList());
+            MaterialComboBox.ItemsSource = Materials;
             MaterialComboBox.DisplayMemberPath = "Name";
 
             var shelving = _dbContext.Shelving.ToList();
@@ -130,6 +132,21 @@ namespace MedicalFurnitureAccounting.Modals
                                     .Select(s => s.Supplier.Name)
                                     .FirstOrDefault();
             return supplier ?? "Unknown";
+        }
+
+        private void AddMaterialButton_Click(object sender, RoutedEventArgs e)
+        {
+            var addWindow = new AddMaterialModal();
+            if (addWindow.ShowDialog() == true)
+            {
+                var newMaterial = addWindow.Material;
+                _dbContext.Materials.Add(newMaterial);
+                _dbContext.SaveChanges();
+
+                Materials.Add(newMaterial);
+                DataContext = null;
+                DataContext = this;
+            }
         }
     }
 }

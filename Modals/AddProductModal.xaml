@@ -20,7 +20,7 @@
                         <ColumnDefinition Width="30" />
                     </Grid.ColumnDefinitions>
                     <ComboBox x:Name="MaterialComboBox" Style="{StaticResource ComboBoxStyle}" Margin="10" />
-                    <Button Grid.Column="1" Content="+" Width="20" Height="20" FontSize="10" />
+                    <Button Click="AddMaterialButton_Click" Grid.Column="1" Content="+" Width="20" Height="20" FontSize="10" />
                 </Grid>
 
                 <Label Content="Стеллаж:" />

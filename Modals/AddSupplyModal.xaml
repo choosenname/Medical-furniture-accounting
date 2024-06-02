@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:local="clr-namespace:MedicalFurnitureAccounting.Modals"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
         Title="AddSupplyModal" Height="500" Width="300">
@@ -39,7 +38,7 @@
                 <ColumnDefinition Width="30" />
             </Grid.ColumnDefinitions>
             <ComboBox x:Name="ProductComboBox" Style="{StaticResource ComboBoxStyle}" Margin="10" />
-            <Button Grid.Column="1" Content="+" Width="20" Height="20" FontSize="10" />
+            <Button Click="AddProductButton_Click" Grid.Column="1" Content="+" Width="20" Height="20" FontSize="10" />
         </Grid>
 
         <Label Content="Количество:" />
