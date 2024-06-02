@@ -41,9 +41,9 @@
                     <GridView>
                         <GridViewColumn Header="Категория" DisplayMemberBinding="{Binding Category.Name}" />
                         <GridViewColumn Header="Материал" DisplayMemberBinding="{Binding Material.Name}" />
-                        <GridViewColumn Header="Стелаж" DisplayMemberBinding="{Binding ShelvingId}" />
+                        <GridViewColumn Header="Стеллаж" DisplayMemberBinding="{Binding ShelvingId}" />
                         <GridViewColumn Header="Название" DisplayMemberBinding="{Binding Name}" />
-                        <GridViewColumn Header="Колличество (шт)" DisplayMemberBinding="{Binding Count}" />
+                        <GridViewColumn Header="Количество (шт)" DisplayMemberBinding="{Binding Count}" />
                         <GridViewColumn Header="Ширина (см)" DisplayMemberBinding="{Binding Width}" />
                         <GridViewColumn Header="Длина (см)" DisplayMemberBinding="{Binding Length}" />
                         <GridViewColumn Header="Высота (см)" DisplayMemberBinding="{Binding Height}" />
@@ -91,8 +91,7 @@
 
             <StackPanel>
                 <TextBlock Text="Поставки продукции" FontSize="20"/>
-                <ListView ItemsSource="{Binding Supplies}" Margin="10" Height="350" Width="1000"
-                          Name="productSupplyListView">
+                <ListView ItemsSource="{Binding Supplies}" Margin="10" Height="350" Width="1000">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="Номер поставки" DisplayMemberBinding="{Binding SupplyId}" />

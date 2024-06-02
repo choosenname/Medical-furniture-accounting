@@ -6,81 +6,31 @@
       xmlns:local="clr-namespace:MedicalFurnitureAccounting.Pages"
       mc:Ignorable="d"
       Title="SupplierPage">
-    <ScrollViewer>
-        <StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="10" VerticalAlignment="Center">
-                <TextBox x:Name="searchBox" Text="Поиск" Style="{StaticResource SearchTextBoxStyle}"
-                         GotFocus="SearchBox_GotFocus" LostFocus="SearchBox_LostFocus" />
-                <Button Content="Поиск" Click="SearchButton_Click" Style="{StaticResource ButtonStyle}" />
-                <Button Content="Сброс" Click="ShowAllButton_Click" Style="{StaticResource ButtonStyle}" />
-                <Button Content="Сортировка по имени" Click="SortByNameButton_Click"
-                        Style="{StaticResource ButtonStyle}"
-                        Width="134" />
+    <StackPanel>
+        <Button Content="Добавить поставку" Click="AddSupplyButton_Click"
+                Style="{StaticResource ButtonStyle}"
+                Height="40" />
 
-
-                <ComboBox x:Name="supplierFilterComboBox" Style="{StaticResource ComboBoxStyle}"
-                          SelectionChanged="SupplierFilterComboBox_SelectionChanged" />
-            </StackPanel>
-
-            <StackPanel>
-                <Button Content="Добавить поставщика" Click="AddSupplierButton_Click"
-                        Style="{StaticResource ButtonStyle}"
-                        Height="40" />
-
-                <ListView ItemsSource="{Binding Suppliers}" Margin="10" Height="350" Name="supplierListView">
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn Header="Название" DisplayMemberBinding="{Binding Name}" Width="150" />
-                            <GridViewColumn Header="Телефон" DisplayMemberBinding="{Binding Phone}" Width="100" />
-                            <GridViewColumn Header="Электронная почта" DisplayMemberBinding="{Binding Email}"
-                                            Width="150" />
-                            <GridViewColumn Header="Регистрационный номер"
-                                            DisplayMemberBinding="{Binding RegistrationNumber}" Width="150" />
-                            <GridViewColumn Header="Адрес" DisplayMemberBinding="{Binding Addres}" Width="200" />
-                            <GridViewColumn Header="Страна" DisplayMemberBinding="{Binding Country}" Width="100" />
-                            <GridViewColumn Header="Действие" Width="100">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <Button Content="Удалить" Click="DeleteSupplierButton_Click"
-                                                Tag="{Binding SupplierId}" Style="{StaticResource ButtonStyle}"
-                                                Height="25"
-                                                Width="60" Margin="10,0,0,0" />
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-                        </GridView>
-                    </ListView.View>
-                </ListView>
-            </StackPanel>
-            <StackPanel>
-                <StackPanel>
-                    <Button Content="Добавить поставку" Click="AddSupplyButton_Click"
-                            Style="{StaticResource ButtonStyle}"
-                            Height="40" />
-
-                    <ListView ItemsSource="{Binding Supplies}" Margin="10" Height="350">
-                        <ListView.View>
-                            <GridView>
-                                <GridViewColumn Header="Номер поставки" DisplayMemberBinding="{Binding SupplyId}" />
-                                <GridViewColumn Header="Дата"
-                                                DisplayMemberBinding="{Binding Date, StringFormat='{}{0:dd.MM.yyyy HH:mm}'}" />
-                                <GridViewColumn Header="Поставщик" DisplayMemberBinding="{Binding Supplier.Name}" />
-                                <GridViewColumn Header="Колличесво (шт)"
-                                                DisplayMemberBinding="{Binding CountTotalProductCount }" />
-                                <GridViewColumn>
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <Button Content="Удалить" Click="DeleteSupplierButton_Click"
-                                                    Tag="{Binding SupplyId}" Style="{StaticResource ButtonStyle}"
-                                                    Height="25" Width="60" Margin="10,0,0,0" />
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
-                </StackPanel>
-            </StackPanel>
-        </StackPanel>
-    </ScrollViewer>
+        <ListView ItemsSource="{Binding Supplies}" Margin="10" Height="350">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Номер поставки" DisplayMemberBinding="{Binding SupplyId}" />
+                    <GridViewColumn Header="Дата"
+                                    DisplayMemberBinding="{Binding Date, StringFormat='{}{0:dd.MM.yyyy HH:mm}'}" />
+                    <GridViewColumn Header="Поставщик" DisplayMemberBinding="{Binding Supplier.Name}" />
+                    <GridViewColumn Header="Количество (шт)"
+                                    DisplayMemberBinding="{Binding CountTotalProductCount }" />
+                    <GridViewColumn>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Удалить" Click="DeleteSupplierButton_Click"
+                                        Tag="{Binding SupplyId}" Style="{StaticResource ButtonStyle}"
+                                        Height="25" Width="60" Margin="10,0,0,0" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </StackPanel>
 </Page>

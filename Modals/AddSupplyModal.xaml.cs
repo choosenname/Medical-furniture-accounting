@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Windows;
+using System.Windows.Input;
 using MedicalFurnitureAccounting.Models;
 
 namespace MedicalFurnitureAccounting.Modals
@@ -20,12 +21,29 @@ namespace MedicalFurnitureAccounting.Modals
 
         private void LoadSuppliers()
         {
-            // Получаем список всех поставщиков из базы данных
             var suppliers = _dbContext.Suppliers.ToList();
-
-            // Заполняем ComboBox списком поставщиков
             SupplierComboBox.ItemsSource = suppliers;
-            SupplierComboBox.DisplayMemberPath = "Name"; // Указываем, какое свойство использовать для отображения
+            SupplierComboBox.DisplayMemberPath = "Name";
+
+            var categories = _dbContext.Categories.ToList();
+            CategoryComboBox.ItemsSource = categories;
+            CategoryComboBox.DisplayMemberPath = "Name";
+
+            var product = _dbContext.Products.ToList();
+            ProductComboBox.ItemsSource = product;
+            ProductComboBox.DisplayMemberPath = "Name";
+        }
+
+        private void NumberTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            foreach (char c in e.Text)
+            {
+                if (!char.IsDigit(c))
+                {
+                    e.Handled = true; // Отменяем ввод символа, если он не является цифрой
+                    break;
+                }
+            }
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
