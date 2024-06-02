@@ -55,8 +55,8 @@ namespace MedicalFurnitureAccounting.Pages
                 string addres = addWindow.Addres;
                 string country = addWindow.Country;
 
-                var newModel = new Supplier() { Name = name, Phone = phone, Email = email, RegistrationNumber = registrationNumber,
-                Addres = addres, Country = country};
+                var newModel = new Supplier(name: name, phone: phone, email: email,
+                    registrationNumber: registrationNumber, addres: addres, country: country);
                 _context.Suppliers.Add(newModel);
                 _context.SaveChanges();
 

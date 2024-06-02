@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
@@ -9,6 +10,7 @@ namespace MedicalFurnitureAccounting.Modals
     public partial class AddSupplyModal : Window
     {
         private readonly ApplicationDBContext _dbContext;
+        public ObservableCollection<Supplier> Suppliers { get; set; }
 
         public AddSupplyModal(ApplicationDBContext dbContext)
         {
@@ -21,8 +23,8 @@ namespace MedicalFurnitureAccounting.Modals
 
         private void LoadSuppliers()
         {
-            var suppliers = _dbContext.Suppliers.ToList();
-            SupplierComboBox.ItemsSource = suppliers;
+            Suppliers = new ObservableCollection<Supplier>(_dbContext.Suppliers.ToList());
+            SupplierComboBox.ItemsSource = Suppliers;
             SupplierComboBox.DisplayMemberPath = "Name";
 
             var categories = _dbContext.Categories.ToList();
@@ -78,6 +80,29 @@ namespace MedicalFurnitureAccounting.Modals
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
             DialogResult = false;
+        }
+
+        private void AddSupplierButton_Click(object sender, RoutedEventArgs e)
+        {
+            var addWindow = new AddSupplierModal();
+            if (addWindow.ShowDialog() == true)
+            {
+                string name = addWindow.Name;
+                string phone = addWindow.Phone;
+                string email =addWindow.Email;
+                string registrationNumber = addWindow.RegistrationNumber;
+                string addres = addWindow.Addres;
+                string country = addWindow.Country;
+
+                var newModel = new Supplier(name: name, phone: phone, email: email,
+                    registrationNumber: registrationNumber, addres: addres, country: country);
+                _dbContext.Suppliers.Add(newModel);
+                _dbContext.SaveChanges();
+
+                Suppliers.Add(newModel);
+                DataContext = null;
+                DataContext = this;
+            }
         }
     }
 }
