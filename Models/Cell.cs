@@ -7,6 +7,10 @@ public class Cell
         Number = number;
     }
 
+    public Cell()
+    {
+    }
+
     public int CellId { get; set; }
 
     public int Number { get; set; }

@@ -9,6 +9,10 @@ public class Supply
         Supplier = supplier;
     }
 
+    public Supply()
+    {
+    }
+
     public int SupplyId { get; set; }
 
     public DateTime Date { get; set; }

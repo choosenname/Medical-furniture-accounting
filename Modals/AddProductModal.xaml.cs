@@ -11,6 +11,7 @@ public partial class AddProductModal : Window
     private readonly ApplicationDBContext _dbContext;
     private ObservableCollection<Material> Materials { get; set; }
     private ObservableCollection<Shelving> Shelving { get; set; }
+    public ObservableCollection<Category> Categories { get; set; }
 
     public Product Product { get; private set; }
 
@@ -31,6 +32,10 @@ public partial class AddProductModal : Window
         Shelving = new ObservableCollection<Shelving>(_dbContext.Shelving.ToList());
         ShelvingComboBox.ItemsSource = Shelving;
         ShelvingComboBox.DisplayMemberPath = "ShelvingId";
+
+        Categories = new ObservableCollection<Category>(_dbContext.Categories.ToList());
+        CategoryComboBox.ItemsSource = Categories;
+        CategoryComboBox.DisplayMemberPath = "Name";
     }
 
     private void AddButton_Click(object sender, RoutedEventArgs e)
@@ -44,7 +49,7 @@ public partial class AddProductModal : Window
 
         // Проверка, что выбраны все обязательные поля
         if (MaterialComboBox.SelectedItem == null ||
-            ShelvingComboBox.SelectedItem == null)
+            ShelvingComboBox.SelectedItem == null || CategoryComboBox == null)
         {
             MessageBox.Show("Пожалуйста, выберите все необходимые поля.", "Ошибка", MessageBoxButton.OK,
                 MessageBoxImage.Error);
@@ -66,6 +71,7 @@ public partial class AddProductModal : Window
 
         var selectedMaterial = (Material)MaterialComboBox.SelectedItem;
         var selectedShelving = (Shelving)ShelvingComboBox.SelectedItem;
+        var selectedCategory = (Category)CategoryComboBox.SelectedItem;
 
         // Создание нового объекта Product
         Product = new Product
@@ -73,6 +79,7 @@ public partial class AddProductModal : Window
             name: ProductNameTextBox.Text.Trim(),
             material: selectedMaterial,
             shelving: selectedShelving,
+            category: selectedCategory,
             description: ProductDescriptionTextBox.Text.Trim(),
             width: width,
             height: height,
@@ -81,29 +88,7 @@ public partial class AddProductModal : Window
             price: price
         );
 
-        GenerateAcceptanceAct(Product);
-
         DialogResult = true;
-    }
-
-    private void GenerateAcceptanceAct(Product product)
-    {
-        // Создание страницы акта приема-передачи
-        var acceptanceActPage = new AcceptanceActPage(product)
-        {
-            DataContext = product
-        };
-
-        // Отображение страницы в диалоговом окне
-        var dialog = new Window
-        {
-            Content = acceptanceActPage,
-            SizeToContent = SizeToContent.WidthAndHeight,
-            ResizeMode = ResizeMode.NoResize,
-            Title = "Acceptance Act"
-        };
-
-        dialog.ShowDialog();
     }
 
     private void CancelButton_Click(object sender, RoutedEventArgs e)
@@ -194,6 +179,46 @@ public partial class AddProductModal : Window
             _dbContext.SaveChanges();
 
             Shelving.Remove(selectedShelving);
+        }
+    }
+
+    private void AddCategoryButton_Click(object sender, RoutedEventArgs e)
+    {
+        var addCategoryWindow = new AddCategoryModal();
+        if (addCategoryWindow.ShowDialog() == true)
+        {
+            var categoryName = addCategoryWindow.CategoryName;
+            var allowedPrice = addCategoryWindow.Allowance;
+
+            var newCategory = new Category(name: categoryName);
+            _dbContext.Categories.Add(newCategory);
+            _dbContext.SaveChanges();
+
+            Categories.Add(newCategory);
+            DataContext = null;
+            DataContext = this;
+        }
+    }
+
+    private void DeleteCategoryButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (CategoryComboBox.SelectedItem == null)
+        {
+            MessageBox.Show("Пожалуйста, выберите категорию.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            return;
+        }
+
+        var selectedCategory = (Category)CategoryComboBox.SelectedItem;
+
+        var result = MessageBox.Show($"Вы уверены, что хотите удалить категорию '{selectedCategory.Name}'?",
+            "Подтверждение удаления", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+        if (result == MessageBoxResult.Yes)
+        {
+            _dbContext.Categories.Remove(selectedCategory);
+            _dbContext.SaveChanges();
+
+            Categories.Remove(selectedCategory);
         }
     }
 }

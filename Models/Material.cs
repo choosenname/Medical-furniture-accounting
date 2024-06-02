@@ -8,6 +8,10 @@ public class Material
         Price = price;
     }
 
+    public Material()
+    {
+    }
+
     public int MaterialId { get; set; }
 
     public string Name { get; set; }

@@ -17,7 +17,6 @@ public partial class AddSupplyModal : Window
     }
 
     public ObservableCollection<Supplier> Suppliers { get; set; }
-    public ObservableCollection<Category> Categories { get; set; }
     public ObservableCollection<Product> Products { get; set; }
 
     public Supply Supply { get; private set; }
@@ -27,10 +26,6 @@ public partial class AddSupplyModal : Window
         Suppliers = new ObservableCollection<Supplier>(_dbContext.Suppliers.ToList());
         SupplierComboBox.ItemsSource = Suppliers;
         SupplierComboBox.DisplayMemberPath = "Name";
-
-        Categories = new ObservableCollection<Category>(_dbContext.Categories.ToList());
-        CategoryComboBox.ItemsSource = Categories;
-        CategoryComboBox.DisplayMemberPath = "Name";
 
         Products = new ObservableCollection<Product>(_dbContext.Products.ToList());
         ProductComboBox.ItemsSource = Products;
@@ -77,46 +72,6 @@ public partial class AddSupplyModal : Window
     private void CancelButton_Click(object sender, RoutedEventArgs e)
     {
         DialogResult = false;
-    }
-
-    private void AddCategoryButton_Click(object sender, RoutedEventArgs e)
-    {
-        var addCategoryWindow = new AddCategoryModal();
-        if (addCategoryWindow.ShowDialog() == true)
-        {
-            var categoryName = addCategoryWindow.CategoryName;
-            var allowedPrice = addCategoryWindow.Allowance;
-
-            var newCategory = new Category(name: categoryName);
-            _dbContext.Categories.Add(newCategory);
-            _dbContext.SaveChanges();
-
-            Categories.Add(newCategory);
-            DataContext = null;
-            DataContext = this;
-        }
-    }
-
-    private void DeleteCategoryButton_Click(object sender, RoutedEventArgs e)
-    {
-        if (CategoryComboBox.SelectedItem == null)
-        {
-            MessageBox.Show("Пожалуйста, выберите категорию.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-            return;
-        }
-
-        var selectedCategory = (Category)CategoryComboBox.SelectedItem;
-
-        var result = MessageBox.Show($"Вы уверены, что хотите удалить категорию '{selectedCategory.Name}'?",
-            "Подтверждение удаления", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-
-        if (result == MessageBoxResult.Yes)
-        {
-            _dbContext.Categories.Remove(selectedCategory);
-            _dbContext.SaveChanges();
-
-            Categories.Remove(selectedCategory);
-        }
     }
 
     private void AddSupplierButton_Click(object sender, RoutedEventArgs e)

@@ -8,6 +8,10 @@ public class Shelving
         Cell = cell;
     }
 
+    public Shelving()
+    {
+    }
+
     public int ShelvingId { get; set; }
 
     public int MaxWeight { get; set; }

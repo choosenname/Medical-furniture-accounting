@@ -17,10 +17,12 @@ public partial class InventoryWindow : Window
     }
 
     public ICollection<Product> Products { get; private set; }
+    public ICollection<Supply> Supplies { get; private set; }
 
     private void LoadSuppliers()
     {
         Products = _dbContext.Products.ToList();
+        Supplies = _dbContext.Supplies.ToList();
         DataContext = this;
     }
 
@@ -28,7 +30,7 @@ public partial class InventoryWindow : Window
     {
         var helper = new WordHelper("Inventory.doc");
 
-        var sum = Products.Sum(p => p.Count * p.Material.Price);
+        var sum = Supplies.Sum(p => p.Count);
 
         var items = new Dictionary<string, string>
         {

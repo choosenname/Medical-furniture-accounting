@@ -7,6 +7,10 @@ public class Category
         Name = name;
     }
 
+    public Category()
+    {
+    }
+
     public int CategoryId { get; set; }
 
     public string Name { get; set; }

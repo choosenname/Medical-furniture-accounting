@@ -8,6 +8,10 @@ public class Storekeeper
         Password = password;
     }
 
+    public Storekeeper()
+    {
+    }
+
     public int StorekeeperId { get; set; }
 
     public string Name { get; set; }

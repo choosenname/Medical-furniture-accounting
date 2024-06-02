@@ -3,7 +3,7 @@
 public class Product
 {
     public Product(string name, string description, int width, int height, int length, int weight,
-        int price, Material material, Shelving shelving)
+        int price, Material material, Shelving shelving, Category category)
     {
         Name = name;
         Description = description;
@@ -14,6 +14,11 @@ public class Product
         Price = price;
         Material = material;
         Shelving = shelving;
+        Category = category;
+    }
+
+    public Product()
+    {
     }
 
     public int ProductId { get; set; }
