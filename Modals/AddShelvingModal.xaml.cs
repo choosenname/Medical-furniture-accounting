@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Collections.ObjectModel;
+using System.Windows;
 using System.Windows.Input;
 using MedicalFurnitureAccounting.Models;
 
@@ -7,6 +8,7 @@ namespace MedicalFurnitureAccounting.Modals;
 public partial class AddShelvingModal : Window
 {
     private readonly ApplicationDBContext _dbContext;
+    private ObservableCollection<Cell> Cells { get; set; }
 
     public AddShelvingModal(ApplicationDBContext dbContext)
     {
@@ -21,10 +23,10 @@ public partial class AddShelvingModal : Window
     private void LoadCell()
     {
         // Получаем список всех ячеек из базы данных
-        var cells = _dbContext.Cell.ToList();
+        Cells = new ObservableCollection<Cell>(_dbContext.Cell.ToList());
 
         // Заполняем ComboBox списком ячеек
-        CellComboBox.ItemsSource = cells;
+        CellComboBox.ItemsSource = Cells;
         CellComboBox.DisplayMemberPath = "Number"; // Указываем, какое свойство использовать для отображения
     }
 
@@ -66,5 +68,43 @@ public partial class AddShelvingModal : Window
     {
         // Закрываем окно
         DialogResult = false;
+    }
+
+    private void AddCellButton_Click(object sender, RoutedEventArgs e)
+    {
+        var addWindow = new AddCellModal();
+        if (addWindow.ShowDialog() == true)
+        {
+            var name = addWindow.Number;
+            var newModel = new Cell() { Number = name };
+            _dbContext.Cell.Add(newModel);
+            _dbContext.SaveChanges();
+
+            Cells.Add(newModel);
+            DataContext = null;
+            DataContext = this;
+        }
+    }
+
+    private void DeleteCellButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (CellComboBox.SelectedItem == null)
+        {
+            MessageBox.Show("Пожалуйста, выберите ячейку.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            return;
+        }
+
+        var selectedCell = (Cell)CellComboBox.SelectedItem;
+
+        var result = MessageBox.Show($"Вы уверены, что хотите удалить ячейку '{selectedCell.Number}'?",
+            "Подтверждение удаления", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+        if (result == MessageBoxResult.Yes)
+        {
+            _dbContext.Cell.Remove(selectedCell);
+            _dbContext.SaveChanges();
+
+            Cells.Remove(selectedCell);
+        }
     }
 }

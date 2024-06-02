@@ -9,6 +9,10 @@ namespace MedicalFurnitureAccounting.Modals;
 public partial class AddProductModal : Window
 {
     private readonly ApplicationDBContext _dbContext;
+    private ObservableCollection<Material> Materials { get; set; }
+    private ObservableCollection<Shelving> Shelving { get; set; }
+
+    public Product Product { get; private set; }
 
 
     public AddProductModal(ApplicationDBContext dbContext)
@@ -18,18 +22,14 @@ public partial class AddProductModal : Window
         LoadSuppliers();
     }
 
-    public ObservableCollection<Material> Materials { get; set; }
-
-    public Product Product { get; private set; }
-
     private void LoadSuppliers()
     {
         Materials = new ObservableCollection<Material>(_dbContext.Materials.ToList());
         MaterialComboBox.ItemsSource = Materials;
         MaterialComboBox.DisplayMemberPath = "Name";
 
-        var shelving = _dbContext.Shelving.ToList();
-        ShelvingComboBox.ItemsSource = shelving;
+        Shelving = new ObservableCollection<Shelving>(_dbContext.Shelving.ToList());
+        ShelvingComboBox.ItemsSource = Shelving;
         ShelvingComboBox.DisplayMemberPath = "ShelvingId";
     }
 
@@ -122,15 +122,6 @@ public partial class AddProductModal : Window
             }
     }
 
-    public string GetSupplierNameById(int supplierId)
-    {
-        var supplier = _dbContext.Supplies
-            .Where(s => s.SupplierId == supplierId)
-            .Select(s => s.Supplier.Name)
-            .FirstOrDefault();
-        return supplier ?? "Unknown";
-    }
-
     private void AddMaterialButton_Click(object sender, RoutedEventArgs e)
     {
         var addWindow = new AddMaterialModal();
@@ -143,6 +134,67 @@ public partial class AddProductModal : Window
             Materials.Add(newMaterial);
             DataContext = null;
             DataContext = this;
+        }
+    }
+    
+    private void DeleteProductButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (MaterialComboBox.SelectedItem == null)
+        {
+            MessageBox.Show("Пожалуйста, выберите материал.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            return;
+        }
+
+        var selectedMaterial = (Material)MaterialComboBox.SelectedItem;
+
+        var result = MessageBox.Show($"Вы уверены, что хотите удалить материал '{selectedMaterial.Name}'?",
+            "Подтверждение удаления", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+        if (result == MessageBoxResult.Yes)
+        {
+            _dbContext.Materials.Remove(selectedMaterial);
+            _dbContext.SaveChanges();
+
+            Materials.Remove(selectedMaterial);
+        }
+    }
+
+    private void AddShelvingButton_Click(object sender, RoutedEventArgs e)
+    {
+        var addWindow = new AddShelvingModal(_dbContext);
+        if (addWindow.ShowDialog() == true)
+        {
+            var name = addWindow.MaxWeight;
+            var cell = addWindow.Cell;
+            var newModel = new Shelving() { MaxWeight = name, Cell = cell };
+            _dbContext.Shelving.Add(newModel);
+            _dbContext.SaveChanges();
+
+            Shelving.Add(newModel);
+            DataContext = null;
+            DataContext = this;
+        }
+    }
+
+    private void DeleteShelvingButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (ShelvingComboBox.SelectedItem == null)
+        {
+            MessageBox.Show("Пожалуйста, выберите стеллаж.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            return;
+        }
+
+        var selectedShelving = (Shelving)ShelvingComboBox.SelectedItem;
+
+        var result = MessageBox.Show($"Вы уверены, что хотите удалить стеллаж '{selectedShelving.ShelvingId}'?",
+            "Подтверждение удаления", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+        if (result == MessageBoxResult.Yes)
+        {
+            _dbContext.Shelving.Remove(selectedShelving);
+            _dbContext.SaveChanges();
+
+            Shelving.Remove(selectedShelving);
         }
     }
 }
