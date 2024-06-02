@@ -24,21 +24,14 @@ namespace MedicalFurnitureAccounting.Modals
 
         private void LoadSuppliers()
         {
-            var supplies = _dbContext.Supplies.ToList();
-            SupplyComboBox.ItemsSource = supplies;
-            SupplyComboBox.DisplayMemberPath = "Date";
-
-            var categories = _dbContext.Categories.ToList();
-            CategoryComboBox.ItemsSource = categories;
-            CategoryComboBox.DisplayMemberPath = "Name";
 
             var materials = _dbContext.Materials.ToList();
             MaterialComboBox.ItemsSource = materials;
             MaterialComboBox.DisplayMemberPath = "Name";
 
             var shelving = _dbContext.Shelving.ToList();
-            SelvingComboBox.ItemsSource = shelving;
-            SelvingComboBox.DisplayMemberPath = "ShelvingId";
+            ShelvingComboBox.ItemsSource = shelving;
+            ShelvingComboBox.DisplayMemberPath = "ShelvingId";
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
@@ -51,10 +44,8 @@ namespace MedicalFurnitureAccounting.Modals
             }
 
             // Проверка, что выбраны все обязательные поля
-            if (SupplyComboBox.SelectedItem == null ||
-                CategoryComboBox.SelectedItem == null ||
-                MaterialComboBox.SelectedItem == null ||
-                SelvingComboBox.SelectedItem == null)
+            if (MaterialComboBox.SelectedItem == null ||
+                ShelvingComboBox.SelectedItem == null)
             {
                 MessageBox.Show("Пожалуйста, выберите все необходимые поля.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
@@ -72,17 +63,13 @@ namespace MedicalFurnitureAccounting.Modals
                 return;
             }
 
-            var selectedSupply = (Supply)SupplyComboBox.SelectedItem;
-            var selectedCategory = (Category)CategoryComboBox.SelectedItem;
             var selectedMaterial = (Material)MaterialComboBox.SelectedItem;
-            var selectedShelving = (Shelving)SelvingComboBox.SelectedItem;
+            var selectedShelving = (Shelving)ShelvingComboBox.SelectedItem;
 
             // Создание нового объекта Product
             Product = new Product
             {
                 Name = ProductNameTextBox.Text.Trim(),
-                Suppply = new List<Supply> { selectedSupply },
-                Category = selectedCategory,
                 Material = selectedMaterial,
                 Shelving = selectedShelving,
                 Count = count,
