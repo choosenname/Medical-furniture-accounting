@@ -1,15 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace MedicalFurnitureAccounting.Models;
 
-namespace MedicalFurnitureAccounting.Models
+public class Cell
 {
-    public class Cell
+    public Cell(int number)
     {
-        public int CellId { get; set; }
-
-        public int Number { get; set; }
+        Number = number;
     }
+
+    public Cell()
+    {
+    }
+
+    public int CellId { get; set; }
+
+    public int Number { get; set; }
 }

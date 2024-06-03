@@ -1,17 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace MedicalFurnitureAccounting.Models;
 
-namespace MedicalFurnitureAccounting.Models
+public class Shelving
 {
-    public class Shelving
+    public Shelving(int maxWeight, Cell cell)
     {
-        public int ShelvingId { get; set; }
-        public int MaxWeight { get; set; }
-
-        public int CellId { get; set; }
-        public virtual Cell Cell { get; set; }
+        MaxWeight = maxWeight;
+        Cell = cell;
     }
+
+    public Shelving()
+    {
+    }
+
+    public int ShelvingId { get; set; }
+
+    public int MaxWeight { get; set; }
+
+    public int CellId { get; set; }
+    public virtual Cell Cell { get; set; }
+
+    public virtual StoreHistory StoreHistory { get; set; }
 }

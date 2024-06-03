@@ -1,60 +1,98 @@
-﻿using MedicalFurnitureAccounting.Models;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using MedicalFurnitureAccounting.Modals;
+using MedicalFurnitureAccounting.Models;
+using Microsoft.EntityFrameworkCore;
 
-namespace MedicalFurnitureAccounting
+namespace MedicalFurnitureAccounting;
+
+/// <summary>
+///     Логика взаимодействия для ChangeShelvingWindow.xaml
+/// </summary>
+public partial class ChangeShelvingWindow
 {
-    /// <summary>
-    /// Логика взаимодействия для ChangeShelvingWindow.xaml
-    /// </summary>
-    public partial class ChangeShelvingWindow : Window
+    private readonly ApplicationDBContext _dbContext;
+    private readonly Product _product;
+    private ObservableCollection<Shelving> Shelving { get; set; }
+    public ObservableCollection<StoreHistory> StoreHistories { get; set; }
+
+    public ChangeShelvingWindow(ApplicationDBContext dbContext, Product product)
     {
-        public int? NewShelvingId { get; private set; }
-        private readonly ApplicationDBContext _dbContext;
+        InitializeComponent();
+        _dbContext = dbContext;
+        _product = product;
+        LoadSuppliers();
 
-        public ChangeShelvingWindow(ApplicationDBContext dbContext)
+        StoreHistories = new ObservableCollection<StoreHistory>(product.StoreHistory);
+
+        DataContext = this;
+    }
+
+    public int? NewShelvingId { get; private set; }
+
+    private void SaveButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (ShelvingComboBox.SelectedItem != null)
         {
-            InitializeComponent();
-            _dbContext = dbContext;
-            LoadSuppliers();
+            NewShelvingId = ((Shelving)ShelvingComboBox.SelectedItem).ShelvingId;
+            DialogResult = true;
+        }
+        else
+        {
+            MessageBox.Show("Пожалуйста, введите корректный номер стелажа.", "Ошибка", MessageBoxButton.OK,
+                MessageBoxImage.Error);
+        }
+    }
+
+    private void LoadSuppliers()
+    {
+        Shelving = new ObservableCollection<Shelving>(_dbContext.Shelving.ToList());
+        ShelvingComboBox.ItemsSource = Shelving;
+        ShelvingComboBox.DisplayMemberPath = "ShelvingId";
+    }
+
+    private void CancelButton_Click(object sender, RoutedEventArgs e)
+    {
+        DialogResult = false;
+    }
+
+    private void AddShelvingButton_Click(object sender, RoutedEventArgs e)
+    {
+        var addWindow = new AddShelvingModal(_dbContext);
+        if (addWindow.ShowDialog() == true)
+        {
+            var name = addWindow.MaxWeight;
+            var cell = addWindow.Cell;
+            var newModel = new Shelving( maxWeight: name, cell: cell );
+            _dbContext.StoreHistories.Add(new StoreHistory(_product, newModel));
+            _dbContext.Shelving.Add(newModel);
+            _dbContext.SaveChanges();
+
+            Shelving.Add(newModel);
+            DataContext = null;
+            DataContext = this;
+        }
+    }
+
+    private void DeleteShelvingButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (ShelvingComboBox.SelectedItem == null)
+        {
+            MessageBox.Show("Пожалуйста, выберите стеллаж.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            return;
         }
 
-        private void SaveButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (SelvingComboBox.SelectedItem != null)
-            {
-                NewShelvingId = ((Shelving)SelvingComboBox.SelectedItem).ShelvingId;
-                DialogResult = true;
-            }
-            else
-            {
-                MessageBox.Show("Пожалуйста, введите корректный номер стелажа.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
+        var selectedShelving = (Shelving)ShelvingComboBox.SelectedItem;
 
-        private void LoadSuppliers()
-        {
+        var result = MessageBox.Show($"Вы уверены, что хотите удалить стеллаж '{selectedShelving.ShelvingId}'?",
+            "Подтверждение удаления", MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
-            var shelving = _dbContext.Shelving.ToList();
-            SelvingComboBox.ItemsSource = shelving;
-            SelvingComboBox.DisplayMemberPath = "ShelvingId";
-        }
-
-        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        if (result == MessageBoxResult.Yes)
         {
-            DialogResult = false;
+            _dbContext.Shelving.Remove(selectedShelving);
+            _dbContext.SaveChanges();
+
+            Shelving.Remove(selectedShelving);
         }
     }
 }

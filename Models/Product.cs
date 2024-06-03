@@ -2,10 +2,28 @@
 
 public class Product
 {
-    public int ProductId { get; set; }
-    public string Name { get; set; }
+    public Product(string name, string description, int width, int height, int length, int weight,
+        int price, Material material, Shelving shelving, Category category)
+    {
+        Name = name;
+        Description = description;
+        Width = width;
+        Height = height;
+        Length = length;
+        Weight = weight;
+        Price = price;
+        Material = material;
+        Shelving = shelving;
+        Category = category;
+    }
 
-    public int Count { get; set; }
+    public Product()
+    {
+    }
+
+    public int ProductId { get; set; }
+
+    public string Name { get; set; }
 
     public string Description { get; set; }
 
@@ -22,7 +40,7 @@ public class Product
     public int CategoryId { get; set; }
     public virtual Category Category { get; set; }
 
-    public virtual ICollection<Supply> Suppply { get; set; }
+    public virtual ICollection<Supply>? Suppply { get; set; }
 
     public int MaterialId { get; set; }
     public virtual Material Material { get; set; }
@@ -30,11 +48,9 @@ public class Product
     public int ShelvingId { get; set; }
     public virtual Shelving Shelving { get; set; }
 
-    public Supply? LastSupply
-    {
-        get
-        {
-            return Suppply.LastOrDefault();
-        }
-    }
+    public Supply? LastSupply => Suppply.LastOrDefault();
+
+    public int? Count => Suppply?.Sum(s => s.Count);
+
+    public virtual ICollection<StoreHistory> StoreHistory { get; set; }
 }

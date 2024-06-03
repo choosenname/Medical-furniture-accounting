@@ -1,8 +1,4 @@
-﻿using System.IO;
-using System.Windows;
-using DocumentFormat.OpenXml;
-using DocumentFormat.OpenXml.Packaging;
-using DocumentFormat.OpenXml.Wordprocessing;
+﻿using System.Windows;
 using MedicalFurnitureAccounting.Models;
 
 namespace MedicalFurnitureAccounting;
@@ -21,25 +17,27 @@ public partial class InventoryWindow : Window
     }
 
     public ICollection<Product> Products { get; private set; }
+    public ICollection<Supply> Supplies { get; private set; }
 
     private void LoadSuppliers()
     {
         Products = _dbContext.Products.ToList();
+        Supplies = _dbContext.Supplies.ToList();
         DataContext = this;
     }
 
     private void ExportToWordButton_Click(object sender, RoutedEventArgs e)
     {
-        var helper = new WordHalper("Inventory.doc");
+        var helper = new WordHelper("Docs/Inventory.doc");
 
-        var sum = Products.Sum(p => p.Count * p.Material.Price);
+        var sum = Supplies.Sum(p => p.Count);
 
         var items = new Dictionary<string, string>
-            {
-                {"<DATE>", DateTime.Now.ToString("dd-MM-yyyy")  },
-                { "<NAME>", user.Name},
-                { "<SUM>", sum.ToString()},
-            };
+        {
+            { "<DATE>", DateTime.Now.ToString("dd-MM-yyyy") },
+            { "<NAME>", user.Name },
+            { "<SUM>", sum.ToString() }
+        };
 
         helper.AddTableAndReplaceData(items, Products);
     }

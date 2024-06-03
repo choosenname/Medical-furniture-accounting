@@ -5,6 +5,12 @@ namespace MedicalFurnitureAccounting;
 
 public class ApplicationDBContext : DbContext
 {
+    public ApplicationDBContext()
+    {
+        // Database.EnsureDeleted();
+        Database.EnsureCreated();
+    }
+
     public DbSet<Product> Products { get; set; }
     public DbSet<Supplier> Suppliers { get; set; }
     public DbSet<Category> Categories { get; set; }
@@ -13,12 +19,7 @@ public class ApplicationDBContext : DbContext
     public DbSet<Storekeeper> Storekeepers { get; set; }
     public DbSet<Shelving> Shelving { get; set; }
     public DbSet<Cell> Cell { get; set; }
-
-    public ApplicationDBContext()
-    {
-        // Database.EnsureDeleted();
-        Database.EnsureCreated();
-    }
+    public DbSet<StoreHistory> StoreHistories { get; set; }
 
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -26,9 +27,12 @@ public class ApplicationDBContext : DbContext
         optionsBuilder.UseSqlite("Data Source=MedicalFurnitureAccounting.db");
         optionsBuilder.UseLazyLoadingProxies();
     }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Storekeeper>().HasData(
             new Storekeeper { StorekeeperId = 1, Name = "Admin", Password = "Admin" });
+
+        base.OnModelCreating(modelBuilder);
     }
 }

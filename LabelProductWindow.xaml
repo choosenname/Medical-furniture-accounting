@@ -3,21 +3,20 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:MedicalFurnitureAccounting"
         mc:Ignorable="d"
         Title="LabelProduct" Height="450" Width="800">
     <StackPanel Background="White" Width="800" Height="600">
-        <TextBlock Text="Ярлык товара" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,20"/>
+        <TextBlock Text="Ярлык товара" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,20" />
 
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="0,20">
-            <TextBlock Text="Наименование товара:" FontWeight="Bold"/>
-            <TextBlock Text="{Binding Name}" Margin="5,0"/>
-            <TextBlock Text="Количество:" FontWeight="Bold" Margin="0,10,0,0"/>
-            <TextBlock Text="{Binding Count}" Margin="5,0"/>
-            <TextBlock Text="Материал:" FontWeight="Bold" Margin="0,10,0,0"/>
-            <TextBlock Text="{Binding Material.Name}" Margin="5,0"/>
-            <TextBlock Text="Категория:" FontWeight="Bold" Margin="0,10,0,0"/>
-            <TextBlock Text="{Binding Category.Name}" Margin="5,0"/>
+            <TextBlock Text="Наименование товара:" FontWeight="Bold" />
+            <TextBlock Text="{Binding Name}" Margin="5,0" />
+            <TextBlock Text="Количество:" FontWeight="Bold" Margin="0,10,0,0" />
+            <TextBlock Text="{Binding Count}" Margin="5,0" />
+            <TextBlock Text="Материал:" FontWeight="Bold" Margin="0,10,0,0" />
+            <TextBlock Text="{Binding Material.Name}" Margin="5,0" />
+            <TextBlock Text="Категория:" FontWeight="Bold" Margin="0,10,0,0" />
+            <TextBlock Text="{Binding Category.Name}" Margin="5,0" />
             <Button Style="{StaticResource ButtonStyle}" Click="Button_Click">Экспорт</Button>
         </StackPanel>
     </StackPanel>

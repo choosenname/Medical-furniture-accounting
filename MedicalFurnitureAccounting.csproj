@@ -9,52 +9,52 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <COMReference Include="Microsoft.Office.Interop.Word">
-        <WrapperTool>tlbimp</WrapperTool>
-        <VersionMinor>7</VersionMinor>
-        <VersionMajor>8</VersionMajor>
-        <Guid>00020905-0000-0000-c000-000000000046</Guid>
-        <Lcid>0</Lcid>
-        <Isolated>false</Isolated>
-        <EmbedInteropTypes>true</EmbedInteropTypes>
-      </COMReference>
+        <COMReference Include="Microsoft.Office.Interop.Word">
+            <WrapperTool>tlbimp</WrapperTool>
+            <VersionMinor>7</VersionMinor>
+            <VersionMajor>8</VersionMajor>
+            <Guid>00020905-0000-0000-c000-000000000046</Guid>
+            <Lcid>0</Lcid>
+            <Isolated>false</Isolated>
+            <EmbedInteropTypes>true</EmbedInteropTypes>
+        </COMReference>
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="DocumentFormat.OpenXml" Version="3.0.2" />
-      <PackageReference Include="Extended.Wpf.Toolkit" Version="4.6.0" />
-      <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.0-preview.2.24128.4">
-        <PrivateAssets>all</PrivateAssets>
-        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      </PackageReference>
-      <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="9.0.0-preview.2.24128.4" />
-      <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="9.0.0-preview.2.24128.4" />
+        <PackageReference Include="DocumentFormat.OpenXml" Version="3.0.2"/>
+        <PackageReference Include="Extended.Wpf.Toolkit" Version="4.6.0"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.0-preview.2.24128.4">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="9.0.0-preview.2.24128.4"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="9.0.0-preview.2.24128.4"/>
     </ItemGroup>
 
     <ItemGroup>
-      <Page Update="Modals\AddMaterialModal.xaml">
-        <Generator>MSBuild:Compile</Generator>
-        <XamlRuntime>Wpf</XamlRuntime>
-        <SubType>Designer</SubType>
-      </Page>
+        <Page Update="Modals\AddMaterialModal.xaml">
+            <Generator>MSBuild:Compile</Generator>
+            <XamlRuntime>Wpf</XamlRuntime>
+            <SubType>Designer</SubType>
+        </Page>
     </ItemGroup>
 
     <ItemGroup>
-      <None Update="AcceptanceAct.docx">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="Inventory.doc">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="Lable.doc">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="MedicalFurnitureAccounting.db">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Update="AcceptanceAct.doc">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
+        <None Update="MedicalFurnitureAccounting.db">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Update="AcceptanceAct.doc">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Update="Docs\Lable.doc">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Update="Docs\Inventory.doc">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Update="Docs\AcceptanceAct.docx">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
     </ItemGroup>
 
 </Project>

@@ -23,9 +23,6 @@
     <Compile Update="Pages\SupplierPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Pages\SupplyPage.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="ChangeCellWindow.xaml">
@@ -52,16 +49,7 @@
     <Page Update="Pages\ProductsPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Pages\CellPage.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Pages\ShelvingPage.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="Pages\SupplierPage.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Pages\SupplyPage.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
