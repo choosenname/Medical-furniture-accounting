@@ -26,20 +26,10 @@ public partial class ProductsPage : Page
     }
 
     public ObservableCollection<Product> Products { get; set; }
-    public ObservableCollection<Category> Categories { get; set; }
-    public ObservableCollection<Material> Materials { get; set; }
-    public ObservableCollection<Shelving> Shelving { get; set; }
-    public ObservableCollection<Cell> Cell { get; set; }
-    public ObservableCollection<Supply> Supplies { get; set; }
 
     private void LoadCategories()
     {
         Products = new ObservableCollection<Product>(_context.Products.ToList());
-        Categories = new ObservableCollection<Category>(_context.Categories.ToList());
-        Materials = new ObservableCollection<Material>(_context.Materials.ToList());
-        Shelving = new ObservableCollection<Shelving>(_context.Shelving.ToList());
-        Cell = new ObservableCollection<Cell>(_context.Cell.ToList());
-        Supplies = new ObservableCollection<Supply>(_context.Supplies.ToList());
 
         DataContext = this;
     }
@@ -83,7 +73,7 @@ public partial class ProductsPage : Page
             var productToUpdate = Products.FirstOrDefault(p => p.ProductId == productId);
             if (productToUpdate != null)
             {
-                var changeShelvingWindow = new ChangeShelvingWindow(_context);
+                var changeShelvingWindow = new ChangeShelvingWindow(_context, productToUpdate);
                 if (changeShelvingWindow.ShowDialog() == true)
                     if (changeShelvingWindow.NewShelvingId.HasValue)
                     {

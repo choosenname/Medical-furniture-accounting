@@ -65,7 +65,7 @@ public partial class AddSupplyModal : Window
             date: (DateTime)DatePicker.Value,
             count: Int32.Parse(CountTextBox.Text),
             supplier: selectedSupplier,
-            products: selectedProduct
+            product: selectedProduct
         );
 
         DialogResult = true;
@@ -126,10 +126,6 @@ public partial class AddSupplyModal : Window
         if (addWindow.ShowDialog() == true)
         {
             var newModel = addWindow.Product;
-
-            // Если товар не существует, добавляем новый товар в коллекцию
-            _dbContext.Products.Add(newModel);
-            _dbContext.SaveChanges();
             Products.Add(newModel);
 
             DataContext = null;

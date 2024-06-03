@@ -11,7 +11,7 @@ public partial class AddProductModal : Window
     private readonly ApplicationDBContext _dbContext;
     private ObservableCollection<Material> Materials { get; set; }
     private ObservableCollection<Shelving> Shelving { get; set; }
-    public ObservableCollection<Category> Categories { get; set; }
+    private ObservableCollection<Category> Categories { get; set; }
 
     public Product Product { get; private set; }
 
@@ -87,6 +87,10 @@ public partial class AddProductModal : Window
             weight: weight,
             price: price
         );
+
+        _dbContext.Products.Add(Product);
+        _dbContext.StoreHistories.Add(new StoreHistory(date: DateTime.Now, product: Product, shelving: selectedShelving));
+        _dbContext.SaveChanges();
 
         DialogResult = true;
     }

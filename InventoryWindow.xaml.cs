@@ -28,7 +28,7 @@ public partial class InventoryWindow : Window
 
     private void ExportToWordButton_Click(object sender, RoutedEventArgs e)
     {
-        var helper = new WordHelper("Inventory.doc");
+        var helper = new WordHelper("Docs/Inventory.doc");
 
         var sum = Supplies.Sum(p => p.Count);
 

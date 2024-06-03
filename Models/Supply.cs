@@ -2,12 +2,12 @@
 
 public class Supply
 {
-    public Supply(DateTime date, int count, Supplier supplier, Product products)
+    public Supply(DateTime date, int count, Supplier supplier, Product product)
     {
         Date = date;
         Count = count;
         Supplier = supplier;
-        Products = products;
+        Product = product;
     }
 
     public Supply()
@@ -24,6 +24,5 @@ public class Supply
     public virtual Supplier Supplier { get; set; }
 
     public int ProductId { get; set; }
-    //TODO: fix
-    public virtual Product Products { get; set; }
+    public virtual Product Product { get; set; }
 }

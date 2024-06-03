@@ -4,10 +4,30 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="ChangeShelvingWindow" Height="250" Width="300">
+        Title="ChangeShelvingWindow">
     <StackPanel Margin="10">
-        <Label Content="Выберите новый номер стелажа:" />
-        <ComboBox x:Name="SelvingComboBox" Style="{StaticResource ComboBoxStyle}" Margin="10" />
+        <ListView ItemsSource="{Binding StoreHistories}" Margin="10" Height="350" Width="1000">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Дата"
+                                    DisplayMemberBinding="{Binding Date, StringFormat='{}{0:dd.MM.yyyy HH:mm}'}" />
+                    <GridViewColumn Header="Товар" DisplayMemberBinding="{Binding Product.Name }" />
+                    <GridViewColumn Header="Стеллаж" DisplayMemberBinding="{Binding Shelving.ShelvingId }" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <Label Content="Выберите новый номер стеллажа:" />
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="30" />
+                <ColumnDefinition Width="30" />
+            </Grid.ColumnDefinitions>
+            <ComboBox x:Name="ShelvingComboBox" Style="{StaticResource ComboBoxStyle}" Margin="10" />
+            <Button Click="AddShelvingButton_Click" Grid.Column="1" Content="+" Width="20" Height="20" FontSize="10" />
+            <Button Click="DeleteShelvingButton_Click" Grid.Column="2" Content="-" Width="20" Height="20" FontSize="10" />
+        </Grid>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
             <Button Content="Отмена" Click="CancelButton_Click" Style="{StaticResource ButtonStyle}" />
             <Button Content="Сохранить" Click="SaveButton_Click" Style="{StaticResource ButtonStyle}" />

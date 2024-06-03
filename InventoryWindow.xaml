@@ -4,11 +4,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         mc:Ignorable="d"
-        Title="InventoryWindow" Height="625" Width="800">
+        Title="InventoryWindow" Height="700" Width="800">
     <StackPanel>
         <TextBlock Text="ИНВЕНТАРИЗАЦИОННАЯ ОПИСЬ" FontSize="24" HorizontalAlignment="Center" FontWeight="Bold"
                    Margin="10" />
-        <TextBlock Text="товарно-матеиальных ценностей" FontSize="12" HorizontalAlignment="Center" FontWeight="Bold"
+        <TextBlock Text="товарно-материальных ценностей" FontSize="12" HorizontalAlignment="Center" FontWeight="Bold"
                    Margin="10" />
 
         <TextBlock Text="РАСПИСКА" FontSize="12" HorizontalAlignment="Center" FontWeight="Bold" Margin="10" />
@@ -24,7 +24,7 @@
                 <GridView>
                     <GridViewColumn Header="Номер продукта" DisplayMemberBinding="{Binding ProductId}" />
                     <GridViewColumn Header="Наименование" DisplayMemberBinding="{Binding Name}" />
-                    <GridViewColumn Header="Колличесво" DisplayMemberBinding="{Binding Count}" />
+                    <GridViewColumn Header="Количество" DisplayMemberBinding="{Binding Count}" />
                     <GridViewColumn Header="Цена" DisplayMemberBinding="{Binding Material.Price}" />
                 </GridView>
             </ListView.View>
