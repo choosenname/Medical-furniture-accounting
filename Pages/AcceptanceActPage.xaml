@@ -31,13 +31,13 @@
             <TextBlock Text="Дата:" FontSize="16" FontWeight="Bold" Grid.Row="0" />
             <TextBlock Text="{Binding Suppply.Date}" FontSize="16" Grid.Row="0" Grid.Column="1" />
             <TextBlock Text="Наименование товара:" FontSize="16" FontWeight="Bold" Grid.Row="1" />
-            <TextBlock Text="{Binding Name}" FontSize="16" Grid.Row="1" Grid.Column="1" />
+            <TextBlock Text="{Binding Suppply.Product.Name}" FontSize="16" Grid.Row="1" Grid.Column="1" />
             <TextBlock Text="Количество:" FontSize="16" FontWeight="Bold" Grid.Row="2" />
-            <TextBlock Text="{Binding Count}" FontSize="16" Grid.Row="2" Grid.Column="1" />
+            <TextBlock Text="{Binding Suppply.Count}" FontSize="16" Grid.Row="2" Grid.Column="1" />
             <TextBlock Text="Категория:" FontSize="16" FontWeight="Bold" Grid.Row="4" />
-            <TextBlock Text="{Binding Category.Name}" FontSize="16" Grid.Row="4" Grid.Column="1" />
+            <TextBlock Text="{Binding Suppply.Product.Category.Name}" FontSize="16" Grid.Row="4" Grid.Column="1" />
             <TextBlock Text="Поставщик:" FontSize="16" FontWeight="Bold" Grid.Row="5" />
-            <TextBlock Text="{Binding LastSupply.Supplier.Name}" FontSize="16" Grid.Row="5" Grid.Column="1" />
+            <TextBlock Text="{Binding Suppply.Supplier.Name}" FontSize="16" Grid.Row="5" Grid.Column="1" />
 
             <!-- Подпись -->
             <TextBlock Text="Подпись получателя:" FontSize="16" FontWeight="Bold" Grid.Row="7" Margin="0,20" />

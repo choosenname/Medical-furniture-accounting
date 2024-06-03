@@ -23,7 +23,7 @@ public partial class LabelProductWindow
 
     private void Button_Click(object sender, RoutedEventArgs e)
     {
-        var helper = new WordHelper("Lable.doc");
+        var helper = new WordHelper("Docs/Lable.doc");
 
         var suppply = Product.Suppply.LastOrDefault();
 

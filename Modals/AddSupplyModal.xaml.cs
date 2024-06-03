@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Input;
 using MedicalFurnitureAccounting.Models;
+using MedicalFurnitureAccounting.Pages;
 
 namespace MedicalFurnitureAccounting.Modals;
 
@@ -68,7 +69,26 @@ public partial class AddSupplyModal : Window
             product: selectedProduct
         );
 
+        GenerateAcceptanceAct(supply: Supply);
+
         DialogResult = true;
+    }
+
+    private void GenerateAcceptanceAct(Supply supply)
+    {
+        // Создание страницы акта приема-передачи
+        AcceptanceActPage acceptanceActPage = new AcceptanceActPage(supply);
+
+        // Отображение страницы в диалоговом окне
+        var dialog = new Window
+        {
+            Content = acceptanceActPage,
+            SizeToContent = SizeToContent.WidthAndHeight,
+            ResizeMode = ResizeMode.NoResize,
+            Title = "Acceptance Act"
+        };
+
+        dialog.ShowDialog();
     }
 
     private void CancelButton_Click(object sender, RoutedEventArgs e)
