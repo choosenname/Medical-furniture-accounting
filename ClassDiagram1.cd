@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="MedicalFurnitureAccounting.Models.Category">
+    <Position X="3" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAQAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Models\Category.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MedicalFurnitureAccounting.Models.Cell">
+    <Position X="8.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAACAAAAAAAA=</HashCode>
+      <FileName>Models\Cell.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MedicalFurnitureAccounting.Models.Material">
+    <Position X="10.5" Y="1" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAAAAAQAAAQAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Models\Material.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MedicalFurnitureAccounting.Models.Product">
+    <Position X="5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EEAAgAAABQAgAgAAEAQgAEVAACAAAIAAAAAAAAAACAA=</HashCode>
+      <FileName>Models\Product.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MedicalFurnitureAccounting.Models.Shelving">
+    <Position X="6.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAAEABgAAAAAAAAAAAAAACAAAAAAAA=</HashCode>
+      <FileName>Models\Shelving.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MedicalFurnitureAccounting.Models.StoreHistory">
+    <Position X="8.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAACAAAAAAAAAAAAEAAAAAEAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Models\StoreHistory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MedicalFurnitureAccounting.Models.Storekeeper">
+    <Position X="3" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAQAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Storekeeper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MedicalFurnitureAccounting.Models.Supplier">
+    <Position X="6.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEACAAAAAAAAAAAAQAAAAAAEAAAAAAIAAgBAA=</HashCode>
+      <FileName>Models\Supplier.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MedicalFurnitureAccounting.Models.Supply">
+    <Position X="10.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAIAAAAAAAgQAAAAAAAABAAAAAAAgAAA=</HashCode>
+      <FileName>Models\Supply.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

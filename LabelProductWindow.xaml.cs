@@ -25,7 +25,7 @@ public partial class LabelProductWindow
     {
         var helper = new WordHelper("Docs/Lable.doc");
 
-        var suppply = Product.Suppply.LastOrDefault();
+        var suppply = Product.SupplyItems.LastOrDefault().Supply;
 
         var items = new Dictionary<string, string>
         {

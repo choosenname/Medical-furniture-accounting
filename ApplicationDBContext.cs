@@ -20,6 +20,7 @@ public class ApplicationDBContext : DbContext
     public DbSet<Shelving> Shelving { get; set; }
     public DbSet<Cell> Cell { get; set; }
     public DbSet<StoreHistory> StoreHistories { get; set; }
+    public DbSet<SupplyItem> SupplyItems { get; set; }
 
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

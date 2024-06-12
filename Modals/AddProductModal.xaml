@@ -48,8 +48,6 @@
                     <Button Click="DeleteShelvingButton_Click" Grid.Column="2" Content="-" Width="20" Height="20" FontSize="10" />
                 </Grid>
 
-                <Label Content="Количество:" Margin="0 10 0 0" />
-                <TextBox x:Name="ProductCountTextBox" Margin="10" PreviewTextInput="NumberTextBox_PreviewTextInput" />
                 <Label Content="Описание:" Margin="0 10 0 0" />
                 <TextBox x:Name="ProductDescriptionTextBox" Margin="10" />
                 <Label Content="Ширина:" Margin="0 10 0 0" />

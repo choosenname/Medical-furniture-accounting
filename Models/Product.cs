@@ -40,17 +40,13 @@ public class Product
     public int CategoryId { get; set; }
     public virtual Category Category { get; set; }
 
-    public virtual ICollection<Supply>? Suppply { get; set; }
+    public virtual ICollection<SupplyItem> SupplyItems { get; set; }
 
     public int MaterialId { get; set; }
     public virtual Material Material { get; set; }
 
     public int ShelvingId { get; set; }
     public virtual Shelving Shelving { get; set; }
-
-    public Supply? LastSupply => Suppply.LastOrDefault();
-
-    public int? Count => Suppply?.Sum(s => s.Count);
 
     public virtual ICollection<StoreHistory> StoreHistory { get; set; }
 }

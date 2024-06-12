@@ -57,8 +57,7 @@ public partial class AddProductModal : Window
         }
 
         // Проверка, что числовые поля введены корректно
-        if (!int.TryParse(ProductCountTextBox.Text, out var count) ||
-            !int.TryParse(ProductWidthTextBox.Text, out var width) ||
+        if (!int.TryParse(ProductWidthTextBox.Text, out var width) ||
             !int.TryParse(ProductHeightTextBox.Text, out var height) ||
             !int.TryParse(ProductLengthTextBox.Text, out var length) ||
             !int.TryParse(ProductWeightTextBox.Text, out var weight) ||

@@ -7,7 +7,6 @@ public class Supply
         Date = date;
         Count = count;
         Supplier = supplier;
-        Product = product;
     }
 
     public Supply()
@@ -23,6 +22,5 @@ public class Supply
     public int SupplierId { get; set; }
     public virtual Supplier Supplier { get; set; }
 
-    public int ProductId { get; set; }
-    public virtual Product Product { get; set; }
+    public virtual ICollection<SupplyItem> SupplyItems { get; set; }
 }

@@ -3,18 +3,22 @@ using System.Windows;
 using System.Windows.Input;
 using MedicalFurnitureAccounting.Models;
 using MedicalFurnitureAccounting.Pages;
+using System.Linq;
 
 namespace MedicalFurnitureAccounting.Modals;
 
 public partial class AddSupplyModal : Window
 {
     private readonly ApplicationDBContext _dbContext;
+    private ObservableCollection<SupplyItem> _selectedProducts;
 
     public AddSupplyModal(ApplicationDBContext dbContext)
     {
         _dbContext = dbContext;
         InitializeComponent();
         LoadSuppliers();
+        _selectedProducts = new ObservableCollection<SupplyItem>();
+        SelectedProductsDataGrid.ItemsSource = _selectedProducts;
     }
 
     public ObservableCollection<Supplier> Suppliers { get; set; }
@@ -29,8 +33,8 @@ public partial class AddSupplyModal : Window
         SupplierComboBox.DisplayMemberPath = "Name";
 
         Products = new ObservableCollection<Product>(_dbContext.Products.ToList());
-        ProductComboBox.ItemsSource = Products;
-        ProductComboBox.DisplayMemberPath = "Name";
+        ProductListBox.ItemsSource = Products;
+        ProductListBox.DisplayMemberPath = "Name";
     }
 
     private void NumberTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
@@ -41,6 +45,38 @@ public partial class AddSupplyModal : Window
                 e.Handled = true; // Отменяем ввод символа, если он не является цифрой
                 break;
             }
+    }
+
+    private void AddProductToSupplyButton_Click(object sender, RoutedEventArgs e)
+    {
+        var selectedProducts = ProductListBox.SelectedItems.Cast<Product>().ToList();
+        if (!selectedProducts.Any())
+        {
+            MessageBox.Show("Пожалуйста, выберите хотя бы один товар.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            return;
+        }
+
+        if (string.IsNullOrEmpty(CountTextBox.Text) || !int.TryParse(CountTextBox.Text, out int count) || count <= 0)
+        {
+            MessageBox.Show("Пожалуйста, введите корректное количество.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            return;
+        }
+
+        foreach (var product in selectedProducts)
+        {
+            var existingItem = _selectedProducts.FirstOrDefault(p => p.Product.ProductId == product.ProductId);
+            if (existingItem != null)
+            {
+                existingItem.Count += count;
+            }
+            else
+            {
+                _selectedProducts.Add(new SupplyItem { Product = product, Count = count });
+            }
+        }
+
+        ProductListBox.UnselectAll();
+        CountTextBox.Clear();
     }
 
     private void AddButton_Click(object sender, RoutedEventArgs e)
@@ -58,18 +94,22 @@ public partial class AddSupplyModal : Window
             return;
         }
 
+        if (!_selectedProducts.Any())
+        {
+            MessageBox.Show("Пожалуйста, добавьте хотя бы один товар в поставку.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            return;
+        }
+
         var selectedSupplier = (Supplier)SupplierComboBox.SelectedItem;
-        var selectedProduct = (Product)ProductComboBox.SelectedItem;
 
         Supply = new Supply
-        (
-            date: (DateTime)DatePicker.Value,
-            count: Int32.Parse(CountTextBox.Text),
-            supplier: selectedSupplier,
-            product: selectedProduct
-        );
+        {
+            Date = (DateTime)DatePicker.Value,
+            Supplier = selectedSupplier,
+            SupplyItems = _selectedProducts.ToList()
+        };
 
-        GenerateAcceptanceAct(supply: Supply);
+        GenerateAcceptanceAct(Supply);
 
         DialogResult = true;
     }
@@ -155,13 +195,13 @@ public partial class AddSupplyModal : Window
 
     private void DeleteProductButton_Click(object sender, RoutedEventArgs e)
     {
-        if (ProductComboBox.SelectedItem == null)
+        if (ProductListBox.SelectedItem == null)
         {
             MessageBox.Show("Пожалуйста, выберите товар.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             return;
         }
 
-        var selectedProduct = (Product)ProductComboBox.SelectedItem;
+        var selectedProduct = (Product)ProductListBox.SelectedItem;
 
         var result = MessageBox.Show($"Вы уверены, что хотите удалить товар '{selectedProduct.Name}'?",
             "Подтверждение удаления", MessageBoxButton.YesNo, MessageBoxImage.Warning);
