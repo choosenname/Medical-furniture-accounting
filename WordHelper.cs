@@ -128,6 +128,7 @@ internal class WordHelper
             table.Cell(1, 2).Range.Text = "Наименование";
             table.Cell(1, 3).Range.Text = "Цена";
             table.Cell(1, 4).Range.Text = "Стеллаж";
+            table.Cell(1, 5).Range.Text = "Количество";
 
             // Заполнение данных в таблице
             var rowIndex = 2; // Начинаем с 2-й строки, т.к. первая строка занята заголовком
@@ -137,6 +138,7 @@ internal class WordHelper
                 table.Cell(rowIndex, 2).Range.Text = product.Name;
                 table.Cell(rowIndex, 3).Range.Text = product.Material.Price.ToString();
                 table.Cell(rowIndex, 4).Range.Text = product.ShelvingId.ToString();
+                table.Cell(rowIndex, 5).Range.Text = product.Count.ToString();
                 rowIndex++;
             }
 

@@ -49,4 +49,6 @@ public class Product
     public virtual Shelving Shelving { get; set; }
 
     public virtual ICollection<StoreHistory> StoreHistory { get; set; }
+
+    public int Count => SupplyItems.Sum(s => s.Count);
 }

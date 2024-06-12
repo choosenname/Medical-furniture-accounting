@@ -23,4 +23,7 @@ public class Supply
     public virtual Supplier Supplier { get; set; }
 
     public virtual ICollection<SupplyItem> SupplyItems { get; set; }
+
+    public string ProductsString => string.Join(", ", SupplyItems.Select(s => s.Product.Name));
+    public string CountString => string.Join(", ", SupplyItems.Select(s => s.Count));
 }

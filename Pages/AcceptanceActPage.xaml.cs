@@ -9,12 +9,13 @@ namespace MedicalFurnitureAccounting.Pages;
 /// </summary>
 public partial class AcceptanceActPage : Page
 {
-    public readonly Supply Supply;
+    public Supply Supply { get; }
 
     public AcceptanceActPage(Supply supply)
     {
-        InitializeComponent();
         Supply = supply;
+        InitializeComponent();
+        DataContext = this; // Устанавливаем DataContext
     }
 
     private void CloseButton_Click(object sender, RoutedEventArgs e)
@@ -23,7 +24,7 @@ public partial class AcceptanceActPage : Page
         Window.GetWindow(this).Close();
     }
 
-    public void ExportAcceptanceAct_Click(object sender, RoutedEventArgs e)
+    private void ExportAcceptanceAct_Click(object sender, RoutedEventArgs e)
     {
         var helper = new WordHelper("Docs/AcceptanceAct.docx");
 
@@ -31,8 +32,8 @@ public partial class AcceptanceActPage : Page
         {
             { "<DATE_NOW>", Supply.Date.ToString("dd-MM-yyyy HH:mm") },
             { "<SUPPLIER>", Supply.Supplier.Name },
-            // { "<NAME>", Supply.Product.Name },
-            { "<COUNT>", Supply.Count.ToString() },
+            { "<NAME>", Supply.ProductsString },
+            { "<COUNT>", Supply.CountString },
             { "<NUM>", Supply.SupplyId.ToString() },
             { "<DATE>", Supply.Date.ToString("dd-MM-yyyy HH:mm") }
         };

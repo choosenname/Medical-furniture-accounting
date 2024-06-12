@@ -30,7 +30,7 @@ public partial class InventoryWindow : Window
     {
         var helper = new WordHelper("Docs/Inventory.doc");
 
-        var sum = Supplies.Sum(p => p.Count);
+        var sum = Supplies.Sum(p => p.SupplyItems.Sum(s => s.Count));
 
         var items = new Dictionary<string, string>
         {

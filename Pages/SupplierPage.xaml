@@ -17,8 +17,32 @@
                     <GridViewColumn Header="Дата"
                                     DisplayMemberBinding="{Binding Date, StringFormat='{}{0:dd.MM.yyyy HH:mm}'}" />
                     <GridViewColumn Header="Поставщик" DisplayMemberBinding="{Binding Supplier.Name}" />
-                    <GridViewColumn Header="Количество (шт)" DisplayMemberBinding="{Binding Count }" />
-                    <GridViewColumn Header="Товар" DisplayMemberBinding="{Binding Product.Name }" />
+                    <GridViewColumn Header="Количество (шт)" >
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <ItemsControl ItemsSource="{Binding SupplyItems}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Count}" />
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Товары">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <ItemsControl ItemsSource="{Binding SupplyItems}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Product.Name}" />
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
                     <GridViewColumn>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
