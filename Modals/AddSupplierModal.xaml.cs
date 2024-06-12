@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
 
@@ -48,6 +49,13 @@ public partial class AddSupplierModal : Window
             return;
         }
 
+        // Проверка корректности адреса
+        if (!IsValidAddress(Addres))
+        {
+            MessageBox.Show("Введите корректный адрес.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            return;
+        }
+
         // Закрываем окно
         DialogResult = true;
     }
@@ -70,12 +78,20 @@ public partial class AddSupplierModal : Window
 
     private bool IsValidPhone(string phone)
     {
-        // Пример простой проверки номера телефона (можно улучшить при необходимости)
-        return phone.All(char.IsDigit) && phone.Length >= 10 && phone.Length <= 15;
+        // Проверка номера телефона с использованием регулярного выражения
+        var phonePattern = @"^\+?\d{10,15}$";
+        return Regex.IsMatch(phone, phonePattern);
     }
 
     private bool IsValidEmail(string email)
     {
         return new EmailAddressAttribute().IsValid(email);
+    }
+
+    private bool IsValidAddress(string address)
+    {
+        // Пример простой проверки адреса (можно улучшить при необходимости)
+        var addressPattern = @"^[a-zA-Z0-9\s,.-]+$";
+        return Regex.IsMatch(address, addressPattern);
     }
 }

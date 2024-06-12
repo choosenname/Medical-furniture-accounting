@@ -30,12 +30,12 @@ public partial class AcceptanceActPage : Page
 
         var items = new Dictionary<string, string>
         {
-            { "<DATE_NOW>", Supply.Date.ToString("dd-MM-yyyy HH:mm") },
+            { "<DATE_NOW>", Supply.Date.ToString("dd-MM-yyyy") },
             { "<SUPPLIER>", Supply.Supplier.Name },
             { "<NAME>", Supply.ProductsString },
             { "<COUNT>", Supply.CountString },
             { "<NUM>", Supply.SupplyId.ToString() },
-            { "<DATE>", Supply.Date.ToString("dd-MM-yyyy HH:mm") }
+            { "<DATE>", Supply.Date.ToString("dd-MM-yyyy") }
         };
 
         helper.Process(items);

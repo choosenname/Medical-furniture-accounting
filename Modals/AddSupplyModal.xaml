@@ -7,49 +7,59 @@
         mc:Ignorable="d"
         Title="AddSupplyModal">
     <StackPanel Margin="10">
-        <Label Content="Добавление поставки" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" />
-        <Label Content="Дата:" Margin="0 10 0 0" />
-        <xctk:DateTimePicker x:Name="DatePicker" Margin="10" />
+        <ScrollViewer CanContentScroll="True" Height="500">
+            <StackPanel>
+                <Label Content="Добавление поставки" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" />
+                <Label Content="Дата:" Margin="0 10 0 0" />
+                <xctk:DateTimePicker x:Name="DatePicker" Margin="10" />
 
-        <Label Content="Поставщик:" />
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="30" />
-                <ColumnDefinition Width="30" />
-            </Grid.ColumnDefinitions>
-            <ComboBox x:Name="SupplierComboBox" Style="{StaticResource ComboBoxStyle}" Margin="10" />
-            <Button Click="AddSupplierButton_Click" Grid.Column="1" Content="+" Width="20" Height="20" FontSize="10" />
-            <Button Click="DeleteSupplierButton_Click" Grid.Column="2" Content="-" Width="20" Height="20" FontSize="10" />
-        </Grid>
+                <Label Content="Поставщик:" />
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="30" />
+                        <ColumnDefinition Width="30" />
+                    </Grid.ColumnDefinitions>
+                    <ComboBox x:Name="SupplierComboBox" Style="{StaticResource ComboBoxStyle}" Margin="10" />
+                    <Button Click="AddSupplierButton_Click" Grid.Column="1" Content="+" Width="20" Height="20"
+                            FontSize="10" />
+                    <Button Click="DeleteSupplierButton_Click" Grid.Column="2" Content="-" Width="20" Height="20"
+                            FontSize="10" />
+                </Grid>
 
-        <Label Content="Товары:" />
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="30" />
-                <ColumnDefinition Width="30" />
-            </Grid.ColumnDefinitions>
-            <ListBox x:Name="ProductListBox" Height="60" SelectionMode="Multiple" Margin="10" />
-            <Button Click="AddProductButton_Click" Grid.Column="1" Content="+" Width="20" Height="20" FontSize="10" />
-            <Button Click="DeleteProductButton_Click" Grid.Column="2" Content="-" Width="20" Height="20" FontSize="10" />
-        </Grid>
+                <Label Content="Товары:" />
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="30" />
+                        <ColumnDefinition Width="30" />
+                    </Grid.ColumnDefinitions>
+                    <ListBox x:Name="ProductListBox" Height="60" SelectionMode="Multiple" Margin="10" />
+                    <Button Click="AddProductButton_Click" Grid.Column="1" Content="+" Width="20" Height="20"
+                            FontSize="10" />
+                    <Button Click="DeleteProductButton_Click" Grid.Column="2" Content="-" Width="20" Height="20"
+                            FontSize="10" />
+                </Grid>
 
-        <Label Content="Количество:" />
-        <TextBox x:Name="CountTextBox" Margin="10" PreviewTextInput="NumberTextBox_PreviewTextInput" />
+                <Label Content="Количество:" />
+                <TextBox x:Name="CountTextBox" Margin="10" PreviewTextInput="NumberTextBox_PreviewTextInput" />
 
-        <Button Content="Добавить товар в поставку" Style="{StaticResource ButtonStyle}" Click="AddProductToSupplyButton_Click" Margin="10 0" />
+                <Button Content="Добавить товар в поставку" Style="{StaticResource ButtonStyle}"
+                        Click="AddProductToSupplyButton_Click" Margin="10 0" />
 
-        <DataGrid x:Name="SelectedProductsDataGrid" AutoGenerateColumns="False" Margin="10" Height="150">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Товар" Binding="{Binding Product.Name}" Width="*" />
-                <DataGridTextColumn Header="Количество" Binding="{Binding Count}" Width="100" />
-            </DataGrid.Columns>
-        </DataGrid>
+                <DataGrid x:Name="SelectedProductsDataGrid" AutoGenerateColumns="False" Margin="10" Height="150"
+                          IsReadOnly="True" CanUserSortColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Товар" Binding="{Binding Product.Name}" Width="*" />
+                        <DataGridTextColumn Header="Количество" Binding="{Binding Count}" Width="100" />
+                    </DataGrid.Columns>
+                </DataGrid>
 
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="30">
-            <Button Content="Добавить" Style="{StaticResource ButtonStyle}" Click="AddButton_Click" />
-            <Button Content="Отмена" Style="{StaticResource ButtonStyle}" Click="CancelButton_Click" />
-        </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="30">
+                    <Button Content="Добавить" Style="{StaticResource ButtonStyle}" Click="AddButton_Click" />
+                    <Button Content="Отмена" Style="{StaticResource ButtonStyle}" Click="CancelButton_Click" />
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
     </StackPanel>
 </Window>

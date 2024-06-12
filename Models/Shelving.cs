@@ -19,5 +19,5 @@ public class Shelving
     public int CellId { get; set; }
     public virtual Cell Cell { get; set; }
 
-    public virtual StoreHistory StoreHistory { get; set; }
+    public virtual ICollection<StoreHistory> StoreHistory { get; set; }
 }

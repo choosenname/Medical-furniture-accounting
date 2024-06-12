@@ -9,23 +9,17 @@
             <Button Content="Поиск" Click="SearchButton_Click" Style="{StaticResource ButtonStyle}" />
             <Button Content="Сброс" Click="ShowAllButton_Click" Style="{StaticResource ButtonStyle}" />
             <Button Content="Сортировка по имени" Click="SortByNameButton_Click"
-                    Style="{StaticResource ButtonStyle}" RenderTransformOrigin="0.5,0.5" Width="138">
-                <Button.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform />
-                        <SkewTransform />
-                        <RotateTransform Angle="0.16" />
-                        <TranslateTransform />
-                    </TransformGroup>
-                </Button.RenderTransform>
-            </Button>
-
-            <Button Content="Инвентаризация" Click="ShowInventoryList_Click"
-                    Style="{StaticResource ButtonStyle}" />
+                    Style="{StaticResource ButtonStyle}" Width="138" />
+            <ComboBox x:Name="categoryFilter" SelectionChanged="CategoryFilter_SelectionChanged" Width="150"
+                      Margin="10,0,0,0" DisplayMemberPath="Name" SelectedValuePath="CategoryId" />
+            <ComboBox x:Name="materialFilter" SelectionChanged="MaterialFilter_SelectionChanged" Width="150"
+                      Margin="10,0,0,0" DisplayMemberPath="Name" SelectedValuePath="MaterialId" />
+            <ComboBox x:Name="supplierFilter" SelectionChanged="SupplierFilter_SelectionChanged" Width="150"
+                      Margin="10,0,0,0" DisplayMemberPath="Name" SelectedValuePath="SupplierId" />
+            <Button Content="Инвентаризация" Click="ShowInventoryList_Click" Style="{StaticResource ButtonStyle}" />
         </StackPanel>
 
-        <ListView ItemsSource="{Binding Products}" Margin="10" Height="350" Width="1000"
-                  Name="productsListView">
+        <ListView ItemsSource="{Binding Products}" Margin="10" Height="350" Width="1000" Name="productsListView">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Категория" DisplayMemberBinding="{Binding Category.Name}" />
