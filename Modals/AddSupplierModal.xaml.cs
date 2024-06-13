@@ -91,7 +91,7 @@ public partial class AddSupplierModal : Window
     private bool IsValidAddress(string address)
     {
         // Пример простой проверки адреса (можно улучшить при необходимости)
-        var addressPattern = @"^[a-zA-Z0-9\s,.-]+$";
+        var addressPattern = @"^[a-zA-Zа-яА-Я0-9\s,.-]+$";
         return Regex.IsMatch(address, addressPattern);
     }
 }
